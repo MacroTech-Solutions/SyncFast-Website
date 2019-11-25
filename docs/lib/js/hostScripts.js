@@ -2,8 +2,6 @@ if (sessionStorage.getItem('userKey') == null || sessionStorage.getItem('userKey
     window.location.href = "login.html";
 }
 
-const database = firebase.database().ref();
-
 // The Browser API key obtained from the Google API Console.
 // Replace with your own Browser API key, or your own key.
 let developerKey = 'AIzaSyDhkJ2yT06tRwXIMEUp9xaj2-LxOnKyvGY';
@@ -29,10 +27,10 @@ function loadPicker() {
 
 function onAuthApiLoad() {
     window.gapi.auth.authorize({
-            'client_id': clientId,
-            'scope': scopes,
-            'immediate': false
-        },
+        'client_id': clientId,
+        'scope': scopes,
+        'immediate': false
+    },
         handleAuthResult);
 }
 
@@ -68,27 +66,26 @@ function createPicker() {
 
 // A simple callback implementation.
 async function pickerCallback(data) {
+    document.getElementById("popup").style.display = "none";
     if (data.action == google.picker.Action.PICKED) {
         let fileId = data.docs[0].id;
-        let myAccessKey = Math.floor(Math.random() * 9000000 + 1000000);
-        while (true) {
-            let myCheck = await database.child("presentations").orderByChild('accessKey').equalTo(parseInt(myAccessKey)).once("value");
-            if (myCheck.val() == null) { break; }
-            myAccessKey = Math.floor(Math.random() * 9000000 + 1000000);
-        }
-        let pushData = {
-            userID: sessionStorage.getItem('userKey'),
-            fileID: fileId,
-            accessToken: localStorage.getItem('access_token'),
-            currentSlideNum: 0,
-            slideUrl: null,
-            presentationTitle: null,
-            accessKey: myAccessKey.toString(), //creating a 7-digit access key
-        }
-        firebase.database().ref('tags/41224109153').set(myAccessKey.toString());
-        database.child("presentations").push(pushData);
+        let userID = sessionStorage.getItem('userKey');
+        let accessToken = localStorage.getItem('access_token');
+        let result;
+        await axios({
+            method: 'POST',
+            url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/host',
+            headers: {
+                'Content-Type': 'application/json',
+                'fileid': fileId,
+                'userkey': userID,
+                'accesstoken' : accessToken
+            }
+        })
+            .then(data => result = data.data)
+            .catch(err => console.log(err))
         sessionStorage.setItem('presentationID', fileId)
-        sessionStorage.setItem('accessKey', myAccessKey.toString());
+        sessionStorage.setItem('accessKey', result.accesskey);
         sessionStorage.setItem('currentSlide', "0")
         window.location.href = "slidesPresent.html"
     }
