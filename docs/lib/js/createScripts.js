@@ -27,23 +27,21 @@ recognition.lang = "en-us";
 setup();
 
 async function setup() {
-  let myAccessKey = Math.floor(Math.random() * 9000000 + 1000000);
-  while (true) {
-    let myCheck = await database.child("presentations").orderByChild('accessKey').equalTo(parseInt(myAccessKey)).once("value");
-    if (myCheck.val() == null) { break; }
-    myAccessKey = Math.floor(Math.random() * 9000000 + 1000000);
-  }
-  let pushData = {
-    userID: sessionStorage.getItem('userKey'),
-    accessToken: localStorage.getItem('access_token'),
-    slideUrl: null,
-    presentationTitle: null,
-    accessKey: myAccessKey.toString(), //creating a 7-digit access key
-  }
-  firebase.database().ref('tags/41224109153').set(myAccessKey.toString());
-  database.child("presentations").push(pushData);
-  sessionStorage.setItem('accessKey', myAccessKey.toString());
-  firebaseCommands();
+  let result;
+  await axios({
+    method: 'POST',
+    url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/createSetup',
+    headers: {
+      'Content-Type': 'application/json',
+      'userkey': sessionStorage.getItem('userKey'),
+      'accesstoken': localStorage.getItem('access_token')
+    }
+  })
+    .then(data => result = data.data)
+    .catch(err => console.log(err))
+    sessionStorage.setItem('accessKey', );
+    sessionStorage.setItem('firebasePresentationKey', result.firebasepresentationkey)
+    sessionStorage.setItem('currentSlide', );
 }
 
 recognition.start();
@@ -433,14 +431,4 @@ function getWiki(place) {
     }
 
   });
-}
-
-async function firebaseCommands() {
-  myVal = await database.child("presentations").orderByChild('accessKey').equalTo(sessionStorage.getItem('accessKey')).once("value");
-  myVal = myVal.val();
-  console.log(myVal);
-  for (key in myVal) {
-    sessionStorage.setItem('firebasePresentationKey', key);
-    sessionStorage.setItem('currentSlide', myVal[key].currentSlideNum);
-  }
 }
