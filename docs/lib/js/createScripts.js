@@ -2,8 +2,6 @@ if (sessionStorage.getItem('userKey') == null || sessionStorage.getItem('userKey
   window.location.href = "login.html";
 }
 
-const database = firebase.database().ref();
-
 let SpeechRecognition = window.webkitSpeechRecognition;
 let recognition = new SpeechRecognition();
 let textDiv = document.getElementById('bullets');
@@ -27,23 +25,21 @@ recognition.lang = "en-us";
 setup();
 
 async function setup() {
-  let myAccessKey = Math.floor(Math.random() * 9000000 + 1000000);
-  while (true) {
-    let myCheck = await database.child("presentations").orderByChild('accessKey').equalTo(parseInt(myAccessKey)).once("value");
-    if (myCheck.val() == null) { break; }
-    myAccessKey = Math.floor(Math.random() * 9000000 + 1000000);
-  }
-  let pushData = {
-    userID: sessionStorage.getItem('userKey'),
-    accessToken: localStorage.getItem('access_token'),
-    slideUrl: null,
-    presentationTitle: null,
-    accessKey: myAccessKey.toString(), //creating a 7-digit access key
-  }
-  firebase.database().ref('tags/41224109153').set(myAccessKey.toString());
-  database.child("presentations").push(pushData);
-  sessionStorage.setItem('accessKey', myAccessKey.toString());
-  firebaseCommands();
+  let result;
+  await axios({
+    method: 'POST',
+    url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/createSetup',
+    headers: {
+      'Content-Type': 'application/json',
+      'userkey': sessionStorage.getItem('userKey'),
+      'accesstoken': localStorage.getItem('access_token')
+    }
+  })
+    .then(data => result = data.data)
+    .catch(err => console.log(err))
+  sessionStorage.setItem('accessKey', result.accesskey);
+  sessionStorage.setItem('firebasePresentationKey', result.firebasepresentationkey)
+  sessionStorage.setItem('currentSlide', result.currentslide);
 }
 
 recognition.start();
@@ -106,7 +102,15 @@ recognition.onresult = async function (event) {
     secondStop = false;
     words = lastInput.split(" ");
     currentSlideTitle = capitalizeFirstLetter(words[words.length - 1]);
-    firebase.database().ref(`presentations/${sessionStorage.getItem('firebasePresentationKey')}/presentationTitle`).set(currentSlideTitle);
+    axios({
+      method: 'POST',
+      url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/createTitle',
+      headers: {
+        'Content-Type': 'application/json',
+        'slidetitle': currentSlideTitle,
+        'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey')
+      }
+    });
     document.getElementById('heading').innerText = randomBeginning() + capitalizeFirstLetter(words[words.length - 1]);
     document.getElementById('heading').style.backgroundColor = `rgb(${Math.random() * 101 + 50},${Math.random() * 101 + 50},${Math.random() * 101 + 50})`;
   } else if (!firstSentence && !secondStop) {
@@ -127,10 +131,26 @@ recognition.onresult = async function (event) {
       });
       var1 = myCanvas.toDataURL("image/png");
       console.log(var1);
-      firebase.database().ref(`presentations/${sessionStorage.getItem('firebasePresentationKey')}/slideUrl`).set(var1);
+      axios({
+        method: 'POST',
+        url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/slideUrl',
+        headers: {
+          'Content-Type': 'application/json',
+          'slideurl': var1,
+          'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey')
+        }
+      });
       let imageUrl = document.getElementById("image").src;
 
-      firebase.database().ref(`presentations/${sessionStorage.getItem('firebasePresentationKey')}/imageUrl`).set(imageUrl);
+      axios({
+        method: 'POST',
+        url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/imageUrl',
+        headers: {
+          'Content-Type': 'application/json',
+          'imageurl': imageUrl,
+          'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey')
+        }
+      });
     } else {
       if (state == false) {
         document.getElementById(`bullet${bulletNum}`).style.display = "block";
@@ -212,7 +232,14 @@ async function checkInput(input) {
       bulletNum--;
     }
     else if (input.includes("end") && input.includes("slideshow") || input.includes("end") && input.includes("presentation") || input.includes("finish") && input.includes("presentation") || input.includes("finish") && input.includes("slideshow")) {
-      firebase.database().ref(`presentations/${sessionStorage.getItem('firebasePresentationKey')}/slideUrl`).set("assets/SyncFast_End_Screen.png");
+      axios({
+        method: 'POST',
+        url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/endScreen',
+        headers: {
+          'Content-Type': 'application/json',
+          'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey')
+        }
+      });
       //send endscreen.png to all viewers
       window.location.href = "index.html";
     }
@@ -433,14 +460,4 @@ function getWiki(place) {
     }
 
   });
-}
-
-async function firebaseCommands() {
-  myVal = await database.child("presentations").orderByChild('accessKey').equalTo(sessionStorage.getItem('accessKey')).once("value");
-  myVal = myVal.val();
-  console.log(myVal);
-  for (key in myVal) {
-    sessionStorage.setItem('firebasePresentationKey', key);
-    sessionStorage.setItem('currentSlide', myVal[key].currentSlideNum);
-  }
 }
