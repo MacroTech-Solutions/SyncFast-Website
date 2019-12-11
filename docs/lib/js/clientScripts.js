@@ -14,7 +14,7 @@ async function onClick() {
     myVal = await database.child('presentations').orderByChild('accessKey').equalTo(accessCode).once("value");
     myVal = myVal.val();
     if (myVal == null) {
-        myError.innerText = "Incorrect Access Code";
+        alert("Invalid Access Code");
     } else {
         myError.innerText = "";
         for (key in myVal) {
