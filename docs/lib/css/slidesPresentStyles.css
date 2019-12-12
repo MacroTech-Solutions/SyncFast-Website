@@ -12,6 +12,11 @@ iframe {
     width: 60vw;
 }
 
+#presImg2 {
+    height: 100vh;
+    width: auto;
+}
+
 .nav {
     background-color: black;
     display: flex;

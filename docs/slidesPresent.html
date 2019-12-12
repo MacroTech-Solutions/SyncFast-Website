@@ -49,32 +49,47 @@
 </head>
 
 <body>
-    <div class="nav">
-        <div class="left">
-            <img id="logo" src="assets/SyncFast Logo Dark.png" onclick="window.location.href='index.html'">
-        </div>
-        <div class="center">
-            <button id="change">Change</button>
-            <form id="changeKey"></form>
-        </div>
-        <div class="right">
-            <button id="signOut" onclick="signOut()">Sign Out</button>
-            <div class="userPicture">
-                <img id="userPic" src="">
+    <div id="standardView">
+        <div class="nav">
+            <div class="left">
+                <img id="logo" src="assets/SyncFast Logo Dark.png" onclick="window.location.href='index.html'">
+            </div>
+            <div class="center">
+                <button id="change">Change</button>
+                <form id="changeKey"></form>
+            </div>
+            <div class="right">
+                <button id="signOut" onclick="signOut()">Sign Out</button>
+                <div class="userPicture">
+                    <img id="userPic" src="">
+                </div>
             </div>
         </div>
+        <div class="break"> </div>
+        <div class="content">
+            <div class="img">
+
+            </div>
+            <div class="buttons">
+                <button id="prevSlide" class="button" onclick="previousSlide()">Previous Slide</button>
+                <button id="newPres" class="button" onclick="newPres()">Choose New Presentation </button>
+                <button id="nextSlide" class="button" onclick="nextSlide()">Next Slide</button>
+                <button id="fullScreen" onClick="fullScreen()"><img src="assets/full-screen.png" /></button>
+            </div>
+
+        </div>
     </div>
-    <div class="break"> </div>
-    <div class="content">
-        <div class="img">
+    <div id="fullView" style="display:none">
+        <div class="content">
+            <div class="img2">
 
+            </div>
         </div>
-        <div class="buttons">
-            <button id="prevSlide" class="button" onclick="previousSlide()">Previous Slide</button>
-            <button id="newPres" class="button" onclick="newPres()">Choose New Presentation </button>
-            <button id="nextSlide" class="button" onclick="nextSlide()">Next Slide</button>
+        <div class="buttons2">
+            <button id="prevSlide2" class="button2" onclick="previousSlide()">Previous Slide</button>
+            <button id="nextSlide2" class="button2" onclick="nextSlide()">Next Slide</button>
+            <button id="fullScreen" onClick="standardScreen()"><img src="assets/full-screen.png" /></button>
         </div>
-
     </div>
     <script src="lib/js/slidesPresentScripts.js">
     </script>

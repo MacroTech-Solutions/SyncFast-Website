@@ -8,6 +8,7 @@ let myVal;
 let length;
 let slideUrl;
 let imageElement;
+let imageElement2;
 let newCode;
 let change = document.querySelector('#change');
 let changeKey = document.querySelector('#changeKey');
@@ -54,13 +55,13 @@ function initClient() {
         clientId: CLIENT_ID,
         discoveryDocs: DISCOVERY_DOCS,
         scope: SCOPES
-    }).then(function() {
+    }).then(function () {
         // Listen for sign-in state changes.
         gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 
         // Handle the initial sign-in state.
         updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-    }, function(error) {
+    }, function (error) {
         console.log(JSON.stringify(error, null, 2));
     });
 }
@@ -91,14 +92,14 @@ function handleAuthClick(event) {
 function listSlides() {
     gapi.client.slides.presentations.get({
         presentationId: sessionStorage.getItem('presentationID')
-    }).then(async function(response) {
+    }).then(async function (response) {
         await firebaseCommands();
         let presentation = response.result;
         length = presentation.slides.length;
         gapi.client.slides.presentations.pages.getThumbnail({
             presentationId: sessionStorage.getItem('presentationID'),
             pageObjectId: presentation.slides[sessionStorage.getItem('currentSlide')].objectId,
-        }).then(function(response) {
+        }).then(function (response) {
             const res = JSON.parse(response.body);
             slideUrl = res.contentUrl;
             firebase.database().ref(`presentations/${sessionStorage.getItem('firebasePresentationKey')}/slideUrl`).set(slideUrl);
@@ -107,13 +108,18 @@ function listSlides() {
             imageElement.id = "presImg";
             imageElement.title = presentation.title;
             imageElement.src = slideUrl;
+            imageElement2 = document.createElement("img");
+            imageElement2.id = "presImg2";
+            imageElement2.title = presentation.title;
+            imageElement2.src = slideUrl;
             document.querySelector(".img").appendChild(imageElement);
+            document.querySelector(".img2").appendChild(imageElement2);
             p.innerText = `Access Code: ${sessionStorage.getItem('accessKey')}`
             document.querySelector(".center").prepend(p);
-        }, function(response) {
+        }, function (response) {
             console.log('Error: ' + response.result.error.message);
         });
-    }, function(response) {
+    }, function (response) {
         console.log('Error: ' + response.result.error.message);
     });
 }
@@ -153,22 +159,23 @@ firebase.database().ref(`presentations/${sessionStorage.getItem('firebasePresent
 async function updatePage() {
     gapi.client.slides.presentations.get({
         presentationId: sessionStorage.getItem('presentationID')
-    }).then(function(response) {
+    }).then(function (response) {
         firebaseCommands();
         let presentation = response.result;
         length = presentation.slides.length;
         gapi.client.slides.presentations.pages.getThumbnail({
             presentationId: sessionStorage.getItem('presentationID'),
             pageObjectId: presentation.slides[sessionStorage.getItem('currentSlide')].objectId,
-        }).then(function(response) {
+        }).then(function (response) {
             const res = JSON.parse(response.body);
             slideUrl = res.contentUrl;
             firebase.database().ref(`presentations/${sessionStorage.getItem('firebasePresentationKey')}/slideUrl`).set(slideUrl);
             imageElement.src = slideUrl;
-        }, function(response) {
+            imageElement2.src = slideUrl;
+        }, function (response) {
             console.log('Error: ' + response.result.error.message);
         });
-    }, function(response) {
+    }, function (response) {
         console.log('Error: ' + response.result.error.message);
     });
 }
@@ -215,4 +222,30 @@ async function accessKeySubmitted() {
     changeInput.style.display = "none";
     change.style.display = "inline";
     p.innerText = `Access Code: ${sessionStorage.getItem('accessKey')}`;
+}
+
+function fullScreen() {
+    document.getElementById("standardView").style.display = "none";
+    document.getElementById("fullView").style.display = "block";
+    if (document.getElementById("fullView").requestFullscreen)
+        document.getElementById("fullView").requestFullscreen();
+    else if (document.getElementById("fullView").mozRequestFullScreen)
+        document.getElementById("fullView").mozRequestFullScreen();
+    else if (document.getElementById("fullView").webkitRequestFullscreen)
+        document.getElementById("fullView").webkitRequestFullscreen();
+    else if (document.getElementById("fullView").msRequestFullscreen)
+        document.getElementById("fullView").msRequestFullscreen();
+}
+
+function standardScreen() {
+    document.getElementById("standardView").style.display = "block";
+    document.getElementById("fullView").style.display = "none";
+    if(document.exitFullscreen)
+		document.exitFullscreen();
+	else if(document.mozCancelFullScreen)
+		document.mozCancelFullScreen();
+	else if(document.webkitExitFullscreen)
+		document.webkitExitFullscreen();
+	else if(document.msExitFullscreen)
+		document.msExitFullscreen();    
 }
