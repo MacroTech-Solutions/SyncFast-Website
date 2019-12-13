@@ -4,12 +4,15 @@ if (sessionStorage.getItem('presentationID') == null || sessionStorage.getItem('
 
 const database = firebase.database().ref();
 
+document.getElementById("linkBtn").addEventListener("click", openLink);
+
 let myVal;
 let length;
 let slideUrl;
 let imageElement;
 let imageElement2;
 let newCode;
+let screenState = "standard";
 let change = document.querySelector('#change');
 let changeKey = document.querySelector('#changeKey');
 change.addEventListener('click', changeAccess);
@@ -25,6 +28,7 @@ submit.innerText = "Submit";
 changeKey.appendChild(submit);
 submit.style.display = "none";
 submit.addEventListener('click', accessKeySubmitted);
+let openURL = "";
 
 // Client ID and API key from the Developer Console
 let CLIENT_ID = "510632149212-b3nju2fd9omib1l67qal0ot1214rr75s.apps.googleusercontent.com";
@@ -169,6 +173,7 @@ async function updatePage() {
         }).then(function (response) {
             const res = JSON.parse(response.body);
             slideUrl = res.contentUrl;
+            findImage(slideUrl);
             firebase.database().ref(`presentations/${sessionStorage.getItem('firebasePresentationKey')}/slideUrl`).set(slideUrl);
             imageElement.src = slideUrl;
             imageElement2.src = slideUrl;
@@ -178,6 +183,38 @@ async function updatePage() {
     }, function (response) {
         console.log('Error: ' + response.result.error.message);
     });
+}
+
+async function findImage(imageUrl) {
+    await axios({
+        method: 'GET',
+        url: 'https://api.ocr.space/parse/imageurl?apikey=9fccee195588957&url=' + imageUrl,
+    })
+        .then(data => result = data.data.ParsedResults[0].ParsedText)
+        .catch(err => console.log(err))
+    var splitArray = result.split("\n");
+    console.log(splitArray)
+    var url = "";
+    for (var x = 0; x < splitArray.length; x++) {
+        //if (splitArray[x].substring(0,8) == "https://"){
+        testString = splitArray[x].replace(" ", "");
+        if ((/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/).test(testString)) {
+            url = testString;
+            break;
+        }
+    }
+
+    openURL = url;
+    if (screenState = "standard" && url != "") {
+        document.getElementById("linkBtn").style.display = "inline";
+    } else if (url == ""){
+        document.getElementById("linkBtn").style.display = "none";
+    }
+    console.log(url);
+}
+
+function openLink() {
+    window.open(openURL);
 }
 
 function signOut() {
@@ -225,6 +262,7 @@ async function accessKeySubmitted() {
 }
 
 function fullScreen() {
+    screenState = "full";
     document.getElementById("standardView").style.display = "none";
     document.getElementById("fullView").style.display = "block";
     if (document.getElementById("fullView").requestFullscreen)
@@ -238,14 +276,15 @@ function fullScreen() {
 }
 
 function standardScreen() {
+    screenState = "standard";
     document.getElementById("standardView").style.display = "block";
     document.getElementById("fullView").style.display = "none";
-    if(document.exitFullscreen)
-		document.exitFullscreen();
-	else if(document.mozCancelFullScreen)
-		document.mozCancelFullScreen();
-	else if(document.webkitExitFullscreen)
-		document.webkitExitFullscreen();
-	else if(document.msExitFullscreen)
-		document.msExitFullscreen();    
+    if (document.exitFullscreen)
+        document.exitFullscreen();
+    else if (document.mozCancelFullScreen)
+        document.mozCancelFullScreen();
+    else if (document.webkitExitFullscreen)
+        document.webkitExitFullscreen();
+    else if (document.msExitFullscreen)
+        document.msExitFullscreen();
 }
