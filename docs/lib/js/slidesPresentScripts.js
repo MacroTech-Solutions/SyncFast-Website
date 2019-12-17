@@ -5,6 +5,7 @@ if (sessionStorage.getItem('presentationID') == null || sessionStorage.getItem('
 const database = firebase.database().ref();
 
 document.getElementById("linkBtn").addEventListener("click", openLink);
+document.getElementById("qrBtn").addEventListener("click", openQRCode);
 
 let myVal;
 let length;
@@ -29,6 +30,7 @@ changeKey.appendChild(submit);
 submit.style.display = "none";
 submit.addEventListener('click', accessKeySubmitted);
 let openURL = "";
+let openQR = ""
 
 // Client ID and API key from the Developer Console
 let CLIENT_ID = "510632149212-b3nju2fd9omib1l67qal0ot1214rr75s.apps.googleusercontent.com";
@@ -174,6 +176,7 @@ async function updatePage() {
             const res = JSON.parse(response.body);
             slideUrl = res.contentUrl;
             findImage(slideUrl);
+            findQR(slideUrl);
             firebase.database().ref(`presentations/${sessionStorage.getItem('firebasePresentationKey')}/slideUrl`).set(slideUrl);
             imageElement.src = slideUrl;
             imageElement2.src = slideUrl;
@@ -193,7 +196,6 @@ async function findImage(imageUrl) {
         .then(data => result = data.data.ParsedResults[0].ParsedText)
         .catch(err => console.log(err))
     var splitArray = result.split("\n");
-    console.log(splitArray)
     var url = "";
     for (var x = 0; x < splitArray.length; x++) {
         //if (splitArray[x].substring(0,8) == "https://"){
@@ -210,11 +212,35 @@ async function findImage(imageUrl) {
     } else if (url == ""){
         document.getElementById("linkBtn").style.display = "none";
     }
-    console.log(url);
+}
+
+async function findQR(imageUrl) {
+    await axios({
+        method: 'GET',
+        url: 'https://api.qrserver.com/v1/read-qr-code/?fileurl=' + imageUrl,
+    })
+        .then(data => result = data.data[0].symbol[0].data)
+        .catch(err => console.log(err))
+        console.log(result)
+    var url = "";
+    if ((/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/).test(result)) {
+        url = result;
+    }
+
+    openQR = url;
+    if (screenState = "standard" && url != "") {
+        document.getElementById("qrBtn").style.display = "inline";
+    } else if (url == ""){
+        document.getElementById("qrBtn").style.display = "none";
+    }
 }
 
 function openLink() {
     window.open(openURL);
+}
+
+function openQRCode() {
+    window.open(openQR);
 }
 
 function signOut() {
