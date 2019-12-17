@@ -127,7 +127,9 @@ function listSlides() {
             })
                 .then(data => result = data.data)
                 .catch(err => console.log(err))
+                console.log("hello")
                 console.log(result)
+                console.log("arya")
             document.querySelector(".center").prepend(p);
         }, function (response) {
             console.log('Error: ' + response.result.error.message);
