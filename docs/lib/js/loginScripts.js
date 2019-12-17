@@ -17,7 +17,6 @@ async function onSuccess(googleUser) {
         headers: {
             'Content-Type': 'application/json',
             'email': profile.getEmail(),
-            'password': "",
             'name': profile.getName(),
             'imageurl': profile.getImageUrl()
         }
