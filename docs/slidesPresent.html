@@ -74,6 +74,8 @@
                 <button id="prevSlide" class="button" onclick="previousSlide()">Previous Slide</button>
                 <button id="newPres" class="button" onclick="newPres()">Choose New Presentation </button>
                 <button id="nextSlide" class="button" onclick="nextSlide()">Next Slide</button>
+                <button id="linkBtn" class="button2" style="display:none">Open URL</button>
+                <button id="qrBtn" class="button2" style="display:none">Open QR</button>
                 <button id="fullScreen" onClick="fullScreen()"><img src="assets/full-screen.png" /></button>
             </div>
 
@@ -97,6 +99,7 @@
     <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
         onreadystatechange="if (this.readyState === 'complete') this.onload()">
         </script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 
 </body>
