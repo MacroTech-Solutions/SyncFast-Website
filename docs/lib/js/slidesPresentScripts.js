@@ -123,7 +123,7 @@ function listSlides() {
             p.innerText = `Access Code: ${sessionStorage.getItem('accessKey')}`
             await axios({
                 method: 'GET',
-                url: 'https://api.qrserver.com/v1/create-qr-code/?data=https://www.syncfast.macrotechsolutions.us/client.html?accessKey='+ sessionStorage.getItem('accessKey') +'&size=200x200,
+                url: 'https://api.qrserver.com/v1/create-qr-code/?data=https://www.syncfast.macrotechsolutions.us/client.html?accessKey='+ sessionStorage.getItem('accessKey') +'&size=200x200',
             })
                 .then(data => result = data.data)
                 .catch(err => console.log(err))
