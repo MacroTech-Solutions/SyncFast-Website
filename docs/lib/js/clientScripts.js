@@ -18,19 +18,25 @@ if (myKey) {
 async function onClick() {
     event.preventDefault();
     accessCode = document.querySelector("#accessKeyInput").value;
-
-    myVal = await database.child('presentations').orderByChild('accessKey').equalTo(accessCode).once("value");
-    myVal = myVal.val();
-    if (myVal == null) {
-        alert("Invalid Access Code");
+    let result;
+    await axios({
+        method: 'POST',
+        url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/clientJoin ',
+        headers: {
+            'Content-Type': 'application/json',
+            'accesscode': accessCode
+        }
+    })
+        .then(data => result = data.data)
+        .catch(err => console.log(err))
+    if (result.data == "Incorrect Access Code") {
+        myError.innerText = "Incorrect Access Code";
     } else {
         myError.innerText = "";
-        for (key in myVal) {
-            sessionStorage.setItem('firebasePresentationKey', key);
-            sessionStorage.setItem('slideUrl', myVal[key].slideUrl);
-            sessionStorage.setItem('imageUrl', myVal[key].imageUrl);
-            sessionStorage.setItem('presentationTitle', myVal[key].presentationTitle);
-        }
+        sessionStorage.setItem('firebasePresentationKey', result.firebasepresentationkey);
+        sessionStorage.setItem('slideUrl', result.slideurl);
+        sessionStorage.setItem('imageUrl', result.imageurl);
+        sessionStorage.setItem('presentationTitle', result.presentationtitle);
         document.querySelector("#accessKeyInput").style.display = "none";
         document.querySelector("#submit").style.display = "none";
         document.querySelector("#accessKeyText").style.display = "none";
@@ -74,18 +80,25 @@ async function updatePage() {
 }
 
 async function submitKey() {
-    myVal = await database.child('presentations').orderByChild('accessKey').equalTo(accessCode).once("value");
-    myVal = myVal.val();
-    if (myVal == null) {
-        alert("Invalid Access Code");
+    let result;
+    await axios({
+        method: 'POST',
+        url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/clientJoin ',
+        headers: {
+            'Content-Type': 'application/json',
+            'accesscode': accessCode
+        }
+    })
+        .then(data => result = data.data)
+        .catch(err => console.log(err))
+    if (result.data == "Incorrect Access Code") {
+        myError.innerText = "Incorrect Access Code";
     } else {
         myError.innerText = "";
-        for (key in myVal) {
-            sessionStorage.setItem('firebasePresentationKey', key);
-            sessionStorage.setItem('slideUrl', myVal[key].slideUrl);
-            sessionStorage.setItem('imageUrl', myVal[key].imageUrl);
-            sessionStorage.setItem('presentationTitle', myVal[key].presentationTitle);
-        }
+        sessionStorage.setItem('firebasePresentationKey', result.firebasepresentationkey);
+        sessionStorage.setItem('slideUrl', result.slideurl);
+        sessionStorage.setItem('imageUrl', result.imageurl);
+        sessionStorage.setItem('presentationTitle', result.presentationtitle);
         document.querySelector("#accessKeyInput").style.display = "none";
         document.querySelector("#submit").style.display = "none";
         document.querySelector("#accessKeyText").style.display = "none";
