@@ -123,13 +123,20 @@ async function listSlides() {
             p.innerText = `Access Code: ${sessionStorage.getItem('accessKey')}`
             await axios({
                 method: 'GET',
-                url: 'https://api.qrserver.com/v1/create-qr-code/?data=https://www.syncfast.macrotechsolutions.us/client.html?accessKey='+ sessionStorage.getItem('accessKey') +'&size=200x200',
+                url: 'https://api.qrserver.com/v1/create-qr-code/?data=https://www.syncfast.macrotechsolutions.us/client.html?accessKey=' + sessionStorage.getItem('accessKey') + '&size=200x200',
             })
                 .then(data => result = data.data)
                 .catch(err => console.log(err))
-                let qrElement = result;
-                document.querySelector(".img").appendChild(qrElement);
-                document.querySelector(".center").prepend(p);
+            gapi.client.slides.presentations.pages.get({
+                presentationId: sessionStorage.getItem('presentationID'),
+                pageObjectId: presentation.slides[sessionStorage.getItem('currentSlide')].objectId,
+            }).then(async function (response) {
+                let res2 = JSON.parse(response.body);
+                console.log(res2.pageElements);
+            })
+            let qrElement = result;
+            document.querySelector(".img").appendChild(qrElement);
+            document.querySelector(".center").prepend(p);
         }, function (response) {
             console.log('Error: ' + response.result.error.message);
         });
@@ -217,7 +224,7 @@ async function findImage(imageUrl) {
     openURL = url;
     if (screenState = "standard" && url != "") {
         document.getElementById("linkBtn").style.display = "inline";
-    } else if (url == ""){
+    } else if (url == "") {
         document.getElementById("linkBtn").style.display = "none";
     }
 }
@@ -229,7 +236,7 @@ async function findQR(imageUrl) {
     })
         .then(data => result = data.data[0].symbol[0].data)
         .catch(err => console.log(err))
-        console.log(result)
+    console.log(result)
     var url = "";
     if ((/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/).test(result)) {
         url = result;
@@ -238,7 +245,7 @@ async function findQR(imageUrl) {
     openQR = url;
     if (screenState = "standard" && url != "") {
         document.getElementById("qrBtn").style.display = "inline";
-    } else if (url == ""){
+    } else if (url == "") {
         document.getElementById("qrBtn").style.display = "none";
     }
 }
