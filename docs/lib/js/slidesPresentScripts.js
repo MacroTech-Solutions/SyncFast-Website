@@ -127,9 +127,9 @@ async function listSlides() {
             })
                 .then(data => result = data.data)
                 .catch(err => console.log(err))
-                let qrElement = result;
-                document.querySelector(".img").appendChild(qrElement);
-                document.querySelector(".center").prepend(p);
+                let img = result;
+                console.log(img);
+                  
         }, function (response) {
             console.log('Error: ' + response.result.error.message);
         });
@@ -146,6 +146,16 @@ async function firebaseCommands() {
         sessionStorage.setItem('firebasePresentationKey', key);
         sessionStorage.setItem('currentSlide', myVal[key].currentSlideNum);
     }
+}
+
+function b64EncodeUnicode(str) {
+    // first we use encodeURIComponent to get percent-encoded UTF-8,
+    // then we convert the percent encodings into raw bytes which
+    // can be fed into btoa.
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+        function toSolidBytes(match, p1) {
+            return String.fromCharCode('0x' + p1);
+    }));
 }
 
 function previousSlide() {
