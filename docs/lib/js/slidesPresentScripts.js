@@ -7,6 +7,9 @@ const database = firebase.database().ref();
 document.getElementById("linkBtn").addEventListener("click", openLink);
 document.getElementById("qrBtn").addEventListener("click", openQRCode);
 
+const evtSource = new EventSource("https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us");
+
+
 let myVal;
 let length;
 let slideUrl;
