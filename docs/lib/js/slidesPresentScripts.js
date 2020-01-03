@@ -105,7 +105,7 @@ async function listSlides() {
         gapi.client.slides.presentations.pages.getThumbnail({
             presentationId: sessionStorage.getItem('presentationID'),
             pageObjectId: presentation.slides[sessionStorage.getItem('currentSlide')].objectId,
-        }).then(async function (response) {
+        }).then(function (response) {
             const res = JSON.parse(response.body);
             slideUrl = res.contentUrl;
             firebase.database().ref(`presentations/${sessionStorage.getItem('firebasePresentationKey')}/slideUrl`).set(slideUrl);
@@ -127,9 +127,10 @@ async function listSlides() {
             })
                 .then(data => result = data.data)
                 .catch(err => console.log(err))
-                let qrElement = result;
-                document.querySelector(".img").appendChild(qrElement);
-                document.querySelector(".center").prepend(p);
+                console.log("hello")
+                console.log(result)
+                console.log("arya")
+            document.querySelector(".center").prepend(p);
         }, function (response) {
             console.log('Error: ' + response.result.error.message);
         });
