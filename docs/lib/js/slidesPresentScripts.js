@@ -121,15 +121,6 @@ async function listSlides() {
             document.querySelector(".img").appendChild(imageElement);
             document.querySelector(".img2").appendChild(imageElement2);
             p.innerText = `Access Code: ${sessionStorage.getItem('accessKey')}`
-            await axios({
-                method: 'GET',
-                url: 'https://api.qrserver.com/v1/create-qr-code/?data=https://www.syncfast.macrotechsolutions.us/client.html?accessKey='+ sessionStorage.getItem('accessKey') +'&size=200x200,
-            })
-                .then(data => result = data.data)
-                .catch(err => console.log(err))
-                console.log("hello")
-                console.log(result)
-                console.log("arya")
             document.querySelector(".center").prepend(p);
         }, function (response) {
             console.log('Error: ' + response.result.error.message);
