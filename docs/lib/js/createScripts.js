@@ -110,7 +110,7 @@ recognition.onresult = async function (event) {
         'slidetitle': currentSlideTitle,
         'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey')
       }
-    }).catch(err => console.log(err))
+    });
     document.getElementById('heading').innerText = randomBeginning() + capitalizeFirstLetter(words[words.length - 1]);
     document.getElementById('heading').style.backgroundColor = `rgb(${Math.random() * 101 + 50},${Math.random() * 101 + 50},${Math.random() * 101 + 50})`;
   } else if (!firstSentence && !secondStop) {
@@ -139,7 +139,7 @@ recognition.onresult = async function (event) {
           'slideurl': var1,
           'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey')
         }
-      }).catch(err => console.log(err))
+      });
       let imageUrl = document.getElementById("image").src;
 
       axios({
@@ -150,7 +150,7 @@ recognition.onresult = async function (event) {
           'imageurl': imageUrl,
           'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey')
         }
-      }).catch(err => console.log(err))
+      });
     } else {
       if (state == false) {
         document.getElementById(`bullet${bulletNum}`).style.display = "block";
@@ -239,7 +239,7 @@ async function checkInput(input) {
           'Content-Type': 'application/json',
           'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey')
         }
-      }).catch(err => console.log(err))
+      });
       //send endscreen.png to all viewers
       window.location.href = "index.html";
     }
