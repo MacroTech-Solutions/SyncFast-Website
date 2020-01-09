@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115649550-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-115649550-4');
+    </script>
+
+    <title>SyncFast - Host</title>
+    <link href="https://fonts.googleapis.com/css?family=EB+Garamond|Karla|Quicksand|Raleway|Rubik&display=swap"
+        rel="stylesheet">
+    <script src="https://apis.google.com/js/api:client.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <meta name="google-signin-client_id"
+        content="510632149212-b3nju2fd9omib1l67qal0ot1214rr75s.apps.googleusercontent.com">
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-database.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDhkJ2yT06tRwXIMEUp9xaj2-LxOnKyvGY",
+            authDomain: "syncfast-macrotech.firebaseapp.com",
+            databaseURL: "https://syncfast-macrotech.firebaseio.com",
+            projectId: "syncfast-macrotech",
+            storageBucket: "syncfast-macrotech.appspot.com",
+            messagingSenderId: "510632149212",
+            appId: "1:510632149212:web:fb755806721303034db419",
+            measurementId: "G-KL9VSWPDGH"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+
+    <meta charset="utf-8" />
+</head>
+
+<body>
+    <div id="standardView">
+        <div class="nav">
+            <div class="left">
+                <img id="logo" src="assets/SyncFast Logo Dark.png" onclick="window.location.href='index.html'">
+            </div>
+            <div class="center">
+                <button id="change">Change</button>
+                <form id="changeKey"></form>
+            </div>
+            <div class="right">
+                <button id="signOut" onclick="signOut()">Sign Out</button>
+                <div class="userPicture">
+                    <img id="userPic" src="">
+                </div>
+            </div>
+        </div>
+        <div class="break"> </div>
+        <div class="content">
+            <div class="img">
+
+            </div>
+            <div class="buttons">
+                <button id="prevSlide" class="button" onclick="previousSlide()">Previous Slide</button>
+                <button id="newPres" class="button" onclick="newPres()">Choose New Presentation </button>
+                <button id="nextSlide" class="button" onclick="nextSlide()">Next Slide</button>
+                <button id="linkBtn" class="button2" style="display:none">Open URL</button>
+                <button id="qrBtn" class="button2" style="display:none">Open QR</button>
+                <button id="fullScreen" onClick="fullScreen()"><img src="assets/full-screen.png" /></button>
+            </div>
+
+        </div>
+    </div>
+    <div id="fullView" style="display:none">
+        <div class="content">
+            <div class="img2">
+
+            </div>
+        </div>
+        <div class="buttons2">
+            <button id="prevSlide2" class="button2" onclick="previousSlide()">Previous Slide</button>
+            <button id="nextSlide2" class="button2" onclick="nextSlide()">Next Slide</button>
+            <button id="fullScreen" onClick="standardScreen()"><img src="assets/full-screen.png" /></button>
+        </div>
+    </div>
+    <script src="lib/js/slidesPresentScripts.js">
+    </script>
+    <link href="lib/css/slidesPresentStyles.css" rel="stylesheet">
+    <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
+        onreadystatechange="if (this.readyState === 'complete') this.onload()">
+        </script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+</body>
+
+</html>

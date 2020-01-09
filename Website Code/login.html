@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115649550-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-115649550-4');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=EB+Garamond|Karla|Quicksand|Raleway|Rubik&display=swap"
+        rel="stylesheet">
+    <title>SyncFast - Login</title>
+    <meta name="google-signin-client_id"
+        content="510632149212-b3nju2fd9omib1l67qal0ot1214rr75s.apps.googleusercontent.com">
+    <link rel="stylesheet" href="lib/css/loginStyles.css">
+    <script src="lib/js/loginScripts.js" defer></script>
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css?h=6ce36f43e82a20dacce02853e2105df1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">
+    <link rel="stylesheet" href="lib/fonts/fontawesome5-overrides.min.css?h=cfa788754642173dafbd830bd7969fdb">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand bg-dark navigation-clean">
+        <div class="container"><a class="navbar-brand d-xl-flex justify-content-xl-center align-items-xl-center"
+                href="#" style="color: rgba(255,255,255,0.9);font-size: 52px;"><img
+                    src="assets/SyncFast%20Logo%20(Transparent).png?h=7af457b51a6cb05db0f42ba9bc096f96"
+                    style="width: 66px;"><span>&nbsp; &nbsp;</span>SyncFast</a><button class="navbar-toggler"
+                data-toggle="collapse"></button></div>
+    </nav>
+    <div class="page">
+        <div class="box">
+            <div id="error">
+            </div>
+            <div class="title">
+                <h1 id="title" style="color: white;">Login</h1>
+            </div>
+            <form>
+                <div class="email">
+                    <input id="emailInput" placeholder="Email Address">
+                </div>
+                <div class="break"></div>
+                <div class="password">
+                    <input type="password" id="passwordInput" placeholder="Password">
+                </div>
+                <div class="break"></div>
+                <div class="submit">
+                    <button id="submit_button">Submit</button>
+                </div>
+            </form>
+            <div class="or">
+                <h1 id="or" style = "color: white;">OR</h1>
+            </div>
+            <div id="my-signin2"></div>
+            <!-- <button id="authorize_button" style="display: block;">Sign in with Google</button> -->
+            <div class="break"></div>
+            <div class="signUp">
+                <a href="signUp.html"><u>Sign Up Here</u></a>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" defer></script>
+    <script src="https://apis.google.com/js/platform.js" async></script>
+    <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</body>
+
+</html>
