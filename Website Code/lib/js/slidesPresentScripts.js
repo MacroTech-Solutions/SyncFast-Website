@@ -125,7 +125,7 @@ async function listSlides() {
             document.querySelector(".img2").appendChild(imageElement2);
             p.innerText = `Access Code: ${sessionStorage.getItem('accessKey')}`
             qrElement = document.createElement("img");
-            qrElement.src = 'https://api.qrserver.com/v1/create-qr-code/?data=https://www.syncfast.macrotechsolutions.us/client.html?accessKey='+ sessionStorage.getItem('accessKey') +'&size=200x200'
+            qrElement.src = 'https://api.qrserver.com/v1/create-qr-code/?data=https://syncfast.macrotechsolutions.us/client.html?accessKey='+ sessionStorage.getItem('accessKey') +'&size=200x200'
             document.querySelector(".img").appendChild(qrElement);
             document.querySelector(".center").prepend(p);
         }, function (response) {
