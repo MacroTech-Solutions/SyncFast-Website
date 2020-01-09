@@ -5,7 +5,7 @@ if (sessionStorage.getItem('presentationID') == null || sessionStorage.getItem('
 const database = firebase.database().ref();
 
 document.getElementById("linkBtn").addEventListener("click", openLink);
-document.getElementById("qrBtn").addEventListener("click", openQRCode);
+//document.getElementById("qrBtn").addEventListener("click", openQRCode);
 
 const evtSource = new EventSource("https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us");
 
@@ -123,10 +123,7 @@ async function listSlides() {
             imageElement2.src = slideUrl;
             document.querySelector(".img").appendChild(imageElement);
             document.querySelector(".img2").appendChild(imageElement2);
-            p.innerText = `Access Code: ${sessionStorage.getItem('accessKey')}`
-            qrElement = document.createElement("img");
-            qrElement.src = 'https://api.qrserver.com/v1/create-qr-code/?data=https://syncfast.macrotechsolutions.us/client.html?accessKey='+ sessionStorage.getItem('accessKey') +'&size=200x200'
-            document.querySelector(".img").appendChild(qrElement);
+            p.innerText = `Access Code: ${sessionStorage.getItem('accessKey')}`;
             document.querySelector(".center").prepend(p);
         }, function (response) {
             console.log('Error: ' + response.result.error.message);
@@ -134,6 +131,10 @@ async function listSlides() {
     }, function (response) {
         console.log('Error: ' + response.result.error.message);
     });
+}
+
+function openQRCodePres(){
+    window.open('https://api.qrserver.com/v1/create-qr-code/?data=https://syncfast.macrotechsolutions.us/client.html?accessKey='+ sessionStorage.getItem('accessKey') +'&size=600x600', 'QR Code', "height=600,width=600");
 }
 
 async function firebaseCommands() {
