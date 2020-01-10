@@ -47,6 +47,14 @@ iframe {
     margin: 0 5px;
 }
 
+.buttons2 {
+    display: flex;
+    justify-content: left;
+    width: 90vw;
+    height: 5%;
+    margin: 0 5px;
+}
+
 #logo {
     height: 50px;
 }
