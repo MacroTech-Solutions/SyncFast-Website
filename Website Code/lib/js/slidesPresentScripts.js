@@ -10,6 +10,17 @@ document.getElementById("linkBtn").addEventListener("click", openLink);
 const evtSource = new EventSource("https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us");
 
 
+let socket = new WebSocket("ws://localhost:8080");
+
+socket.onopen = function(e) {
+    console.log("Connected to socket");
+    socket.send("Connected");
+  };
+
+socket.onmessage = function (event) {
+    alert(`[message] Data received from server: ${event.data}`);
+};
+
 let myVal;
 let length;
 let slideUrl;
@@ -133,8 +144,8 @@ async function listSlides() {
     });
 }
 
-function openQRCodePres(){
-    window.open('https://api.qrserver.com/v1/create-qr-code/?data=https://syncfast.macrotechsolutions.us/client.html?accessKey='+ sessionStorage.getItem('accessKey') +'&size=600x600', 'QR Code', "height=600,width=600");
+function openQRCodePres() {
+    window.open('https://api.qrserver.com/v1/create-qr-code/?data=https://syncfast.macrotechsolutions.us/client.html?accessKey=' + sessionStorage.getItem('accessKey') + '&size=600x600', 'QR Code', "height=600,width=600");
 }
 
 async function firebaseCommands() {
@@ -216,7 +227,7 @@ async function findImage(imageUrl) {
     openURL = url;
     if (screenState = "standard" && url != "") {
         document.getElementById("linkBtn").style.display = "inline";
-    } else if (url == ""){
+    } else if (url == "") {
         document.getElementById("linkBtn").style.display = "none";
     }
 }
@@ -228,7 +239,7 @@ async function findQR(imageUrl) {
     })
         .then(data => result = data.data[0].symbol[0].data)
         .catch(err => console.log(err))
-        console.log(result)
+    console.log(result)
     var url = "";
     if ((/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/).test(result)) {
         url = result;
@@ -237,7 +248,7 @@ async function findQR(imageUrl) {
     openQR = url;
     if (screenState = "standard" && url != "") {
         document.getElementById("qrBtn").style.display = "inline";
-    } else if (url == ""){
+    } else if (url == "") {
         document.getElementById("qrBtn").style.display = "none";
     }
 }
