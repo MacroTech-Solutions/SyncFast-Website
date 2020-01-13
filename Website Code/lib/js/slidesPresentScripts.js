@@ -164,22 +164,19 @@ function openQRCodePres() {
 }
 
 async function firebaseCommands() {
-    let result;
+    let result = "";
     await axios({
         method: 'POST',
         url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/hostCommands',
         headers: {
             'Content-Type': 'application/json',
-            'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
             'accesskey': sessionStorage.getItem('accessKey')
         }
     })
         .then(data => result = data.data)
         .catch(err => console.log(err))
-    for (key in myVal) {
-        sessionStorage.setItem('firebasePresentationKey', result.firebasepresentationkey);
-        sessionStorage.setItem('currentSlide', result.currentslidenum);
-    }
+    sessionStorage.setItem('firebasePresentationKey', result.firebasepresentationkey);
+    sessionStorage.setItem('currentSlide', result.currentslidenum);
 }
 
 async function previousSlide() {

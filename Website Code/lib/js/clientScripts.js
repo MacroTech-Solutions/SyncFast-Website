@@ -43,14 +43,15 @@ async function onClick() {
     })
         .then(data => result = data.data)
         .catch(err => console.log(err))
+    console.log(result);
     if (result.data == "Incorrect Access Code") {
         alert("Invalid Access Code");
     } else {
         myError.innerText = "";
         sessionStorage.setItem('firebasePresentationKey', result.firebasepresentationkey);
-        sessionStorage.setItem('slideUrl', result.slideUrl);
-        sessionStorage.setItem('imageUrl', result.imageUrl);
-        sessionStorage.setItem('presentationTitle', result.presentationTitle);
+        sessionStorage.setItem('slideUrl', result.slideurl);
+        sessionStorage.setItem('imageUrl', result.imageurl);
+        sessionStorage.setItem('presentationTitle', result.presentationtitle);
         document.querySelector("#accessKeyInput").style.display = "none";
         document.querySelector("#submit").style.display = "none";
         document.querySelector("#accessKeyText").style.display = "none";
