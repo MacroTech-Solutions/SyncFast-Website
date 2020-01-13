@@ -1,1 +1,401 @@
-const _0x45fc=['parse','body','contentUrl','presentations/','firebasePresentationKey','/slideUrl','set','/presentationTitle','title','presImg','presImg2','src','.img','.img2','innerText','Access\x20Code:\x20','.center','prepend','log','Error:\x20','error','message','open','https://api.qrserver.com/v1/create-qr-code/?data=https://syncfast.macrotechsolutions.us/client.html?accessKey=','accessKey','height=600,width=600','orderByChild','equalTo','once','value','val','setItem','currentSlideNum','/currentSlideNum','toString','You\x20are\x20currently\x20viewing\x20the\x20first\x20slide.','You\x20are\x20currently\x20viewing\x20the\x20last\x20slide.','GET','data','ParsedResults','ParsedText','catch','split','replace','test','inline','https://api.qrserver.com/v1/read-qr-code/?fileurl=','symbol','qrBtn','signOut','userKey','profilePic','access_token','#userPic','preventDefault','child','/accessKey','This\x20key\x20has\x20already\x20been\x20reserved.','full','fullView','block','requestFullscreen','mozRequestFullScreen','webkitRequestFullscreen','msRequestFullscreen','standardView','exitFullscreen','webkitExitFullscreen','msExitFullscreen','getItem','presentationID','null','location','href','index.html','database','ref','getElementById','linkBtn','addEventListener','click','https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us','standard','querySelector','#change','#changeKey','createElement','input','changeInput','appendChild','style','display','none','510632149212-b3nju2fd9omib1l67qal0ot1214rr75s.apps.googleusercontent.com','AIzaSyDhkJ2yT06tRwXIMEUp9xaj2-LxOnKyvGY','https://slides.googleapis.com/$discovery/rest?version=v1','https://www.googleapis.com/auth/drive.file','load','client','init','then','auth2','getAuthInstance','isSignedIn','listen','get','stringify','signIn','slides','presentations','result','length','pages','currentSlide','objectId'];(function(_0x3580a2,_0x36767f){const _0x2b27cf=function(_0x41e333){while(--_0x41e333){_0x3580a2['push'](_0x3580a2['shift']());}};_0x2b27cf(++_0x36767f);}(_0x45fc,0xb8));const _0x54ce=function(_0x3580a2,_0x36767f){_0x3580a2=_0x3580a2-0x0;let _0x2b27cf=_0x45fc[_0x3580a2];return _0x2b27cf;};if(sessionStorage[_0x54ce('0x0')](_0x54ce('0x1'))==null||sessionStorage[_0x54ce('0x0')](_0x54ce('0x1'))==_0x54ce('0x2')){window[_0x54ce('0x3')][_0x54ce('0x4')]=_0x54ce('0x5');}const database=firebase[_0x54ce('0x6')]()[_0x54ce('0x7')]();document[_0x54ce('0x8')](_0x54ce('0x9'))[_0x54ce('0xa')](_0x54ce('0xb'),openLink);const evtSource=new EventSource(_0x54ce('0xc'));let myVal;let length;let slideUrl;let imageElement;let imageElement2;let newCode;let screenState=_0x54ce('0xd');let change=document[_0x54ce('0xe')](_0x54ce('0xf'));let changeKey=document[_0x54ce('0xe')](_0x54ce('0x10'));change[_0x54ce('0xa')](_0x54ce('0xb'),changeAccess);let p=document[_0x54ce('0x11')]('h4');p['id']='access';let changeInput=document[_0x54ce('0x11')](_0x54ce('0x12'));changeInput['id']=_0x54ce('0x13');changeKey[_0x54ce('0x14')](changeInput);changeInput[_0x54ce('0x15')][_0x54ce('0x16')]='none';let submit=document[_0x54ce('0x11')]('button');submit['id']='submitButton';submit['innerText']='Submit';changeKey[_0x54ce('0x14')](submit);submit[_0x54ce('0x15')][_0x54ce('0x16')]=_0x54ce('0x17');submit[_0x54ce('0xa')]('click',accessKeySubmitted);let openURL='';let openQR='';let CLIENT_ID=_0x54ce('0x18');let API_KEY=_0x54ce('0x19');let DISCOVERY_DOCS=[_0x54ce('0x1a')];let SCOPES=_0x54ce('0x1b');function handleClientLoad(){gapi[_0x54ce('0x1c')]('client:auth2',initClient);}function initClient(){gapi[_0x54ce('0x1d')][_0x54ce('0x1e')]({'apiKey':API_KEY,'clientId':CLIENT_ID,'discoveryDocs':DISCOVERY_DOCS,'scope':SCOPES})[_0x54ce('0x1f')](function(){gapi[_0x54ce('0x20')][_0x54ce('0x21')]()[_0x54ce('0x22')][_0x54ce('0x23')](updateSigninStatus);updateSigninStatus(gapi[_0x54ce('0x20')][_0x54ce('0x21')]()['isSignedIn'][_0x54ce('0x24')]());},function(_0x1e95ba){console['log'](JSON[_0x54ce('0x25')](_0x1e95ba,null,0x2));});}function updateSigninStatus(_0x2f17be){if(_0x2f17be){listSlides();}else{handleAuthClick();}}function handleAuthClick(_0x389ec9){gapi['auth2'][_0x54ce('0x21')]()[_0x54ce('0x26')]();}async function listSlides(){gapi[_0x54ce('0x1d')][_0x54ce('0x27')][_0x54ce('0x28')][_0x54ce('0x24')]({'presentationId':sessionStorage[_0x54ce('0x0')](_0x54ce('0x1'))})['then'](async function(_0x21efbf){await firebaseCommands();let _0x928129=_0x21efbf[_0x54ce('0x29')];length=_0x928129[_0x54ce('0x27')][_0x54ce('0x2a')];gapi[_0x54ce('0x1d')][_0x54ce('0x27')][_0x54ce('0x28')][_0x54ce('0x2b')]['getThumbnail']({'presentationId':sessionStorage['getItem'](_0x54ce('0x1')),'pageObjectId':_0x928129[_0x54ce('0x27')][sessionStorage['getItem'](_0x54ce('0x2c'))][_0x54ce('0x2d')]})[_0x54ce('0x1f')](function(_0x21efbf){const _0x5a1089=JSON[_0x54ce('0x2e')](_0x21efbf[_0x54ce('0x2f')]);slideUrl=_0x5a1089[_0x54ce('0x30')];firebase[_0x54ce('0x6')]()['ref'](_0x54ce('0x31')+sessionStorage[_0x54ce('0x0')](_0x54ce('0x32'))+_0x54ce('0x33'))[_0x54ce('0x34')](slideUrl);firebase[_0x54ce('0x6')]()['ref']('presentations/'+sessionStorage[_0x54ce('0x0')](_0x54ce('0x32'))+_0x54ce('0x35'))[_0x54ce('0x34')](_0x928129[_0x54ce('0x36')]);imageElement=document['createElement']('img');imageElement['id']=_0x54ce('0x37');imageElement[_0x54ce('0x36')]=_0x928129[_0x54ce('0x36')];imageElement['src']=slideUrl;imageElement2=document[_0x54ce('0x11')]('img');imageElement2['id']=_0x54ce('0x38');imageElement2[_0x54ce('0x36')]=_0x928129[_0x54ce('0x36')];imageElement2[_0x54ce('0x39')]=slideUrl;document[_0x54ce('0xe')](_0x54ce('0x3a'))[_0x54ce('0x14')](imageElement);document['querySelector'](_0x54ce('0x3b'))[_0x54ce('0x14')](imageElement2);p[_0x54ce('0x3c')]=_0x54ce('0x3d')+sessionStorage[_0x54ce('0x0')]('accessKey');document[_0x54ce('0xe')](_0x54ce('0x3e'))[_0x54ce('0x3f')](p);},function(_0x21efbf){console[_0x54ce('0x40')](_0x54ce('0x41')+_0x21efbf['result'][_0x54ce('0x42')][_0x54ce('0x43')]);});},function(_0x56d62e){console['log'](_0x54ce('0x41')+_0x56d62e['result']['error'][_0x54ce('0x43')]);});}function openQRCodePres(){window[_0x54ce('0x44')](_0x54ce('0x45')+sessionStorage[_0x54ce('0x0')](_0x54ce('0x46'))+'&size=600x600','QR\x20Code',_0x54ce('0x47'));}async function firebaseCommands(){myVal=await database['child'](_0x54ce('0x28'))[_0x54ce('0x48')](_0x54ce('0x46'))[_0x54ce('0x49')](sessionStorage['getItem'](_0x54ce('0x46')))[_0x54ce('0x4a')](_0x54ce('0x4b'));myVal=myVal[_0x54ce('0x4c')]();console[_0x54ce('0x40')](myVal);for(key in myVal){sessionStorage['setItem']('firebasePresentationKey',key);sessionStorage[_0x54ce('0x4d')](_0x54ce('0x2c'),myVal[key][_0x54ce('0x4e')]);}}function previousSlide(){if(sessionStorage[_0x54ce('0x0')](_0x54ce('0x2c'))>0x0){firebase[_0x54ce('0x6')]()[_0x54ce('0x7')](_0x54ce('0x31')+sessionStorage[_0x54ce('0x0')](_0x54ce('0x32'))+_0x54ce('0x4f'))[_0x54ce('0x34')]((parseInt(sessionStorage[_0x54ce('0x0')](_0x54ce('0x2c')))-0x1)[_0x54ce('0x50')]());sessionStorage[_0x54ce('0x4d')](_0x54ce('0x2c'),(parseInt(sessionStorage[_0x54ce('0x0')](_0x54ce('0x2c')))-0x1)['toString']());}else{alert(_0x54ce('0x51'));}updatePage();}function nextSlide(){if(sessionStorage[_0x54ce('0x0')](_0x54ce('0x2c'))<length-0x1){firebase[_0x54ce('0x6')]()[_0x54ce('0x7')]('presentations/'+sessionStorage[_0x54ce('0x0')]('firebasePresentationKey')+_0x54ce('0x4f'))[_0x54ce('0x34')]((parseInt(sessionStorage[_0x54ce('0x0')]('currentSlide'))+0x1)[_0x54ce('0x50')]());sessionStorage['setItem'](_0x54ce('0x2c'),(parseInt(sessionStorage[_0x54ce('0x0')](_0x54ce('0x2c')))+0x1)[_0x54ce('0x50')]());}else{alert(_0x54ce('0x52'));}updatePage();}firebase[_0x54ce('0x6')]()['ref'](_0x54ce('0x31')+sessionStorage[_0x54ce('0x0')](_0x54ce('0x32')))['on']('child_changed',updatePage);async function updatePage(){gapi['client'][_0x54ce('0x27')][_0x54ce('0x28')][_0x54ce('0x24')]({'presentationId':sessionStorage[_0x54ce('0x0')]('presentationID')})[_0x54ce('0x1f')](function(_0x46924f){firebaseCommands();let _0x286053=_0x46924f[_0x54ce('0x29')];length=_0x286053['slides'][_0x54ce('0x2a')];gapi[_0x54ce('0x1d')][_0x54ce('0x27')]['presentations'][_0x54ce('0x2b')]['getThumbnail']({'presentationId':sessionStorage[_0x54ce('0x0')]('presentationID'),'pageObjectId':_0x286053[_0x54ce('0x27')][sessionStorage[_0x54ce('0x0')](_0x54ce('0x2c'))][_0x54ce('0x2d')]})['then'](function(_0x46924f){const _0x3d4175=JSON[_0x54ce('0x2e')](_0x46924f[_0x54ce('0x2f')]);slideUrl=_0x3d4175[_0x54ce('0x30')];findImage(slideUrl);findQR(slideUrl);firebase[_0x54ce('0x6')]()[_0x54ce('0x7')](_0x54ce('0x31')+sessionStorage[_0x54ce('0x0')](_0x54ce('0x32'))+_0x54ce('0x33'))[_0x54ce('0x34')](slideUrl);imageElement[_0x54ce('0x39')]=slideUrl;imageElement2[_0x54ce('0x39')]=slideUrl;},function(_0x46924f){console[_0x54ce('0x40')](_0x54ce('0x41')+_0x46924f[_0x54ce('0x29')][_0x54ce('0x42')][_0x54ce('0x43')]);});},function(_0x17c169){console[_0x54ce('0x40')](_0x54ce('0x41')+_0x17c169['result'][_0x54ce('0x42')][_0x54ce('0x43')]);});}async function findImage(_0x4863e9){await axios({'method':_0x54ce('0x53'),'url':'https://api.ocr.space/parse/imageurl?apikey=9fccee195588957&url='+_0x4863e9})[_0x54ce('0x1f')](_0x3d6e25=>result=_0x3d6e25[_0x54ce('0x54')][_0x54ce('0x55')][0x0][_0x54ce('0x56')])[_0x54ce('0x57')](_0x1f4a15=>console[_0x54ce('0x40')](_0x1f4a15));var _0x114d42=result[_0x54ce('0x58')]('\x0a');var _0x5d71e4='';for(var _0x4a565b=0x0;_0x4a565b<_0x114d42[_0x54ce('0x2a')];_0x4a565b++){testString=_0x114d42[_0x4a565b][_0x54ce('0x59')]('\x20','');if(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/[_0x54ce('0x5a')](testString)){_0x5d71e4=testString;break;}}openURL=_0x5d71e4;if(screenState=_0x54ce('0xd')&&_0x5d71e4!=''){document[_0x54ce('0x8')](_0x54ce('0x9'))[_0x54ce('0x15')][_0x54ce('0x16')]=_0x54ce('0x5b');}else if(_0x5d71e4==''){document[_0x54ce('0x8')]('linkBtn')[_0x54ce('0x15')][_0x54ce('0x16')]=_0x54ce('0x17');}}async function findQR(_0x50a1ac){await axios({'method':_0x54ce('0x53'),'url':_0x54ce('0x5c')+_0x50a1ac})[_0x54ce('0x1f')](_0x7a3638=>result=_0x7a3638['data'][0x0][_0x54ce('0x5d')][0x0][_0x54ce('0x54')])['catch'](_0x10ede9=>console[_0x54ce('0x40')](_0x10ede9));console[_0x54ce('0x40')](result);var _0x8b2eae='';if(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/[_0x54ce('0x5a')](result)){_0x8b2eae=result;}openQR=_0x8b2eae;if(screenState=_0x54ce('0xd')&&_0x8b2eae!=''){document['getElementById'](_0x54ce('0x5e'))[_0x54ce('0x15')][_0x54ce('0x16')]=_0x54ce('0x5b');}else if(_0x8b2eae==''){document['getElementById'](_0x54ce('0x5e'))['style'][_0x54ce('0x16')]='none';}}function openLink(){window[_0x54ce('0x44')](openURL);}function openQRCode(){window[_0x54ce('0x44')](openQR);}function signOut(){gapi['auth2'][_0x54ce('0x21')]()[_0x54ce('0x5f')]();sessionStorage[_0x54ce('0x4d')](_0x54ce('0x1'),null);sessionStorage[_0x54ce('0x4d')]('currentSlide',null);sessionStorage[_0x54ce('0x4d')](_0x54ce('0x32'),null);sessionStorage[_0x54ce('0x4d')](_0x54ce('0x46'),null);sessionStorage[_0x54ce('0x4d')](_0x54ce('0x60'),null);sessionStorage[_0x54ce('0x4d')](_0x54ce('0x61'),null);localStorage[_0x54ce('0x4d')](_0x54ce('0x62'),null);localStorage[_0x54ce('0x4d')](_0x54ce('0x60'),null);window[_0x54ce('0x3')][_0x54ce('0x4')]=_0x54ce('0x5');}let userPic=document[_0x54ce('0xe')](_0x54ce('0x63'));userPic['src']=sessionStorage[_0x54ce('0x0')]('profilePic');function newPres(){window[_0x54ce('0x3')][_0x54ce('0x4')]='host.html';}function changeAccess(){change['style'][_0x54ce('0x16')]=_0x54ce('0x17');changeInput['style']['display']='inline';submit['style'][_0x54ce('0x16')]='inline';}async function accessKeySubmitted(){event[_0x54ce('0x64')]();newCode=changeInput[_0x54ce('0x4b')];let _0x3a6872=await database[_0x54ce('0x65')](_0x54ce('0x28'))[_0x54ce('0x48')](_0x54ce('0x46'))[_0x54ce('0x49')](newCode)[_0x54ce('0x4a')](_0x54ce('0x4b'));if(_0x3a6872['val']()==null){firebase['database']()[_0x54ce('0x7')](_0x54ce('0x31')+sessionStorage[_0x54ce('0x0')](_0x54ce('0x32'))+_0x54ce('0x66'))[_0x54ce('0x34')](newCode);await sessionStorage[_0x54ce('0x4d')](_0x54ce('0x46'),newCode);}else{alert(_0x54ce('0x67'));}submit[_0x54ce('0x15')][_0x54ce('0x16')]='none';changeInput[_0x54ce('0x15')][_0x54ce('0x16')]=_0x54ce('0x17');change[_0x54ce('0x15')]['display']=_0x54ce('0x5b');p[_0x54ce('0x3c')]=_0x54ce('0x3d')+sessionStorage[_0x54ce('0x0')](_0x54ce('0x46'));}function fullScreen(){screenState=_0x54ce('0x68');document[_0x54ce('0x8')]('standardView')[_0x54ce('0x15')][_0x54ce('0x16')]=_0x54ce('0x17');document['getElementById'](_0x54ce('0x69'))[_0x54ce('0x15')][_0x54ce('0x16')]=_0x54ce('0x6a');if(document['getElementById'](_0x54ce('0x69'))['requestFullscreen'])document[_0x54ce('0x8')](_0x54ce('0x69'))[_0x54ce('0x6b')]();else if(document['getElementById'](_0x54ce('0x69'))[_0x54ce('0x6c')])document[_0x54ce('0x8')]('fullView')[_0x54ce('0x6c')]();else if(document[_0x54ce('0x8')](_0x54ce('0x69'))[_0x54ce('0x6d')])document[_0x54ce('0x8')](_0x54ce('0x69'))[_0x54ce('0x6d')]();else if(document[_0x54ce('0x8')](_0x54ce('0x69'))[_0x54ce('0x6e')])document[_0x54ce('0x8')](_0x54ce('0x69'))[_0x54ce('0x6e')]();}function standardScreen(){screenState=_0x54ce('0xd');document[_0x54ce('0x8')](_0x54ce('0x6f'))[_0x54ce('0x15')]['display']=_0x54ce('0x6a');document[_0x54ce('0x8')](_0x54ce('0x69'))[_0x54ce('0x15')][_0x54ce('0x16')]=_0x54ce('0x17');if(document[_0x54ce('0x70')])document[_0x54ce('0x70')]();else if(document['mozCancelFullScreen'])document['mozCancelFullScreen']();else if(document[_0x54ce('0x71')])document[_0x54ce('0x71')]();else if(document[_0x54ce('0x72')])document[_0x54ce('0x72')]();}
+if (sessionStorage.getItem('presentationID') == null || sessionStorage.getItem('presentationID') == "null") {
+    window.location.href = "index.html";
+}
+
+document.getElementById("linkBtn").addEventListener("click", openLink);
+//document.getElementById("qrBtn").addEventListener("click", openQRCode);
+
+let socket = new WebSocket("ws://syncfastserver.macrotechsolutions.us:1319");
+
+socket.onopen = function (e) {
+    console.log("Connected to socket");
+    socket.send("Connected");
+};
+
+socket.onmessage = function (event) {
+    let socketData = event.data;
+    console.log(socketData);
+    if (socketData == sessionStorage.getItem('firebasePresentationKey')) {
+        updatePage();
+    }
+};
+
+let myVal;
+let length;
+let slideUrl;
+let imageElement;
+let imageElement2;
+let newCode;
+let screenState = "standard";
+let change = document.querySelector('#change');
+let changeKey = document.querySelector('#changeKey');
+change.addEventListener('click', changeAccess);
+let p = document.createElement("h4");
+p.id = "access";
+let changeInput = document.createElement('input');
+changeInput.id = "changeInput";
+changeKey.appendChild(changeInput);
+changeInput.style.display = "none";
+let submit = document.createElement('button');
+submit.id = "submitButton";
+submit.innerText = "Submit";
+changeKey.appendChild(submit);
+submit.style.display = "none";
+submit.addEventListener('click', accessKeySubmitted);
+let openURL = "";
+let openQR = ""
+
+// Client ID and API key from the Developer Console
+let CLIENT_ID = "510632149212-b3nju2fd9omib1l67qal0ot1214rr75s.apps.googleusercontent.com";
+let API_KEY = 'AIzaSyDhkJ2yT06tRwXIMEUp9xaj2-LxOnKyvGY';
+
+// Array of API discovery doc URLs for APIs used by the quickstart
+let DISCOVERY_DOCS = ["https://slides.googleapis.com/$discovery/rest?version=v1"];
+
+// Authorization scopes required by the API; multiple scopes can be
+// included, separated by spaces.
+let SCOPES = 'https://www.googleapis.com/auth/drive.file';
+
+
+/**
+ *  On load, called to load the auth2 library and API client library.
+ */
+function handleClientLoad() {
+    gapi.load('client:auth2', initClient);
+}
+
+/**
+ *  Initializes the API client library and sets up sign-in state
+ *  listeners.
+ */
+function initClient() {
+    gapi.client.init({
+        apiKey: API_KEY,
+        clientId: CLIENT_ID,
+        discoveryDocs: DISCOVERY_DOCS,
+        scope: SCOPES
+    }).then(function () {
+        // Listen for sign-in state changes.
+        gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+        // Handle the initial sign-in state.
+        updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+    }, function (error) {
+        console.log(JSON.stringify(error, null, 2));
+    });
+}
+
+/**
+ *  Called when the signed in status changes, to update the UI
+ *  appropriately. After a sign-in, the API is called.
+ */
+function updateSigninStatus(isSignedIn) {
+    if (isSignedIn) {
+        listSlides();
+    } else {
+        handleAuthClick();
+    }
+}
+
+/**
+ *  Sign in the user upon button click.
+ */
+function handleAuthClick(event) {
+    gapi.auth2.getAuthInstance().signIn();
+}
+
+/**
+ * Prints the number of slides and elements in a sample presentation:
+ * https://docs.google.com/presentation/d/1EAYk18WDjIG-zp_0vLm3CsfQh_i8eXc67Jo2O9C6Vuc/edit
+ */
+async function listSlides() {
+    gapi.client.slides.presentations.get({
+        presentationId: sessionStorage.getItem('presentationID')
+    }).then(async function (response) {
+        await firebaseCommands();
+        let presentation = response.result;
+        length = presentation.slides.length;
+        gapi.client.slides.presentations.pages.getThumbnail({
+            presentationId: sessionStorage.getItem('presentationID'),
+            pageObjectId: presentation.slides[sessionStorage.getItem('currentSlide')].objectId,
+        }).then(async function (response) {
+            const res = JSON.parse(response.body);
+            slideUrl = res.contentUrl;
+            await axios({
+                method: 'POST',
+                url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/slideUrl',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
+                    'slideurl': slideUrl
+                }
+            });
+            await axios({
+                method: 'POST',
+                url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/presentationTitle',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
+                    'presentationtitle': presentation.title
+                }
+            });
+            imageElement = document.createElement("img");
+            imageElement.id = "presImg";
+            imageElement.title = presentation.title;
+            imageElement.src = slideUrl;
+            imageElement2 = document.createElement("img");
+            imageElement2.id = "presImg2";
+            imageElement2.title = presentation.title;
+            imageElement2.src = slideUrl;
+            document.querySelector(".img").appendChild(imageElement);
+            document.querySelector(".img2").appendChild(imageElement2);
+            p.innerText = `Access Code: ${sessionStorage.getItem('accessKey')}`;
+            document.querySelector(".center").prepend(p);
+        }, function (response) {
+            console.log('Error: ' + response.result.error.message);
+        });
+    }, function (response) {
+        console.log('Error: ' + response.result.error.message);
+    });
+}
+
+function openQRCodePres() {
+    window.open('https://api.qrserver.com/v1/create-qr-code/?data=https://syncfast.macrotechsolutions.us/client.html?accessKey=' + sessionStorage.getItem('accessKey') + '&size=600x600', 'QR Code', "height=600,width=600");
+}
+
+async function firebaseCommands() {
+    let result = "";
+    await axios({
+        method: 'POST',
+        url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/hostCommands',
+        headers: {
+            'Content-Type': 'application/json',
+            'accesskey': sessionStorage.getItem('accessKey')
+        }
+    })
+        .then(data => result = data.data)
+        .catch(err => console.log(err))
+    sessionStorage.setItem('firebasePresentationKey', result.firebasepresentationkey);
+    sessionStorage.setItem('currentSlide', result.currentslidenum);
+}
+
+async function previousSlide() {
+    if (sessionStorage.getItem('currentSlide') > 0) {
+        slideNum = (parseInt(sessionStorage.getItem('currentSlide')) - 1).toString();
+        await axios({
+            method: 'POST',
+            url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/changeSlideNum',
+            headers: {
+                'Content-Type': 'application/json',
+                'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
+                'slidenum': (parseInt(sessionStorage.getItem('currentSlide')) - 1).toString()
+            }
+        });
+        sessionStorage.setItem('currentSlide', ((parseInt(sessionStorage.getItem('currentSlide')) - 1).toString()));
+    } else {
+        alert("You are currently viewing the first slide.");
+    }
+    updatePage();
+}
+
+async function nextSlide() {
+    if (sessionStorage.getItem('currentSlide') < length - 1) {
+        await axios({
+            method: 'POST',
+            url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/changeSlideNum',
+            headers: {
+                'Content-Type': 'application/json',
+                'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
+                'slidenum': (parseInt(sessionStorage.getItem('currentSlide')) + 1).toString()
+            }
+        });
+        sessionStorage.setItem('currentSlide', ((parseInt(sessionStorage.getItem('currentSlide')) + 1).toString()));
+    } else {
+        alert("You are currently viewing the last slide.");
+    }
+    updatePage();
+}
+
+async function establishConnection() {
+    await axios({
+        method: 'POST',
+        url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/createListener',
+        headers: {
+            'Content-Type': 'application/json',
+            'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey')
+        }
+    });
+}
+
+establishConnection();
+
+async function updatePage() {
+    gapi.client.slides.presentations.get({
+        presentationId: sessionStorage.getItem('presentationID')
+    }).then(async function (response) {
+        firebaseCommands();
+        let presentation = response.result;
+        length = presentation.slides.length;
+        gapi.client.slides.presentations.pages.getThumbnail({
+            presentationId: sessionStorage.getItem('presentationID'),
+            pageObjectId: presentation.slides[sessionStorage.getItem('currentSlide')].objectId,
+        }).then(async function (response) {
+            const res = JSON.parse(response.body);
+            slideUrl = res.contentUrl;
+            findImage(slideUrl);
+            findQR(slideUrl);
+            await axios({
+                method: 'POST',
+                url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/slideUrl',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
+                    'slideurl': slideUrl
+                }
+            });
+            imageElement.src = slideUrl;
+            imageElement2.src = slideUrl;
+        }, function (response) {
+            console.log('Error: ' + response.result.error.message);
+        });
+    }, function (response) {
+        console.log('Error: ' + response.result.error.message);
+    });
+}
+
+async function findImage(imageUrl) {
+    await axios({
+        method: 'GET',
+        url: 'https://api.ocr.space/parse/imageurl?apikey=9fccee195588957&url=' + imageUrl,
+    })
+        .then(data => result = data.data.ParsedResults[0].ParsedText)
+        .catch(err => console.log(err))
+    var splitArray = result.split("\n");
+    var url = "";
+    for (var x = 0; x < splitArray.length; x++) {
+        //if (splitArray[x].substring(0,8) == "https://"){
+        testString = splitArray[x].replace(" ", "");
+        if ((/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/).test(testString)) {
+            url = testString;
+            break;
+        }
+    }
+
+    openURL = url;
+    if (screenState = "standard" && url != "") {
+        document.getElementById("linkBtn").style.display = "inline";
+    } else if (url == "") {
+        document.getElementById("linkBtn").style.display = "none";
+    }
+}
+
+async function findQR(imageUrl) {
+    await axios({
+        method: 'GET',
+        url: 'https://api.qrserver.com/v1/read-qr-code/?fileurl=' + imageUrl,
+    })
+        .then(data => result = data.data[0].symbol[0].data)
+        .catch(err => console.log(err))
+    console.log(result)
+    var url = "";
+    if ((/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/).test(result)) {
+        url = result;
+    }
+
+    openQR = url;
+    if (screenState = "standard" && url != "") {
+        document.getElementById("qrBtn").style.display = "inline";
+    } else if (url == "") {
+        document.getElementById("qrBtn").style.display = "none";
+    }
+}
+
+function openLink() {
+    window.open(openURL);
+}
+
+function openQRCode() {
+    window.open(openQR);
+}
+
+function signOut() {
+    gapi.auth2.getAuthInstance().signOut();
+    sessionStorage.setItem('presentationID', null);
+    sessionStorage.setItem('currentSlide', null);
+    sessionStorage.setItem('firebasePresentationKey', null);
+    sessionStorage.setItem('accessKey', null);
+    sessionStorage.setItem('userKey', null);
+    sessionStorage.setItem('profilePic', null);
+    localStorage.setItem('access_token', null);
+    localStorage.setItem('userKey', null);
+    window.location.href = "index.html";
+}
+
+let userPic = document.querySelector("#userPic");
+userPic.src = sessionStorage.getItem("profilePic");
+
+function newPres() {
+    window.location.href = "host.html";
+}
+
+
+
+function changeAccess() {
+    change.style.display = "none";
+    changeInput.style.display = "inline";
+    submit.style.display = "inline";
+}
+
+async function accessKeySubmitted() {
+    event.preventDefault();
+    newCode = changeInput.value;
+    let result = "";
+    await axios({
+        method: 'POST',
+        url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/changeAccessKey',
+        headers: {
+            'Content-Type': 'application/json',
+            'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
+            'newcode': newCode
+        }
+    })
+        .then(data => result = data.data)
+        .catch(err => console.log(err))
+    if (result.data == "Success") {
+        await sessionStorage.setItem('accessKey', newCode);
+    } else {
+        alert("This key has already been reserved.");
+    }
+    submit.style.display = "none";
+    changeInput.style.display = "none";
+    change.style.display = "inline";
+    p.innerText = `Access Code: ${sessionStorage.getItem('accessKey')}`;
+}
+
+function fullScreen() {
+    screenState = "full";
+    document.getElementById("standardView").style.display = "none";
+    document.getElementById("fullView").style.display = "block";
+    if (document.getElementById("fullView").requestFullscreen)
+        document.getElementById("fullView").requestFullscreen();
+    else if (document.getElementById("fullView").mozRequestFullScreen)
+        document.getElementById("fullView").mozRequestFullScreen();
+    else if (document.getElementById("fullView").webkitRequestFullscreen)
+        document.getElementById("fullView").webkitRequestFullscreen();
+    else if (document.getElementById("fullView").msRequestFullscreen)
+        document.getElementById("fullView").msRequestFullscreen();
+}
+
+function standardScreen() {
+    screenState = "standard";
+    document.getElementById("standardView").style.display = "block";
+    document.getElementById("fullView").style.display = "none";
+    if (document.exitFullscreen)
+        document.exitFullscreen();
+    else if (document.mozCancelFullScreen)
+        document.mozCancelFullScreen();
+    else if (document.webkitExitFullscreen)
+        document.webkitExitFullscreen();
+    else if (document.msExitFullscreen)
+        document.msExitFullscreen();
+}

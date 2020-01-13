@@ -1,1 +1,92 @@
-var _0x14d8=['PICKED','docs','getItem','POST','application/json','then','setItem','presentationID','accessKey','accesskey','slidesPresent.html','userKey','null','location','href','login.html','AIzaSyDhkJ2yT06tRwXIMEUp9xaj2-LxOnKyvGY','510632149212-b3nju2fd9omib1l67qal0ot1214rr75s.apps.googleusercontent.com','510632149212','https://www.googleapis.com/auth/drive.file','auth','load','picker','gapi','authorize','access_token','View','ViewId','PRESENTATIONS','PickerBuilder','NAV_HIDDEN','enableFeature','Feature','MULTISELECT_ENABLED','setAppId','setOAuthToken','addView','setDeveloperKey','setCallback','setVisible','getElementById','popup','style','display','action','Action'];(function(_0x402b96,_0x2ca4f7){var _0x21d43a=function(_0x4bece3){while(--_0x4bece3){_0x402b96['push'](_0x402b96['shift']());}};_0x21d43a(++_0x2ca4f7);}(_0x14d8,0x14d));var _0x391f=function(_0x402b96,_0x2ca4f7){_0x402b96=_0x402b96-0x0;var _0x21d43a=_0x14d8[_0x402b96];return _0x21d43a;};if(sessionStorage['getItem'](_0x391f('0x0'))==null||sessionStorage['getItem']('userKey')==_0x391f('0x1')){window[_0x391f('0x2')][_0x391f('0x3')]=_0x391f('0x4');}let developerKey=_0x391f('0x5');let clientId=_0x391f('0x6');let appId=_0x391f('0x7');let scopes=[_0x391f('0x8')];let pickerApiLoaded=![];let oauthToken;function loadPicker(){gapi['load'](_0x391f('0x9'),{'callback':onAuthApiLoad});gapi[_0x391f('0xa')](_0x391f('0xb'),{'callback':onPickerApiLoad});}function onAuthApiLoad(){window[_0x391f('0xc')][_0x391f('0x9')][_0x391f('0xd')]({'client_id':clientId,'scope':scopes,'immediate':![]},handleAuthResult);}function onPickerApiLoad(){pickerApiLoaded=!![];createPicker();}function handleAuthResult(_0xa8823a){if(_0xa8823a&&!_0xa8823a['error']){oauthToken=_0xa8823a[_0x391f('0xe')];createPicker();}}function createPicker(){if(pickerApiLoaded&&oauthToken){let _0x3e1380=new google[(_0x391f('0xb'))][(_0x391f('0xf'))](google[_0x391f('0xb')][_0x391f('0x10')][_0x391f('0x11')]);let _0x210d27=new google[(_0x391f('0xb'))][(_0x391f('0x12'))]()['enableFeature'](google[_0x391f('0xb')]['Feature'][_0x391f('0x13')])[_0x391f('0x14')](google[_0x391f('0xb')][_0x391f('0x15')][_0x391f('0x16')])[_0x391f('0x17')](appId)[_0x391f('0x18')](oauthToken)[_0x391f('0x19')](_0x3e1380)[_0x391f('0x19')](new google['picker']['DocsUploadView']())[_0x391f('0x1a')](developerKey)[_0x391f('0x1b')](pickerCallback)['build']();_0x210d27[_0x391f('0x1c')](!![]);}}async function pickerCallback(_0x3232ec){document[_0x391f('0x1d')](_0x391f('0x1e'))[_0x391f('0x1f')][_0x391f('0x20')]='none';if(_0x3232ec[_0x391f('0x21')]==google[_0x391f('0xb')][_0x391f('0x22')][_0x391f('0x23')]){let _0x28bba1=_0x3232ec[_0x391f('0x24')][0x0]['id'];let _0x16d1bc=sessionStorage[_0x391f('0x25')](_0x391f('0x0'));let _0x6f28f6=localStorage[_0x391f('0x25')](_0x391f('0xe'));let _0x57a131;await axios({'method':_0x391f('0x26'),'url':'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/host','headers':{'Content-Type':_0x391f('0x27'),'fileid':_0x28bba1,'userkey':_0x16d1bc,'accesstoken':_0x6f28f6}})[_0x391f('0x28')](_0x3232ec=>_0x57a131=_0x3232ec['data'])['catch'](_0xd8a51c=>console['log'](_0xd8a51c));sessionStorage[_0x391f('0x29')](_0x391f('0x2a'),_0x28bba1);sessionStorage[_0x391f('0x29')](_0x391f('0x2b'),_0x57a131[_0x391f('0x2c')]);sessionStorage['setItem']('currentSlide','0');window[_0x391f('0x2')][_0x391f('0x3')]=_0x391f('0x2d');}}
+if (sessionStorage.getItem('userKey') == null || sessionStorage.getItem('userKey') == "null") {
+    window.location.href = "login.html";
+}
+
+// The Browser API key obtained from the Google API Console.
+// Replace with your own Browser API key, or your own key.
+let developerKey = 'AIzaSyDhkJ2yT06tRwXIMEUp9xaj2-LxOnKyvGY';
+
+// The Client ID obtained from the Google API Console. Replace with your own Client ID.
+let clientId = "510632149212-b3nju2fd9omib1l67qal0ot1214rr75s.apps.googleusercontent.com"
+
+// Replace with your own project number from console.developers.google.com.
+// See "Project number" under "IAM & Admin" > "Settings"
+let appId = "510632149212";
+
+// Scope to use to access user's Drive items.
+let scopes = ['https://www.googleapis.com/auth/drive.file'];
+
+let pickerApiLoaded = false;
+let oauthToken;
+
+// Use the Google API Loader script to load the google.picker script.
+function loadPicker() {
+    gapi.load('auth', { 'callback': onAuthApiLoad });
+    gapi.load('picker', { 'callback': onPickerApiLoad });
+}
+
+function onAuthApiLoad() {
+    window.gapi.auth.authorize({
+        'client_id': clientId,
+        'scope': scopes,
+        'immediate': false
+    },
+        handleAuthResult);
+}
+
+function onPickerApiLoad() {
+    pickerApiLoaded = true;
+    createPicker();
+}
+
+function handleAuthResult(authResult) {
+    if (authResult && !authResult.error) {
+        oauthToken = authResult.access_token;
+        createPicker();
+    }
+}
+
+// Create and render a Picker object for searching images.
+function createPicker() {
+    if (pickerApiLoaded && oauthToken) {
+        let view = new google.picker.View(google.picker.ViewId.PRESENTATIONS);
+        let picker = new google.picker.PickerBuilder()
+            .enableFeature(google.picker.Feature.NAV_HIDDEN)
+            .enableFeature(google.picker.Feature.MULTISELECT_ENABLED)
+            .setAppId(appId)
+            .setOAuthToken(oauthToken)
+            .addView(view)
+            .addView(new google.picker.DocsUploadView())
+            .setDeveloperKey(developerKey)
+            .setCallback(pickerCallback)
+            .build();
+        picker.setVisible(true);
+    }
+}
+
+// A simple callback implementation.
+async function pickerCallback(data) {
+    document.getElementById("popup").style.display = "none";
+    if (data.action == google.picker.Action.PICKED) {
+        let fileId = data.docs[0].id;
+        let userID = sessionStorage.getItem('userKey');
+        let accessToken = localStorage.getItem('access_token');
+        let result;
+        await axios({
+            method: 'POST',
+            url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/host',
+            headers: {
+                'Content-Type': 'application/json',
+                'fileid': fileId,
+                'userkey': userID,
+                'accesstoken' : accessToken
+            }
+        })
+            .then(data => result = data.data)
+            .catch(err => console.log(err))
+        sessionStorage.setItem('presentationID', fileId)
+        sessionStorage.setItem('accessKey', result.accesskey);
+        sessionStorage.setItem('currentSlide', "0")
+        window.location.href = "slidesPresent.html"
+    }
+}

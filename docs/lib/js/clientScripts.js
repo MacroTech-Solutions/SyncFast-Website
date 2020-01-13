@@ -1,1 +1,144 @@
-var _0x3873=['myImg','imageUrl','position','right','10vw','top','40vh','undefined','null','inline','.img','appendChild','ref','presentations/','child_changed','child','presentations','title','presImg2','30vw','database','querySelector','#submit','addEventListener','click','createElement','#error','append','location','search','substring','get','accessKey','preventDefault','value','orderByChild','equalTo','once','val','Invalid\x20Access\x20Code','innerText','setItem','firebasePresentationKey','slideUrl','presentationTitle','#accessKeyInput','style','none','display','img','presImg','src','getItem','width','80vw','height','auto'];(function(_0x598015,_0x398f86){var _0x3dc778=function(_0x38e2c4){while(--_0x38e2c4){_0x598015['push'](_0x598015['shift']());}};_0x3dc778(++_0x398f86);}(_0x3873,0x131));var _0x5b99=function(_0x598015,_0x398f86){_0x598015=_0x598015-0x0;var _0x3dc778=_0x3873[_0x598015];return _0x3dc778;};const database=firebase[_0x5b99('0x0')]()['ref']();document[_0x5b99('0x1')](_0x5b99('0x2'))[_0x5b99('0x3')](_0x5b99('0x4'),onClick);let myError=document[_0x5b99('0x5')]('p');document[_0x5b99('0x1')](_0x5b99('0x6'))[_0x5b99('0x7')](myError);let myVal;let imageElement;let imageElement2;let accessCode;let params=new URLSearchParams(document[_0x5b99('0x8')][_0x5b99('0x9')][_0x5b99('0xa')](0x1));let myKey=params[_0x5b99('0xb')](_0x5b99('0xc'));if(myKey){accessCode=myKey;submitKey();}async function onClick(){event[_0x5b99('0xd')]();accessCode=document[_0x5b99('0x1')]('#accessKeyInput')[_0x5b99('0xe')];myVal=await database['child']('presentations')[_0x5b99('0xf')](_0x5b99('0xc'))[_0x5b99('0x10')](accessCode)[_0x5b99('0x11')](_0x5b99('0xe'));myVal=myVal[_0x5b99('0x12')]();if(myVal==null){alert(_0x5b99('0x13'));}else{myError[_0x5b99('0x14')]='';for(key in myVal){sessionStorage[_0x5b99('0x15')](_0x5b99('0x16'),key);sessionStorage['setItem'](_0x5b99('0x17'),myVal[key][_0x5b99('0x17')]);sessionStorage[_0x5b99('0x15')]('imageUrl',myVal[key]['imageUrl']);sessionStorage[_0x5b99('0x15')]('presentationTitle',myVal[key][_0x5b99('0x18')]);}document[_0x5b99('0x1')](_0x5b99('0x19'))[_0x5b99('0x1a')]['display']=_0x5b99('0x1b');document[_0x5b99('0x1')](_0x5b99('0x2'))['style'][_0x5b99('0x1c')]=_0x5b99('0x1b');document[_0x5b99('0x1')]('#accessKeyText')[_0x5b99('0x1a')]['display']=_0x5b99('0x1b');imageElement=document[_0x5b99('0x5')](_0x5b99('0x1d'));imageElement['id']=_0x5b99('0x1e');imageElement['title']=sessionStorage['getItem'](_0x5b99('0x18'));imageElement[_0x5b99('0x1f')]=sessionStorage[_0x5b99('0x20')]('slideUrl');imageElement[_0x5b99('0x1a')][_0x5b99('0x21')]=_0x5b99('0x22');imageElement[_0x5b99('0x1a')][_0x5b99('0x23')]=_0x5b99('0x24');imageElement2=document['createElement'](_0x5b99('0x1d'));imageElement2['id']='presImg2';imageElement2['title']=_0x5b99('0x25');imageElement2[_0x5b99('0x1f')]=sessionStorage[_0x5b99('0x20')](_0x5b99('0x26'));imageElement2[_0x5b99('0x1a')][_0x5b99('0x21')]='30vw';imageElement2[_0x5b99('0x1a')][_0x5b99('0x23')]=_0x5b99('0x24');imageElement2[_0x5b99('0x1a')][_0x5b99('0x27')]='absolute';imageElement2[_0x5b99('0x1a')][_0x5b99('0x28')]=_0x5b99('0x29');imageElement2[_0x5b99('0x1a')][_0x5b99('0x2a')]=_0x5b99('0x2b');if(sessionStorage[_0x5b99('0x20')](_0x5b99('0x26'))==_0x5b99('0x2c')||sessionStorage[_0x5b99('0x20')]('imageUrl')==_0x5b99('0x2d')){imageElement2['style'][_0x5b99('0x1c')]=_0x5b99('0x1b');}else{imageElement2[_0x5b99('0x1a')][_0x5b99('0x1c')]=_0x5b99('0x2e');}document[_0x5b99('0x1')](_0x5b99('0x2f'))[_0x5b99('0x30')](imageElement);document['querySelector'](_0x5b99('0x2f'))[_0x5b99('0x30')](imageElement2);firebase['database']()[_0x5b99('0x31')](_0x5b99('0x32')+sessionStorage[_0x5b99('0x20')](_0x5b99('0x16')))['on'](_0x5b99('0x33'),updatePage);}}async function updatePage(){myVal=await database[_0x5b99('0x34')](_0x5b99('0x35'))[_0x5b99('0xf')](_0x5b99('0xc'))[_0x5b99('0x10')](accessCode)['once'](_0x5b99('0xe'));myVal=myVal[_0x5b99('0x12')]();for(key in myVal){sessionStorage[_0x5b99('0x15')](_0x5b99('0x17'),myVal[key][_0x5b99('0x17')]);sessionStorage[_0x5b99('0x15')](_0x5b99('0x26'),myVal[key][_0x5b99('0x26')]);}imageElement[_0x5b99('0x1f')]=sessionStorage[_0x5b99('0x20')]('slideUrl');imageElement2[_0x5b99('0x1f')]=sessionStorage[_0x5b99('0x20')](_0x5b99('0x26'));}async function submitKey(){myVal=await database[_0x5b99('0x34')](_0x5b99('0x35'))[_0x5b99('0xf')](_0x5b99('0xc'))[_0x5b99('0x10')](accessCode)[_0x5b99('0x11')](_0x5b99('0xe'));myVal=myVal[_0x5b99('0x12')]();if(myVal==null){alert(_0x5b99('0x13'));}else{myError[_0x5b99('0x14')]='';for(key in myVal){sessionStorage[_0x5b99('0x15')](_0x5b99('0x16'),key);sessionStorage['setItem'](_0x5b99('0x17'),myVal[key][_0x5b99('0x17')]);sessionStorage['setItem'](_0x5b99('0x26'),myVal[key][_0x5b99('0x26')]);sessionStorage[_0x5b99('0x15')]('presentationTitle',myVal[key][_0x5b99('0x18')]);}document[_0x5b99('0x1')](_0x5b99('0x19'))[_0x5b99('0x1a')][_0x5b99('0x1c')]=_0x5b99('0x1b');document[_0x5b99('0x1')](_0x5b99('0x2'))[_0x5b99('0x1a')][_0x5b99('0x1c')]=_0x5b99('0x1b');document[_0x5b99('0x1')]('#accessKeyText')[_0x5b99('0x1a')][_0x5b99('0x1c')]='none';imageElement=document[_0x5b99('0x5')](_0x5b99('0x1d'));imageElement['id']='presImg';imageElement[_0x5b99('0x36')]=sessionStorage[_0x5b99('0x20')]('presentationTitle');imageElement[_0x5b99('0x1f')]=sessionStorage[_0x5b99('0x20')](_0x5b99('0x17'));imageElement[_0x5b99('0x1a')][_0x5b99('0x21')]=_0x5b99('0x22');imageElement[_0x5b99('0x1a')]['height']=_0x5b99('0x24');imageElement2=document[_0x5b99('0x5')](_0x5b99('0x1d'));imageElement2['id']=_0x5b99('0x37');imageElement2[_0x5b99('0x36')]='myImg';imageElement2['src']=sessionStorage[_0x5b99('0x20')](_0x5b99('0x26'));imageElement2[_0x5b99('0x1a')][_0x5b99('0x21')]=_0x5b99('0x38');imageElement2[_0x5b99('0x1a')][_0x5b99('0x23')]=_0x5b99('0x24');imageElement2[_0x5b99('0x1a')][_0x5b99('0x27')]='absolute';imageElement2[_0x5b99('0x1a')][_0x5b99('0x28')]='10vw';imageElement2['style'][_0x5b99('0x2a')]=_0x5b99('0x2b');if(sessionStorage[_0x5b99('0x20')](_0x5b99('0x26'))=='undefined'||sessionStorage[_0x5b99('0x20')](_0x5b99('0x26'))==_0x5b99('0x2d')){imageElement2[_0x5b99('0x1a')][_0x5b99('0x1c')]=_0x5b99('0x1b');}else{imageElement2[_0x5b99('0x1a')][_0x5b99('0x1c')]=_0x5b99('0x2e');}document['querySelector'](_0x5b99('0x2f'))['appendChild'](imageElement);document[_0x5b99('0x1')](_0x5b99('0x2f'))[_0x5b99('0x30')](imageElement2);firebase['database']()[_0x5b99('0x31')](_0x5b99('0x32')+sessionStorage[_0x5b99('0x20')](_0x5b99('0x16')))['on'](_0x5b99('0x33'),updatePage);}}
+const database = firebase.database().ref();
+document.querySelector("#submit").addEventListener("click", onClick);
+let myError = document.createElement("p");
+document.querySelector("#error").append(myError);
+let myVal;
+let imageElement;
+let imageElement2;
+let accessCode;
+let params = new URLSearchParams(document.location.search.substring(1));
+let myKey = params.get("accessKey");
+
+if (myKey) {
+    accessCode = myKey;
+    submitKey();
+}
+
+let socket = new WebSocket("ws://syncfastserver.macrotechsolutions.us:1319");
+
+socket.onopen = function (e) {
+    console.log("Connected to socket");
+    socket.send("Connected");
+};
+
+socket.onmessage = function (event) {
+    let socketData = event.data;
+    console.log(socketData);
+    if (socketData == sessionStorage.getItem('firebasePresentationKey')) {
+        updatePage();
+    }
+};
+
+async function onClick() {
+    event.preventDefault();
+    accessCode = document.querySelector("#accessKeyInput").value;
+    let result = "";
+    await axios({
+        method: 'POST',
+        url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/clientJoin',
+        headers: {
+            'Content-Type': 'application/json',
+            'accesscode': accessCode
+        }
+    })
+        .then(data => result = data.data)
+        .catch(err => console.log(err))
+    console.log(result);
+    if (result.data == "Incorrect Access Code") {
+        alert("Invalid Access Code");
+    } else {
+        myError.innerText = "";
+        sessionStorage.setItem('firebasePresentationKey', result.firebasepresentationkey);
+        sessionStorage.setItem('slideUrl', result.slideurl);
+        sessionStorage.setItem('imageUrl', result.imageurl);
+        sessionStorage.setItem('presentationTitle', result.presentationtitle);
+        document.querySelector("#accessKeyInput").style.display = "none";
+        document.querySelector("#submit").style.display = "none";
+        document.querySelector("#accessKeyText").style.display = "none";
+        imageElement = document.createElement("img");
+        imageElement.id = "presImg";
+        imageElement.title = sessionStorage.getItem('presentationTitle');
+        imageElement.src = sessionStorage.getItem('slideUrl');
+        imageElement.style.width = "80vw";
+        imageElement.style.height = "auto";
+        imageElement2 = document.createElement("img");
+        imageElement2.id = "presImg2";
+        imageElement2.title = 'myImg';
+        imageElement2.src = sessionStorage.getItem('imageUrl');
+        imageElement2.style.width = "30vw";
+        imageElement2.style.height = "auto";
+        imageElement2.style.position = "absolute";
+        imageElement2.style.right = "10vw";
+        imageElement2.style.top = "40vh";
+        if (sessionStorage.getItem('imageUrl') == "undefined" || sessionStorage.getItem('imageUrl') == "null") {
+            imageElement2.style.display = "none";
+        } else {
+            imageElement2.style.display = "inline";
+        }
+        document.querySelector(".img").appendChild(imageElement);
+        document.querySelector(".img").appendChild(imageElement2);
+    }
+}
+
+
+
+async function updatePage() {
+    let result = "";
+    await axios({
+        method: 'POST',
+        url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/clientJoin',
+        headers: {
+            'Content-Type': 'application/json',
+            'accesscode': accessCode
+        }
+    })
+        .then(data => result = data.data)
+        .catch(err => console.log(err))
+    sessionStorage.setItem('slideUrl', result.slideurl);
+    sessionStorage.setItem('imageUrl', result.imageurl);
+    imageElement.src = sessionStorage.getItem('slideUrl');
+    imageElement2.src = sessionStorage.getItem('imageUrl');
+}
+
+async function submitKey() {
+    let result = "";
+    await axios({
+        method: 'POST',
+        url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/clientJoin',
+        headers: {
+            'Content-Type': 'application/json',
+            'accesscode': accessCode
+        }
+    })
+        .then(data => result = data.data)
+        .catch(err => console.log(err))
+    if (result.data == "Incorrect Access Code") {
+        alert("Invalid Access Code");
+    } else {
+        document.querySelector("#accessKeyInput").style.display = "none";
+        document.querySelector("#submit").style.display = "none";
+        document.querySelector("#accessKeyText").style.display = "none";
+        imageElement = document.createElement("img");
+        imageElement.id = "presImg";
+        imageElement.title = sessionStorage.getItem('presentationTitle');
+        imageElement.src = sessionStorage.getItem('slideUrl');
+        imageElement.style.width = "80vw";
+        imageElement.style.height = "auto";
+        imageElement2 = document.createElement("img");
+        imageElement2.id = "presImg2";
+        imageElement2.title = 'myImg';
+        imageElement2.src = sessionStorage.getItem('imageUrl');
+        imageElement2.style.width = "30vw";
+        imageElement2.style.height = "auto";
+        imageElement2.style.position = "absolute";
+        imageElement2.style.right = "10vw";
+        imageElement2.style.top = "40vh";
+        if (sessionStorage.getItem('imageUrl') == "undefined" || sessionStorage.getItem('imageUrl') == "null") {
+            imageElement2.style.display = "none";
+        } else {
+            imageElement2.style.display = "inline";
+        }
+        document.querySelector(".img").appendChild(imageElement);
+        document.querySelector(".img").appendChild(imageElement2);
+    }
+}

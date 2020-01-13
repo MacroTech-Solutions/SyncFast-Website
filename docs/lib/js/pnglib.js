@@ -8,4 +8,207 @@
 * @license http://www.opensource.org/licenses/bsd-license.php BSD License
 *
 */
-var _0x443d=['buffer','tRNS','IDAT','IEND','index','width','floor','color','undefined','palette','getBase64','getDump','btoa','ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=','charCodeAt','PNG\x0d\x0a\x0a','join','length','charAt','fromCharCode','PNGlib','height','depth','pix_size','data_size','ihdr_offs','ihdr_size','plte_offs','plte_size','trns_offs','trns_size','idat_offs','idat_size','iend_offs','iend_size','buffer_size','pindex'];(function(_0x12abc0,_0x3046f8){var _0x217fee=function(_0x2a15ff){while(--_0x2a15ff){_0x12abc0['push'](_0x12abc0['shift']());}};_0x217fee(++_0x3046f8);}(_0x443d,0x1cd));var _0x1e23=function(_0x12abc0,_0x3046f8){_0x12abc0=_0x12abc0-0x0;var _0x217fee=_0x443d[_0x12abc0];return _0x217fee;};(function(){function _0x3046f8(_0x217fee,_0x2a15ff){for(var _0x3bcbb8=0x2;_0x3bcbb8<arguments[_0x1e23('0x0')];_0x3bcbb8++){for(var _0x1b2583=0x0;_0x1b2583<arguments[_0x3bcbb8][_0x1e23('0x0')];_0x1b2583++){_0x217fee[_0x2a15ff++]=arguments[_0x3bcbb8][_0x1e23('0x1')](_0x1b2583);}}}function _0x31b9c2(_0x1567a5){return String[_0x1e23('0x2')](_0x1567a5>>0x8&0xff,_0x1567a5&0xff);}function _0x3b7924(_0xe0fe21){return String[_0x1e23('0x2')](_0xe0fe21>>0x18&0xff,_0xe0fe21>>0x10&0xff,_0xe0fe21>>0x8&0xff,_0xe0fe21&0xff);}function _0x476455(_0x19821a){return String[_0x1e23('0x2')](_0x19821a&0xff,_0x19821a>>0x8&0xff);}window[_0x1e23('0x3')]=function(_0x10b82c,_0x42ca4d,_0x44687a){this['width']=_0x10b82c;this[_0x1e23('0x4')]=_0x42ca4d;this[_0x1e23('0x5')]=_0x44687a;this[_0x1e23('0x6')]=_0x42ca4d*(_0x10b82c+0x1);this[_0x1e23('0x7')]=0x2+this[_0x1e23('0x6')]+0x5*Math['floor']((0xfffe+this[_0x1e23('0x6')])/0xffff)+0x4;this[_0x1e23('0x8')]=0x0;this[_0x1e23('0x9')]=0x4+0x4+0xd+0x4;this[_0x1e23('0xa')]=this[_0x1e23('0x8')]+this[_0x1e23('0x9')];this[_0x1e23('0xb')]=0x4+0x4+0x3*_0x44687a+0x4;this[_0x1e23('0xc')]=this[_0x1e23('0xa')]+this[_0x1e23('0xb')];this[_0x1e23('0xd')]=0x4+0x4+_0x44687a+0x4;this[_0x1e23('0xe')]=this[_0x1e23('0xc')]+this[_0x1e23('0xd')];this[_0x1e23('0xf')]=0x4+0x4+this[_0x1e23('0x7')]+0x4;this[_0x1e23('0x10')]=this[_0x1e23('0xe')]+this[_0x1e23('0xf')];this[_0x1e23('0x11')]=0x4+0x4+0x4;this[_0x1e23('0x12')]=this['iend_offs']+this[_0x1e23('0x11')];this['buffer']=new Array();this['palette']=new Object();this[_0x1e23('0x13')]=0x0;var _0x34a605=new Array();for(var _0x5ac58f=0x0;_0x5ac58f<this['buffer_size'];_0x5ac58f++){this[_0x1e23('0x14')][_0x5ac58f]='';}_0x3046f8(this[_0x1e23('0x14')],this[_0x1e23('0x8')],_0x3b7924(this[_0x1e23('0x9')]-0xc),'IHDR',_0x3b7924(_0x10b82c),_0x3b7924(_0x42ca4d),'');_0x3046f8(this[_0x1e23('0x14')],this[_0x1e23('0xa')],_0x3b7924(this[_0x1e23('0xb')]-0xc),'PLTE');_0x3046f8(this[_0x1e23('0x14')],this[_0x1e23('0xc')],_0x3b7924(this[_0x1e23('0xd')]-0xc),_0x1e23('0x15'));_0x3046f8(this[_0x1e23('0x14')],this[_0x1e23('0xe')],_0x3b7924(this[_0x1e23('0xf')]-0xc),_0x1e23('0x16'));_0x3046f8(this[_0x1e23('0x14')],this[_0x1e23('0x10')],_0x3b7924(this[_0x1e23('0x11')]-0xc),_0x1e23('0x17'));var _0x27c18e=0x8+(0x7<<0x4)<<0x8|0x3<<0x6;_0x27c18e+=0x1f-_0x27c18e%0x1f;_0x3046f8(this['buffer'],this[_0x1e23('0xe')]+0x8,_0x31b9c2(_0x27c18e));for(var _0x5ac58f=0x0;(_0x5ac58f<<0x10)-0x1<this['pix_size'];_0x5ac58f++){var _0x9cac3a,_0x422103;if(_0x5ac58f+0xffff<this[_0x1e23('0x6')]){_0x9cac3a=0xffff;_0x422103='';}else{_0x9cac3a=this[_0x1e23('0x6')]-(_0x5ac58f<<0x10)-_0x5ac58f;_0x422103='';}_0x3046f8(this[_0x1e23('0x14')],this[_0x1e23('0xe')]+0x8+0x2+(_0x5ac58f<<0x10)+(_0x5ac58f<<0x2),_0x422103,_0x476455(_0x9cac3a),_0x476455(~_0x9cac3a));}for(var _0x5ac58f=0x0;_0x5ac58f<0x100;_0x5ac58f++){var _0x1ba125=_0x5ac58f;for(var _0x73ab02=0x0;_0x73ab02<0x8;_0x73ab02++){if(_0x1ba125&0x1){_0x1ba125=-0x12477ce0^_0x1ba125>>0x1&0x7fffffff;}else{_0x1ba125=_0x1ba125>>0x1&0x7fffffff;}}_0x34a605[_0x5ac58f]=_0x1ba125;}this[_0x1e23('0x18')]=function(_0x3d9736,_0x3ee922){var _0x5ac58f=_0x3ee922*(this[_0x1e23('0x19')]+0x1)+_0x3d9736+0x1;var _0x73ab02=this[_0x1e23('0xe')]+0x8+0x2+0x5*Math[_0x1e23('0x1a')](_0x5ac58f/0xffff+0x1)+_0x5ac58f;return _0x73ab02;};this[_0x1e23('0x1b')]=function(_0x4136cb,_0x47ba60,_0x367a98,_0x3fb5fa){_0x3fb5fa=_0x3fb5fa>=0x0?_0x3fb5fa:0xff;var _0x51487c=((_0x3fb5fa<<0x8|_0x4136cb)<<0x8|_0x47ba60)<<0x8|_0x367a98;if(typeof this['palette'][_0x51487c]==_0x1e23('0x1c')){if(this[_0x1e23('0x13')]==this[_0x1e23('0x5')])return'';var _0xaad68d=this[_0x1e23('0xa')]+0x8+0x3*this[_0x1e23('0x13')];this[_0x1e23('0x14')][_0xaad68d+0x0]=String[_0x1e23('0x2')](_0x4136cb);this[_0x1e23('0x14')][_0xaad68d+0x1]=String['fromCharCode'](_0x47ba60);this[_0x1e23('0x14')][_0xaad68d+0x2]=String[_0x1e23('0x2')](_0x367a98);this[_0x1e23('0x14')][this[_0x1e23('0xc')]+0x8+this['pindex']]=String[_0x1e23('0x2')](_0x3fb5fa);this[_0x1e23('0x1d')][_0x51487c]=String['fromCharCode'](this['pindex']++);}return this[_0x1e23('0x1d')][_0x51487c];};this[_0x1e23('0x1e')]=function(){var _0x2ea67b=this[_0x1e23('0x1f')]();if(typeof window[_0x1e23('0x20')]!==_0x1e23('0x1c')&&window['btoa']!==null){return window[_0x1e23('0x20')](_0x2ea67b);}var _0x11083b=_0x1e23('0x21');var _0x48b234,_0x562c09,_0x51d51f,_0x4dd0f0,_0x4199dc,_0x6f3fee,_0x413005;var _0x4eb410=_0x2ea67b[_0x1e23('0x0')];var _0x5ac58f=0x0;var _0x5b2690='';do{_0x48b234=_0x2ea67b[_0x1e23('0x22')](_0x5ac58f);_0x4dd0f0=_0x48b234>>0x2;_0x562c09=_0x2ea67b[_0x1e23('0x22')](_0x5ac58f+0x1);_0x4199dc=(_0x48b234&0x3)<<0x4|_0x562c09>>0x4;_0x51d51f=_0x2ea67b[_0x1e23('0x22')](_0x5ac58f+0x2);if(_0x4eb410<_0x5ac58f+0x2){_0x6f3fee=0x40;}else{_0x6f3fee=(_0x562c09&0xf)<<0x2|_0x51d51f>>0x6;}if(_0x4eb410<_0x5ac58f+0x3){_0x413005=0x40;}else{_0x413005=_0x51d51f&0x3f;}_0x5b2690+=_0x11083b[_0x1e23('0x1')](_0x4dd0f0)+_0x11083b['charAt'](_0x4199dc)+_0x11083b[_0x1e23('0x1')](_0x6f3fee)+_0x11083b[_0x1e23('0x1')](_0x413005);}while((_0x5ac58f+=0x3)<_0x4eb410);return _0x5b2690;};this[_0x1e23('0x1f')]=function(){var _0x3db4d5=0xfff1;var _0x33a7f9=0x15b0;var _0x3c59db=0x1;var _0x2b6d96=0x0;var _0x577f05=_0x33a7f9;for(var _0x1b5ad6=0x0;_0x1b5ad6<this[_0x1e23('0x4')];_0x1b5ad6++){for(var _0x198955=-0x1;_0x198955<this[_0x1e23('0x19')];_0x198955++){_0x3c59db+=this[_0x1e23('0x14')][this[_0x1e23('0x18')](_0x198955,_0x1b5ad6)][_0x1e23('0x22')](0x0);_0x2b6d96+=_0x3c59db;if((_0x577f05-=0x1)==0x0){_0x3c59db%=_0x3db4d5;_0x2b6d96%=_0x3db4d5;_0x577f05=_0x33a7f9;}}}_0x3c59db%=_0x3db4d5;_0x2b6d96%=_0x3db4d5;_0x3046f8(this[_0x1e23('0x14')],this[_0x1e23('0xe')]+this[_0x1e23('0xf')]-0x8,_0x3b7924(_0x2b6d96<<0x10|_0x3c59db));function _0x2d2a5e(_0x3334b8,_0x3b8cb8,_0x9cac3a){var _0xbaf1e1=-0x1;for(var _0x5ac58f=0x4;_0x5ac58f<_0x9cac3a-0x4;_0x5ac58f+=0x1){_0xbaf1e1=_0x34a605[(_0xbaf1e1^_0x3334b8[_0x3b8cb8+_0x5ac58f][_0x1e23('0x22')](0x0))&0xff]^_0xbaf1e1>>0x8&0xffffff;}_0x3046f8(_0x3334b8,_0x3b8cb8+_0x9cac3a-0x4,_0x3b7924(_0xbaf1e1^-0x1));}_0x2d2a5e(this[_0x1e23('0x14')],this[_0x1e23('0x8')],this['ihdr_size']);_0x2d2a5e(this[_0x1e23('0x14')],this[_0x1e23('0xa')],this['plte_size']);_0x2d2a5e(this['buffer'],this[_0x1e23('0xc')],this[_0x1e23('0xd')]);_0x2d2a5e(this[_0x1e23('0x14')],this[_0x1e23('0xe')],this[_0x1e23('0xf')]);_0x2d2a5e(this[_0x1e23('0x14')],this[_0x1e23('0x10')],this['iend_size']);return _0x1e23('0x23')+this['buffer'][_0x1e23('0x24')]('');};};}());
+
+(function() {
+
+	// helper functions for that ctx
+	function write(buffer, offs) {
+		for (var i = 2; i < arguments.length; i++) {
+			for (var j = 0; j < arguments[i].length; j++) {
+				buffer[offs++] = arguments[i].charAt(j);
+			}
+		}
+	}
+
+	function byte2(w) {
+		return String.fromCharCode((w >> 8) & 255, w & 255);
+	}
+
+	function byte4(w) {
+		return String.fromCharCode((w >> 24) & 255, (w >> 16) & 255, (w >> 8) & 255, w & 255);
+	}
+
+	function byte2lsb(w) {
+		return String.fromCharCode(w & 255, (w >> 8) & 255);
+	}
+
+	window.PNGlib = function(width,height,depth) {
+
+		this.width   = width;
+		this.height  = height;
+		this.depth   = depth;
+
+		// pixel data and row filter identifier size
+		this.pix_size = height * (width + 1);
+
+		// deflate header, pix_size, block headers, adler32 checksum
+		this.data_size = 2 + this.pix_size + 5 * Math.floor((0xfffe + this.pix_size) / 0xffff) + 4;
+
+		// offsets and sizes of Png chunks
+		this.ihdr_offs = 0;									// IHDR offset and size
+		this.ihdr_size = 4 + 4 + 13 + 4;
+		this.plte_offs = this.ihdr_offs + this.ihdr_size;	// PLTE offset and size
+		this.plte_size = 4 + 4 + 3 * depth + 4;
+		this.trns_offs = this.plte_offs + this.plte_size;	// tRNS offset and size
+		this.trns_size = 4 + 4 + depth + 4;
+		this.idat_offs = this.trns_offs + this.trns_size;	// IDAT offset and size
+		this.idat_size = 4 + 4 + this.data_size + 4;
+		this.iend_offs = this.idat_offs + this.idat_size;	// IEND offset and size
+		this.iend_size = 4 + 4 + 4;
+		this.buffer_size  = this.iend_offs + this.iend_size;	// total PNG size
+
+		this.buffer  = new Array();
+		this.palette = new Object();
+		this.pindex  = 0;
+
+		var _crc32 = new Array();
+
+		// initialize buffer with zero bytes
+		for (var i = 0; i < this.buffer_size; i++) {
+			this.buffer[i] = "\x00";
+		}
+
+		// initialize non-zero elements
+		write(this.buffer, this.ihdr_offs, byte4(this.ihdr_size - 12), 'IHDR', byte4(width), byte4(height), "\x08\x03");
+		write(this.buffer, this.plte_offs, byte4(this.plte_size - 12), 'PLTE');
+		write(this.buffer, this.trns_offs, byte4(this.trns_size - 12), 'tRNS');
+		write(this.buffer, this.idat_offs, byte4(this.idat_size - 12), 'IDAT');
+		write(this.buffer, this.iend_offs, byte4(this.iend_size - 12), 'IEND');
+
+		// initialize deflate header
+		var header = ((8 + (7 << 4)) << 8) | (3 << 6);
+		header+= 31 - (header % 31);
+
+		write(this.buffer, this.idat_offs + 8, byte2(header));
+
+		// initialize deflate block headers
+		for (var i = 0; (i << 16) - 1 < this.pix_size; i++) {
+			var size, bits;
+			if (i + 0xffff < this.pix_size) {
+				size = 0xffff;
+				bits = "\x00";
+			} else {
+				size = this.pix_size - (i << 16) - i;
+				bits = "\x01";
+			}
+			write(this.buffer, this.idat_offs + 8 + 2 + (i << 16) + (i << 2), bits, byte2lsb(size), byte2lsb(~size));
+		}
+
+		/* Create crc32 lookup table */
+		for (var i = 0; i < 256; i++) {
+			var c = i;
+			for (var j = 0; j < 8; j++) {
+				if (c & 1) {
+					c = -306674912 ^ ((c >> 1) & 0x7fffffff);
+				} else {
+					c = (c >> 1) & 0x7fffffff;
+				}
+			}
+			_crc32[i] = c;
+		}
+
+		// compute the index into a png for a given pixel
+		this.index = function(x,y) {
+			var i = y * (this.width + 1) + x + 1;
+			var j = this.idat_offs + 8 + 2 + 5 * Math.floor((i / 0xffff) + 1) + i;
+			return j;
+		}
+
+		// convert a color and build up the palette
+		this.color = function(red, green, blue, alpha) {
+
+			alpha = alpha >= 0 ? alpha : 255;
+			var color = (((((alpha << 8) | red) << 8) | green) << 8) | blue;
+
+			if (typeof this.palette[color] == "undefined") {
+				if (this.pindex == this.depth) return "\x00";
+
+				var ndx = this.plte_offs + 8 + 3 * this.pindex;
+
+				this.buffer[ndx + 0] = String.fromCharCode(red);
+				this.buffer[ndx + 1] = String.fromCharCode(green);
+				this.buffer[ndx + 2] = String.fromCharCode(blue);
+				this.buffer[this.trns_offs+8+this.pindex] = String.fromCharCode(alpha);
+
+				this.palette[color] = String.fromCharCode(this.pindex++);
+			}
+			return this.palette[color];
+		}
+
+		// output a PNG string, Base64 encoded
+		this.getBase64 = function() {
+
+			var s = this.getDump();
+
+			// If the current browser supports the Base64 encoding
+			// function, then offload the that to the browser as it
+			// will be done in native code.
+			if ((typeof window.btoa !== 'undefined') && (window.btoa !== null)) {
+				return window.btoa(s);
+			}
+
+			var ch = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+			var c1, c2, c3, e1, e2, e3, e4;
+			var l = s.length;
+			var i = 0;
+			var r = "";
+
+			do {
+				c1 = s.charCodeAt(i);
+				e1 = c1 >> 2;
+				c2 = s.charCodeAt(i+1);
+				e2 = ((c1 & 3) << 4) | (c2 >> 4);
+				c3 = s.charCodeAt(i+2);
+				if (l < i+2) { e3 = 64; } else { e3 = ((c2 & 0xf) << 2) | (c3 >> 6); }
+				if (l < i+3) { e4 = 64; } else { e4 = c3 & 0x3f; }
+				r+= ch.charAt(e1) + ch.charAt(e2) + ch.charAt(e3) + ch.charAt(e4);
+			} while ((i+= 3) < l);
+			return r;
+		}
+
+		// output a PNG string
+		this.getDump = function() {
+
+			// compute adler32 of output pixels + row filter bytes
+			var BASE = 65521; /* largest prime smaller than 65536 */
+			var NMAX = 5552;  /* NMAX is the largest n such that 255n(n+1)/2 + (n+1)(BASE-1) <= 2^32-1 */
+			var s1 = 1;
+			var s2 = 0;
+			var n = NMAX;
+
+			for (var y = 0; y < this.height; y++) {
+				for (var x = -1; x < this.width; x++) {
+					s1+= this.buffer[this.index(x, y)].charCodeAt(0);
+					s2+= s1;
+					if ((n-= 1) == 0) {
+						s1%= BASE;
+						s2%= BASE;
+						n = NMAX;
+					}
+				}
+			}
+			s1%= BASE;
+			s2%= BASE;
+			write(this.buffer, this.idat_offs + this.idat_size - 8, byte4((s2 << 16) | s1));
+
+			// compute crc32 of the PNG chunks
+			function crc32(png, offs, size) {
+				var crc = -1;
+				for (var i = 4; i < size-4; i += 1) {
+					crc = _crc32[(crc ^ png[offs+i].charCodeAt(0)) & 0xff] ^ ((crc >> 8) & 0x00ffffff);
+				}
+				write(png, offs+size-4, byte4(crc ^ -1));
+			}
+
+			crc32(this.buffer, this.ihdr_offs, this.ihdr_size);
+			crc32(this.buffer, this.plte_offs, this.plte_size);
+			crc32(this.buffer, this.trns_offs, this.trns_size);
+			crc32(this.buffer, this.idat_offs, this.idat_size);
+			crc32(this.buffer, this.iend_offs, this.iend_size);
+
+			// convert PNG to string
+			return "\211PNG\r\n\032\n"+this.buffer.join('');
+		}
+	}
+
+})();

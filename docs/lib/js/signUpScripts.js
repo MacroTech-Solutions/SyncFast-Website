@@ -1,1 +1,97 @@
-var _0x1eed=['value','toLowerCase','#firstName','#lastName','#passwordInput','#passwordConfirm','#wrong','https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/signUp','then','data','catch','Email\x20already\x20exists.','Please\x20enter\x20an\x20email\x20address.','Invalid\x20Name','Invalid\x20email\x20address.','Your\x20password\x20needs\x20to\x20be\x20at\x20least\x206\x20characters.','Your\x20passwords\x20don\x27t\x20match.','profilePic','imageurl','innerText','error','prepend','onbeforeunload','auth2','getAuthInstance','getBasicProfile','access_token','POST','https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/googleSignIn','application/json','getEmail','getName','getImageUrl','log','setItem','userKey','location','href','landing.html','signin2','profile\x20email\x20https://www.googleapis.com/auth/drive.file','light','querySelector','#submit_button','addEventListener','click','createElement','preventDefault','#emailInput'];(function(_0x10a55b,_0x35d8a5){var _0x8bee5d=function(_0x5ba179){while(--_0x5ba179){_0x10a55b['push'](_0x10a55b['shift']());}};_0x8bee5d(++_0x35d8a5);}(_0x1eed,0x19e));var _0x5ef9=function(_0x10a55b,_0x35d8a5){_0x10a55b=_0x10a55b-0x0;var _0x8bee5d=_0x1eed[_0x10a55b];return _0x8bee5d;};window[_0x5ef9('0x0')]=function(_0xe27114){gapi[_0x5ef9('0x1')][_0x5ef9('0x2')]()['signOut']();};async function onSuccess(_0x2b49b5){let _0x276547=_0x2b49b5[_0x5ef9('0x3')]();let _0x3ad334;for(key in _0x2b49b5){if(_0x2b49b5[key][_0x5ef9('0x4')]!=undefined){localStorage['setItem'](_0x5ef9('0x4'),_0x2b49b5[key][_0x5ef9('0x4')]);}}await axios({'method':_0x5ef9('0x5'),'url':_0x5ef9('0x6'),'headers':{'Content-Type':_0x5ef9('0x7'),'email':_0x276547[_0x5ef9('0x8')](),'password':'','name':_0x276547[_0x5ef9('0x9')](),'imageurl':_0x276547[_0x5ef9('0xa')]()}})['then'](_0x221c5c=>_0x3ad334=_0x221c5c['data'])['catch'](_0x5dc8c1=>console[_0x5ef9('0xb')](_0x5dc8c1));sessionStorage[_0x5ef9('0xc')](_0x5ef9('0xd'),_0x3ad334[_0x5ef9('0xd')]);sessionStorage[_0x5ef9('0xc')]('profilePic',_0x276547[_0x5ef9('0xa')]());window[_0x5ef9('0xe')][_0x5ef9('0xf')]=_0x5ef9('0x10');}function onFailure(_0xe8d857){console[_0x5ef9('0xb')](_0xe8d857);}function renderButton(){gapi[_0x5ef9('0x11')]['render']('my-signin2',{'scope':_0x5ef9('0x12'),'width':0xf0,'height':0x32,'longtitle':!![],'theme':_0x5ef9('0x13'),'onsuccess':onSuccess,'onfailure':onFailure});}document[_0x5ef9('0x14')](_0x5ef9('0x15'))[_0x5ef9('0x16')](_0x5ef9('0x17'),signUpEmail);let box;let notSameError=document[_0x5ef9('0x18')]('p');async function signUpEmail(_0x54419c){_0x54419c[_0x5ef9('0x19')]();let _0x51f69e=document[_0x5ef9('0x14')](_0x5ef9('0x1a'))[_0x5ef9('0x1b')][_0x5ef9('0x1c')]();let _0x331790=document[_0x5ef9('0x14')](_0x5ef9('0x1d'))[_0x5ef9('0x1b')];let _0xceec47=document[_0x5ef9('0x14')](_0x5ef9('0x1e'))[_0x5ef9('0x1b')];let _0x1a815b=document[_0x5ef9('0x14')](_0x5ef9('0x1f'))[_0x5ef9('0x1b')];let _0x4199e8=document[_0x5ef9('0x14')](_0x5ef9('0x20'))[_0x5ef9('0x1b')];box=document['querySelector'](_0x5ef9('0x21'));let _0x6685e8;await axios({'method':_0x5ef9('0x5'),'url':_0x5ef9('0x22'),'headers':{'Content-Type':_0x5ef9('0x7'),'email':_0x51f69e,'firstname':_0x331790,'lastname':_0xceec47,'password':_0x1a815b,'passwordconfirm':_0x4199e8}})[_0x5ef9('0x23')](_0x30e001=>_0x6685e8=_0x30e001[_0x5ef9('0x24')])[_0x5ef9('0x25')](_0x352df3=>console[_0x5ef9('0xb')](_0x352df3));if(_0x6685e8[_0x5ef9('0x24')]==_0x5ef9('0x26')){notSame(_0x5ef9('0x26'));}else if(_0x6685e8[_0x5ef9('0x24')]==_0x5ef9('0x27')){notSame(_0x5ef9('0x27'));}else if(_0x6685e8[_0x5ef9('0x24')]==_0x5ef9('0x28')){notSame('Invalid\x20Name');}else if(_0x6685e8[_0x5ef9('0x24')]==_0x5ef9('0x29')){notSame(_0x5ef9('0x29'));}else if(_0x6685e8[_0x5ef9('0x24')]=='Your\x20password\x20needs\x20to\x20be\x20at\x20least\x206\x20characters.'){notSame(_0x5ef9('0x2a'));}else if(_0x6685e8[_0x5ef9('0x24')]==_0x5ef9('0x2b')){notSame(_0x5ef9('0x2b'));}else{sessionStorage[_0x5ef9('0xc')](_0x5ef9('0xd'),_0x6685e8['data']);sessionStorage[_0x5ef9('0xc')](_0x5ef9('0x2c'),_0x6685e8[_0x5ef9('0x2d')]);window['location'][_0x5ef9('0xf')]=_0x5ef9('0x10');}}function notSame(_0x4dc7e7){notSameError[_0x5ef9('0x2e')]=''+_0x4dc7e7;notSameError['class']=_0x5ef9('0x2f');box[_0x5ef9('0x30')](notSameError);}
+window.onbeforeunload = function (e) {
+    gapi.auth2.getAuthInstance().signOut();
+};
+
+async function onSuccess(googleUser) {
+    let profile = googleUser.getBasicProfile();
+    let userData;
+    for (key in googleUser) {
+        if (googleUser[key].access_token != undefined) {
+            localStorage.setItem('access_token', googleUser[key].access_token);
+        }
+    }
+    await axios({
+        method: 'POST',
+        url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/googleSignIn',
+        headers: {
+            'Content-Type': 'application/json',
+            'email': profile.getEmail(),
+            'password': "",
+            'name': profile.getName(),
+            'imageurl': profile.getImageUrl()
+        }
+    })
+        .then(data => userData = data.data)
+        .catch(err => console.log(err))
+    sessionStorage.setItem('userKey', userData.userKey);
+    sessionStorage.setItem('profilePic', profile.getImageUrl());
+    window.location.href = "landing.html";
+}
+
+function onFailure(error) {
+    console.log(error);
+}
+
+function renderButton() {
+    gapi.signin2.render('my-signin2', {
+        'scope': 'profile email https://www.googleapis.com/auth/drive.file',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'light',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+    });
+}
+
+document.querySelector("#submit_button").addEventListener("click", signUpEmail);
+let box;
+let notSameError = document.createElement('p');
+
+async function signUpEmail(event) {
+    event.preventDefault();
+    let email = document.querySelector("#emailInput").value.toLowerCase();
+    let firstName = document.querySelector("#firstName").value;
+    let lastName = document.querySelector("#lastName").value;
+    let password = document.querySelector("#passwordInput").value;
+    let passwordConfirm = document.querySelector("#passwordConfirm").value;
+    box = document.querySelector('#wrong');
+    let result;
+    await axios({
+        method: 'POST',
+        url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/signUp',
+        headers: {
+            'Content-Type': 'application/json',
+            'email': email,
+            'firstname': firstName,
+            'lastname': lastName,
+            'password': password,
+            'passwordconfirm': passwordConfirm
+        }
+    })
+        .then(data => result = data.data)
+        .catch(err => console.log(err))
+    if (result.data == "Email already exists.") {
+        notSame('Email already exists.');
+    } else if (result.data == "Please enter an email address.") {
+        notSame('Please enter an email address.');
+    } else if (result.data =='Invalid Name') {
+        notSame('Invalid Name');
+    } else if (result.data == 'Invalid email address.') {
+        notSame('Invalid email address.');
+    } else if (result.data == 'Your password needs to be at least 6 characters.') {
+        notSame('Your password needs to be at least 6 characters.');
+    } else if (result.data == 'Your passwords don\'t match.') {
+        notSame('Your passwords don\'t match.');
+    } else {
+        sessionStorage.setItem('userKey', result.data);
+        sessionStorage.setItem('profilePic', result.imageurl);
+        window.location.href = "landing.html";
+    }
+}
+
+function notSame(p) {
+    notSameError.innerText = `${p}`;
+    notSameError.class = "error";
+    box.prepend(notSameError);
+}
