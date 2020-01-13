@@ -2,23 +2,22 @@ if (sessionStorage.getItem('presentationID') == null || sessionStorage.getItem('
     window.location.href = "index.html";
 }
 
-const database = firebase.database().ref();
-
 document.getElementById("linkBtn").addEventListener("click", openLink);
 //document.getElementById("qrBtn").addEventListener("click", openQRCode);
 
-const evtSource = new EventSource("https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us");
+let socket = new WebSocket("ws://syncfastserver.macrotechsolutions.us:1319");
 
-
-let socket = new WebSocket("ws://localhost:8080");
-
-socket.onopen = function(e) {
+socket.onopen = function (e) {
     console.log("Connected to socket");
     socket.send("Connected");
-  };
+};
 
 socket.onmessage = function (event) {
-    alert(`[message] Data received from server: ${event.data}`);
+    let socketData = event.data;
+    console.log(socketData);
+    if (socketData == sessionStorage.getItem('firebasePresentationKey')) {
+        updatePage();
+    }
 };
 
 let myVal;
@@ -119,11 +118,27 @@ async function listSlides() {
         gapi.client.slides.presentations.pages.getThumbnail({
             presentationId: sessionStorage.getItem('presentationID'),
             pageObjectId: presentation.slides[sessionStorage.getItem('currentSlide')].objectId,
-        }).then(function (response) {
+        }).then(async function (response) {
             const res = JSON.parse(response.body);
             slideUrl = res.contentUrl;
-            firebase.database().ref(`presentations/${sessionStorage.getItem('firebasePresentationKey')}/slideUrl`).set(slideUrl);
-            firebase.database().ref(`presentations/${sessionStorage.getItem('firebasePresentationKey')}/presentationTitle`).set(presentation.title);
+            await axios({
+                method: 'POST',
+                url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/slideUrl',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
+                    'slideurl': slideUrl
+                }
+            });
+            await axios({
+                method: 'POST',
+                url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/presentationTitle',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
+                    'presentationtitle': presentation.title
+                }
+            });
             imageElement = document.createElement("img");
             imageElement.id = "presImg";
             imageElement.title = presentation.title;
@@ -149,18 +164,36 @@ function openQRCodePres() {
 }
 
 async function firebaseCommands() {
-    myVal = await database.child("presentations").orderByChild('accessKey').equalTo(sessionStorage.getItem('accessKey')).once("value");
-    myVal = myVal.val();
-    console.log(myVal);
+    let result;
+    await axios({
+        method: 'POST',
+        url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/hostCommands',
+        headers: {
+            'Content-Type': 'application/json',
+            'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
+            'accesskey': sessionStorage.getItem('accessKey')
+        }
+    })
+        .then(data => result = data.data)
+        .catch(err => console.log(err))
     for (key in myVal) {
-        sessionStorage.setItem('firebasePresentationKey', key);
-        sessionStorage.setItem('currentSlide', myVal[key].currentSlideNum);
+        sessionStorage.setItem('firebasePresentationKey', result.firebasepresentationkey);
+        sessionStorage.setItem('currentSlide', result.currentslidenum);
     }
 }
 
-function previousSlide() {
+async function previousSlide() {
     if (sessionStorage.getItem('currentSlide') > 0) {
-        firebase.database().ref(`presentations/${sessionStorage.getItem('firebasePresentationKey')}/currentSlideNum`).set((parseInt(sessionStorage.getItem('currentSlide')) - 1).toString());
+        slideNum = (parseInt(sessionStorage.getItem('currentSlide')) - 1).toString();
+        await axios({
+            method: 'POST',
+            url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/changeSlideNum',
+            headers: {
+                'Content-Type': 'application/json',
+                'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
+                'slidenum': (parseInt(sessionStorage.getItem('currentSlide')) - 1).toString()
+            }
+        });
         sessionStorage.setItem('currentSlide', ((parseInt(sessionStorage.getItem('currentSlide')) - 1).toString()));
     } else {
         alert("You are currently viewing the first slide.");
@@ -168,9 +201,17 @@ function previousSlide() {
     updatePage();
 }
 
-function nextSlide() {
+async function nextSlide() {
     if (sessionStorage.getItem('currentSlide') < length - 1) {
-        firebase.database().ref(`presentations/${sessionStorage.getItem('firebasePresentationKey')}/currentSlideNum`).set((parseInt(sessionStorage.getItem('currentSlide')) + 1).toString());
+        await axios({
+            method: 'POST',
+            url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/changeSlideNum',
+            headers: {
+                'Content-Type': 'application/json',
+                'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
+                'slidenum': (parseInt(sessionStorage.getItem('currentSlide')) + 1).toString()
+            }
+        });
         sessionStorage.setItem('currentSlide', ((parseInt(sessionStorage.getItem('currentSlide')) + 1).toString()));
     } else {
         alert("You are currently viewing the last slide.");
@@ -178,24 +219,43 @@ function nextSlide() {
     updatePage();
 }
 
-firebase.database().ref(`presentations/${sessionStorage.getItem('firebasePresentationKey')}`).on('child_changed', updatePage);
+async function establishConnection() {
+    await axios({
+        method: 'POST',
+        url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/createListener',
+        headers: {
+            'Content-Type': 'application/json',
+            'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey')
+        }
+    });
+}
+
+establishConnection();
 
 async function updatePage() {
     gapi.client.slides.presentations.get({
         presentationId: sessionStorage.getItem('presentationID')
-    }).then(function (response) {
+    }).then(async function (response) {
         firebaseCommands();
         let presentation = response.result;
         length = presentation.slides.length;
         gapi.client.slides.presentations.pages.getThumbnail({
             presentationId: sessionStorage.getItem('presentationID'),
             pageObjectId: presentation.slides[sessionStorage.getItem('currentSlide')].objectId,
-        }).then(function (response) {
+        }).then(async function (response) {
             const res = JSON.parse(response.body);
             slideUrl = res.contentUrl;
             findImage(slideUrl);
             findQR(slideUrl);
-            firebase.database().ref(`presentations/${sessionStorage.getItem('firebasePresentationKey')}/slideUrl`).set(slideUrl);
+            await axios({
+                method: 'POST',
+                url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/slideUrl',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
+                    'slideurl': slideUrl
+                }
+            });
             imageElement.src = slideUrl;
             imageElement2.src = slideUrl;
         }, function (response) {
@@ -292,9 +352,19 @@ function changeAccess() {
 async function accessKeySubmitted() {
     event.preventDefault();
     newCode = changeInput.value;
-    let myCheck = await database.child("presentations").orderByChild('accessKey').equalTo(newCode).once("value");
-    if (myCheck.val() == null) {
-        firebase.database().ref(`presentations/${sessionStorage.getItem('firebasePresentationKey')}/accessKey`).set(newCode);
+    let result = "";
+    await axios({
+        method: 'POST',
+        url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/changeAccessKey',
+        headers: {
+            'Content-Type': 'application/json',
+            'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
+            'newcode': newCode
+        }
+    })
+        .then(data => result = data.data)
+        .catch(err => console.log(err))
+    if (result.data == "Success") {
         await sessionStorage.setItem('accessKey', newCode);
     } else {
         alert("This key has already been reserved.");
