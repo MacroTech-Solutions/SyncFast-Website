@@ -1,58 +1,139 @@
 PODS:
-  - Firebase (5.4.1):
-    - Firebase/Core (= 5.4.1)
-  - Firebase/Core (5.4.1):
+  - AppAuth (1.3.0):
+    - AppAuth/Core (= 1.3.0)
+    - AppAuth/ExternalUserAgent (= 1.3.0)
+  - AppAuth/Core (1.3.0)
+  - AppAuth/ExternalUserAgent (1.3.0)
+  - Firebase (6.14.0):
+    - Firebase/Core (= 6.14.0)
+  - Firebase/Core (6.14.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 5.0.1)
-  - Firebase/CoreOnly (5.4.1):
-    - FirebaseCore (= 5.0.6)
-  - FirebaseAnalytics (5.0.1):
-    - FirebaseCore (~> 5.0)
-    - FirebaseInstanceID (~> 3.0)
-    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
-    - nanopb (~> 0.3)
-  - FirebaseCore (5.0.6):
-    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
-  - FirebaseDatabase (5.0.2):
-    - FirebaseCore (~> 5.0)
-    - leveldb-library (~> 1.18)
-  - FirebaseInstanceID (3.1.1):
-    - FirebaseCore (~> 5.0)
-  - GoogleToolboxForMac/Defines (2.1.4)
-  - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
-    - GoogleToolboxForMac/Defines (= 2.1.4)
-  - leveldb-library (1.20)
-  - nanopb (0.3.8):
-    - nanopb/decode (= 0.3.8)
-    - nanopb/encode (= 0.3.8)
-  - nanopb/decode (0.3.8)
-  - nanopb/encode (0.3.8)
+    - FirebaseAnalytics (= 6.1.7)
+  - Firebase/CoreOnly (6.14.0):
+    - FirebaseCore (= 6.5.0)
+  - FirebaseAnalytics (6.1.7):
+    - FirebaseCore (~> 6.5)
+    - FirebaseInstanceID (~> 4.2)
+    - GoogleAppMeasurement (= 6.1.7)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (= 0.3.9011)
+  - FirebaseAuthInterop (1.0.0)
+  - FirebaseCore (6.5.0):
+    - FirebaseCoreDiagnostics (~> 1.0)
+    - FirebaseCoreDiagnosticsInterop (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.4)
+    - GoogleUtilities/Logger (~> 6.4)
+  - FirebaseCoreDiagnostics (1.1.2):
+    - FirebaseCoreDiagnosticsInterop (~> 1.0)
+    - GoogleDataTransportCCTSupport (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Logger (~> 6.2)
+    - nanopb (~> 0.3.901)
+  - FirebaseCoreDiagnosticsInterop (1.1.0)
+  - FirebaseDatabase (6.1.3):
+    - FirebaseAuthInterop (~> 1.0)
+    - FirebaseCore (~> 6.0)
+    - leveldb-library (~> 1.22)
+  - FirebaseInstanceID (4.2.8):
+    - FirebaseCore (~> 6.5)
+    - GoogleUtilities/Environment (~> 6.4)
+    - GoogleUtilities/UserDefaults (~> 6.4)
+  - GoogleAppMeasurement (6.1.7):
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (= 0.3.9011)
+  - GoogleDataTransport (3.2.0)
+  - GoogleDataTransportCCTSupport (1.2.3):
+    - GoogleDataTransport (~> 3.2)
+    - nanopb (~> 0.3.901)
+  - GoogleSignIn (5.0.2):
+    - AppAuth (~> 1.2)
+    - GTMAppAuth (~> 1.0)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - GoogleUtilities/AppDelegateSwizzler (6.4.0):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (6.4.0)
+  - GoogleUtilities/Logger (6.4.0):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (6.4.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (6.4.0):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (6.4.0)"
+  - GoogleUtilities/Reachability (6.4.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (6.4.0):
+    - GoogleUtilities/Logger
+  - GTMAppAuth (1.0.0):
+    - AppAuth/Core (~> 1.0)
+    - GTMSessionFetcher (~> 1.1)
+  - GTMSessionFetcher (1.3.1):
+    - GTMSessionFetcher/Full (= 1.3.1)
+  - GTMSessionFetcher/Core (1.3.1)
+  - GTMSessionFetcher/Full (1.3.1):
+    - GTMSessionFetcher/Core (= 1.3.1)
+  - leveldb-library (1.22)
+  - nanopb (0.3.9011):
+    - nanopb/decode (= 0.3.9011)
+    - nanopb/encode (= 0.3.9011)
+  - nanopb/decode (0.3.9011)
+  - nanopb/encode (0.3.9011)
 
 DEPENDENCIES:
   - Firebase
   - FirebaseDatabase
+  - GoogleSignIn
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
+    - AppAuth
     - Firebase
     - FirebaseAnalytics
+    - FirebaseAuthInterop
     - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseCoreDiagnosticsInterop
     - FirebaseDatabase
     - FirebaseInstanceID
-    - GoogleToolboxForMac
+    - GoogleAppMeasurement
+    - GoogleDataTransport
+    - GoogleDataTransportCCTSupport
+    - GoogleSignIn
+    - GoogleUtilities
+    - GTMAppAuth
+    - GTMSessionFetcher
     - leveldb-library
     - nanopb
 
 SPEC CHECKSUMS:
-  Firebase: 355bd535bfdacaa82a7fe8d9784115edefd6fc03
-  FirebaseAnalytics: b3628aea54c50464c32c393fb2ea032566e7ecc2
-  FirebaseCore: 4c28e3b9708ba48a765e76515f913a71596eb5dd
-  FirebaseDatabase: 27be5ac5bc75e0b17537b2bbfada8258addcc8cd
-  FirebaseInstanceID: f3f0657372592ecdfdfe2cac604a5a75758376a6
-  GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
-  leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
-  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  AppAuth: 73574f3013a1e65b9601a3ddc8b3158cce68c09d
+  Firebase: 0219bb4782eb1406f1b9b0628a2e625484ce910d
+  FirebaseAnalytics: f68b9f3f1241385129ae0a83b63627fc420c05e5
+  FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
+  FirebaseCore: 632e05cc5e1199d9147122c16d92305eb04c34bd
+  FirebaseCoreDiagnostics: 511f4f3ed7d440bb69127e8b97c2bc8befae639e
+  FirebaseCoreDiagnosticsInterop: e9b1b023157e3a2fc6418b5cb601e79b9af7b3a0
+  FirebaseDatabase: 9db0c9bb6d3308870cc831a8a6d70c82fd169f37
+  FirebaseInstanceID: ce993a3c3670a8f5d47ce371ac5d143c560608c5
+  GoogleAppMeasurement: db118eb61a97dd8c4f7014e368d3c335cbbcf80a
+  GoogleDataTransport: 8e9b210c97d55fbff306cc5468ff91b9cb32dcf5
+  GoogleDataTransportCCTSupport: 202d7cdf9c4a7d81a2bb7f7e7e1ba6faa421b1f2
+  GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
+  GoogleUtilities: 29bd0d8f850efbd28cff6d99e8b7da1f8d236bcf
+  GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
+  GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
+  leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
+  nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
 
-PODFILE CHECKSUM: 5b5363b63f389e3e2951d8379ad7a33edb7b187c
+PODFILE CHECKSUM: d82a5ff22bf6ded1f33769afbf03c6047babeb6f
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.4

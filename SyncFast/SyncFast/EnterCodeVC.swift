@@ -13,23 +13,14 @@ import QuartzCore
 
 
 
-class EnterCodeVC: UIViewController, UITextFieldDelegate, BluetoothSerialDelegate {
+class EnterCodeVC: UIViewController, UITextFieldDelegate {
+    
     
     @IBOutlet weak var Connect: UIBarButtonItem!
     var enteredCode = ""
     var correspondingKey = ""
     var PresentationName: String = ""
     var sent = false
-    
-    
-    @IBAction func Connect(_ sender: Any) {
-        if serial.connectedPeripheral == nil {
-            performSegue(withIdentifier: "ShowScanner", sender: self)
-        } else {
-            serial.disconnect()
-            reloadView()
-        }
-    }
     
     @IBOutlet weak var CodeBox: UITextField!
     var ref = DatabaseReference()
@@ -149,16 +140,15 @@ class EnterCodeVC: UIViewController, UITextFieldDelegate, BluetoothSerialDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Automatically sign in the user.
+        
         ref = Database.database().reference()
-        serial = BluetoothSerial(delegate: self)
         CodeBox.delegate = self
         
-        NotificationCenter.default.addObserver(self, selector: #selector(EnterCodeVC.reloadView), name: NSNotification.Name(rawValue: "reloadStartViewController"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         CodeBox.text = ""
-        reloadView()
         enteredCode = ""
         correspondingKey = ""
         PresentationName = ""
@@ -204,46 +194,6 @@ class EnterCodeVC: UIViewController, UITextFieldDelegate, BluetoothSerialDelegat
             let ImageVC = segue.destination as! ImageVC
             ImageVC.header = correctHead
             ImageVC.prestitle = PresentationName
-        }
-    }
-    
-    func serialDidDisconnect(_ peripheral: CBPeripheral, error: NSError?) {
-        reloadView()
-        let hud = MBProgressHUD.showAdded(to: view, animated: true)
-        hud?.mode = MBProgressHUDMode.text
-        hud?.labelText = "Disconnected"
-        hud?.hide(true, afterDelay: 1.0)
-    }
-    
-    func serialDidChangeState() {
-        reloadView()
-        if serial.centralManager.state != .poweredOn {
-            let hud = MBProgressHUD.showAdded(to: view, animated: true)
-            hud?.mode = MBProgressHUDMode.text
-            hud?.labelText = "Bluetooth turned off"
-            hud?.hide(true, afterDelay: 1.0)
-        }
-    }
-    
-    @objc func reloadView() {
-        // in case we're the visible view again
-        serial.delegate = self
-        
-        if serial.isReady {
-            Connect.title = "Disconnect"
-            Connect.tintColor = UIColor.red
-            Connect.isEnabled = true
-            serial.sendMessageToDevice("initialize")
-        } else if serial.centralManager.state == .poweredOn {
-            Connect.title = "Connect"
-            Connect.tintColor = view.tintColor
-            Connect.isEnabled = true
-            serial.sendMessageToDevice("DISCONNECT")
-        } else {
-            Connect.title = "Connect"
-            Connect.tintColor = view.tintColor
-            Connect.isEnabled = false
-            serial.sendMessageToDevice("DISCONNECT")
         }
     }
     

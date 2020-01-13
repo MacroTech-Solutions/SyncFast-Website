@@ -8,5 +8,6 @@ target 'SyncFast' do
   # Pods for SyncFast
 	pod 'Firebase'
 	pod 'FirebaseDatabase'
+	pod 'GoogleSignIn'
 
 end

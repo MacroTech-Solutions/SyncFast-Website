@@ -8,16 +8,36 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+    
+    var userId = ""
+    var idToken = "" // Safe to send to the server
+    var fullName = ""
+    var givenName = ""
+    var familyName = ""
+    var email = ""
+    
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+      // Initialize sign-in
         FirebaseApp.configure()
-        return true
+      GIDSignIn.sharedInstance().clientID = "510632149212-oj8h11gpfg8552om8388prdpv4odoav9.apps.googleusercontent.com"
+      GIDSignIn.sharedInstance().delegate = self
+
+      return true
+    }
+    
+    @available(iOS 9.0, *)
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+      return GIDSignIn.sharedInstance().handle(url)
+    }
+    
+    func application(_ application: UIApplication,
+                     open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+      return GIDSignIn.sharedInstance().handle(url)
     }
 
     // MARK: UISceneSession Lifecycle
@@ -26,6 +46,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
+              withError error: Error!){
+      if let error = error {
+        if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
+          print("The user has not signed in before or they have since signed out.")
+        } else {
+          print("\(error.localizedDescription)")
+        }
+        return
+      }
+      // Perform any operations on signed in user here.
+      userId = user.userID
+      idToken = user.authentication.idToken // Safe to send to the server
+      fullName = user.profile.name
+      givenName = user.profile.givenName
+      familyName = user.profile.familyName
+      email = user.profile.email
+      
     }
 
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
