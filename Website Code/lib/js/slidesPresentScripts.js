@@ -5,20 +5,20 @@ if (sessionStorage.getItem('presentationID') == null || sessionStorage.getItem('
 document.getElementById("linkBtn").addEventListener("click", openLink);
 //document.getElementById("qrBtn").addEventListener("click", openQRCode);
 
-let socket = new WebSocket("wss://syncfastserver.macrotechsolutions.us:2123");
+// let socket = new WebSocket("wss://syncfastserver.macrotechsolutions.us:2123");
 
-socket.onopen = function (e) {
-    console.log("Connected to socket");
-    socket.send("Connected");
-};
+// socket.onopen = function (e) {
+//     console.log("Connected to socket");
+//     socket.send("Connected");
+// };
 
-socket.onmessage = function (event) {
-    let socketData = event.data;
-    console.log(socketData);
-    if (socketData == sessionStorage.getItem('firebasePresentationKey')) {
-        updatePage();
-    }
-};
+// socket.onmessage = function (event) {
+//     let socketData = event.data;
+//     console.log(socketData);
+//     if (socketData == sessionStorage.getItem('firebasePresentationKey')) {
+//         updatePage();
+//     }
+// };
 
 let myVal;
 let length;
@@ -26,6 +26,7 @@ let slideUrl;
 let imageElement;
 let imageElement2;
 let newCode;
+let presentation;
 let screenState = "standard";
 let change = document.querySelector('#change');
 let changeKey = document.querySelector('#changeKey');
@@ -113,7 +114,7 @@ async function listSlides() {
         presentationId: sessionStorage.getItem('presentationID')
     }).then(async function (response) {
         await firebaseCommands();
-        let presentation = response.result;
+        presentation = response.result;
         length = presentation.slides.length;
         gapi.client.slides.presentations.pages.getThumbnail({
             presentationId: sessionStorage.getItem('presentationID'),
@@ -182,15 +183,15 @@ async function firebaseCommands() {
 async function previousSlide() {
     if (sessionStorage.getItem('currentSlide') > 0) {
         slideNum = (parseInt(sessionStorage.getItem('currentSlide')) - 1).toString();
-        await axios({
-            method: 'POST',
-            url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/changeSlideNum',
-            headers: {
-                'Content-Type': 'application/json',
-                'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
-                'slidenum': (parseInt(sessionStorage.getItem('currentSlide')) - 1).toString()
-            }
-        });
+        // await axios({
+        //     method: 'POST',
+        //     url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/changeSlideNum',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
+        //         'slidenum': (parseInt(sessionStorage.getItem('currentSlide')) - 1).toString()
+        //     }
+        // });
         sessionStorage.setItem('currentSlide', ((parseInt(sessionStorage.getItem('currentSlide')) - 1).toString()));
     } else {
         alert("You are currently viewing the first slide.");
@@ -200,16 +201,19 @@ async function previousSlide() {
 
 async function nextSlide() {
     if (sessionStorage.getItem('currentSlide') < length - 1) {
-        await axios({
-            method: 'POST',
-            url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/changeSlideNum',
-            headers: {
-                'Content-Type': 'application/json',
-                'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
-                'slidenum': (parseInt(sessionStorage.getItem('currentSlide')) + 1).toString()
-            }
-        });
-        sessionStorage.setItem('currentSlide', ((parseInt(sessionStorage.getItem('currentSlide')) + 1).toString()));
+
+        // await axios({
+        //     method: 'POST',
+        //     url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/changeSlideNum',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
+        //         'slidenum': (parseInt(sessionStorage.getItem('currentSlide')) + 1).toString()
+        //     }
+        // });
+        console.log("1");
+        await sessionStorage.setItem('currentSlide', ((parseInt(sessionStorage.getItem('currentSlide')) + 1).toString()));
+        console.log("2");
     } else {
         alert("You are currently viewing the last slide.");
     }
@@ -230,34 +234,29 @@ async function establishConnection() {
 establishConnection();
 
 async function updatePage() {
-    gapi.client.slides.presentations.get({
-        presentationId: sessionStorage.getItem('presentationID')
+    gapi.client.slides.presentations.pages.getThumbnail({
+        presentationId: sessionStorage.getItem('presentationID'),
+        pageObjectId: presentation.slides[sessionStorage.getItem('currentSlide')].objectId,
     }).then(async function (response) {
-        firebaseCommands();
-        let presentation = response.result;
-        length = presentation.slides.length;
-        gapi.client.slides.presentations.pages.getThumbnail({
-            presentationId: sessionStorage.getItem('presentationID'),
-            pageObjectId: presentation.slides[sessionStorage.getItem('currentSlide')].objectId,
-        }).then(async function (response) {
-            const res = JSON.parse(response.body);
-            slideUrl = res.contentUrl;
-            findImage(slideUrl);
-            findQR(slideUrl);
-            await axios({
-                method: 'POST',
-                url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/slideUrl',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
-                    'slideurl': slideUrl
-                }
-            });
-            imageElement.src = slideUrl;
-            imageElement2.src = slideUrl;
-        }, function (response) {
-            console.log('Error: ' + response.result.error.message);
+        console.log("3");
+        const res = JSON.parse(response.body);
+        slideUrl = res.contentUrl;
+        findImage(slideUrl);
+        findQR(slideUrl);
+        imageElement.src = slideUrl;
+        imageElement2.src = slideUrl;
+        console.log("4");
+        await axios({
+            method: 'POST',
+            url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/updatePage',
+            headers: {
+                'Content-Type': 'application/json',
+                'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
+                'slidenum': sessionStorage.getItem('currentSlide'),
+                'slideurl': slideUrl
+            }
         });
+        console.log("5");
     }, function (response) {
         console.log('Error: ' + response.result.error.message);
     });
