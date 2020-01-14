@@ -74,7 +74,7 @@ async function pickerCallback(data) {
         let result;
         await axios({
             method: 'POST',
-            url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/host',
+            url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/host',
             headers: {
                 'Content-Type': 'application/json',
                 'fileid': fileId,

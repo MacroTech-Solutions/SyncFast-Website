@@ -12,7 +12,7 @@ async function onSuccess(googleUser) {
     }
     await axios({
         method: 'POST',
-        url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/googleSignIn',
+        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/googleSignIn',
         headers: {
             'Content-Type': 'application/json',
             'email': profile.getEmail(),
@@ -59,7 +59,7 @@ async function signUpEmail(event) {
     let result;
     await axios({
         method: 'POST',
-        url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/signUp',
+        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/signUp',
         headers: {
             'Content-Type': 'application/json',
             'email': email,

@@ -28,7 +28,7 @@ async function setup() {
   let result;
   await axios({
     method: 'POST',
-    url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/createSetup',
+    url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/createSetup',
     headers: {
       'Content-Type': 'application/json',
       'userkey': sessionStorage.getItem('userKey'),
@@ -104,7 +104,7 @@ recognition.onresult = async function (event) {
     currentSlideTitle = capitalizeFirstLetter(words[words.length - 1]);
     axios({
       method: 'POST',
-      url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/createTitle',
+      url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/createTitle',
       headers: {
         'Content-Type': 'application/json',
         'slidetitle': currentSlideTitle,
@@ -133,7 +133,7 @@ recognition.onresult = async function (event) {
       console.log(var1);
       axios({
         method: 'POST',
-        url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/slideUrl',
+        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/slideUrl',
         headers: {
           'Content-Type': 'application/json',
           'slideurl': var1,
@@ -144,7 +144,7 @@ recognition.onresult = async function (event) {
 
       axios({
         method: 'POST',
-        url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/imageUrl',
+        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/imageUrl',
         headers: {
           'Content-Type': 'application/json',
           'imageurl': imageUrl,
@@ -234,7 +234,7 @@ async function checkInput(input) {
     else if (input.includes("end") && input.includes("slideshow") || input.includes("end") && input.includes("presentation") || input.includes("finish") && input.includes("presentation") || input.includes("finish") && input.includes("slideshow")) {
       axios({
         method: 'POST',
-        url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/endScreen',
+        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/endScreen',
         headers: {
           'Content-Type': 'application/json',
           'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey')

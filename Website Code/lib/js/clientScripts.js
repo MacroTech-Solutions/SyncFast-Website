@@ -35,7 +35,7 @@ async function onClick() {
     let result = "";
     await axios({
         method: 'POST',
-        url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/clientJoin',
+        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/clientJoin',
         headers: {
             'Content-Type': 'application/json',
             'accesscode': accessCode
@@ -86,7 +86,7 @@ async function updatePage() {
     let result = "";
     await axios({
         method: 'POST',
-        url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/clientJoin',
+        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/clientJoin',
         headers: {
             'Content-Type': 'application/json',
             'accesscode': accessCode
@@ -104,7 +104,7 @@ async function submitKey() {
     let result = "";
     await axios({
         method: 'POST',
-        url: 'https://cors-anywhere.herokuapp.com/https://syncfastserver.macrotechsolutions.us/clientJoin',
+        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/clientJoin',
         headers: {
             'Content-Type': 'application/json',
             'accesscode': accessCode
