@@ -18,11 +18,13 @@ async function onSuccess(googleUser) {
             'Content-Type': 'application/json',
             'email': profile.getEmail(),
             'name': profile.getName(),
-            'imageurl': profile.getImageUrl()
+            'imageurl': profile.getImageUrl(),
+            'idtoken': googleUser.getAuthResponse().id_token
         }
     })
         .then(data => userData = data.data)
         .catch(err => console.log(err))
+        console.log(googleUser.getAuthResponse().id_token);
     sessionStorage.setItem('userKey', userData.userKey);
     sessionStorage.setItem('profilePic', profile.getImageUrl());
     window.location.href = "landing.html";
