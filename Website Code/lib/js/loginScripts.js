@@ -4,6 +4,12 @@ if (sessionStorage.getItem('userKey') != null &&
 }
 
 async function onSuccess(googleUser) {
+    await googleUser.grantOfflineAccess({
+        scope: 'profile email https://www.googleapis.com/auth/drive.file'
+    })
+        .then(function (resp) {
+            console.log(resp.code);
+        })
     let profile = googleUser.getBasicProfile();
     let userData;
     for (key in googleUser) {
@@ -13,7 +19,7 @@ async function onSuccess(googleUser) {
     }
     await axios({
         method: 'POST',
-        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/googleSignIn',
+        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/googleSignInToken',
         headers: {
             'Content-Type': 'application/json',
             'email': profile.getEmail(),
@@ -24,8 +30,8 @@ async function onSuccess(googleUser) {
     })
         .then(data => userData = data.data)
         .catch(err => console.log(err))
-        console.log(googleUser.getAuthResponse().id_token);
-    sessionStorage.setItem('userKey', userData.userKey);
+    sessionStorage.setItem('googleID', userData.googleid);
+    sessionStorage.setItem('userKey', userData.userkey);
     sessionStorage.setItem('profilePic', profile.getImageUrl());
     window.location.href = "landing.html";
 }
