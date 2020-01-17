@@ -4,11 +4,12 @@ if (sessionStorage.getItem('userKey') != null &&
 }
 
 async function onSuccess(googleUser) {
+    let respCode
     await googleUser.grantOfflineAccess({
         scope: 'profile email https://www.googleapis.com/auth/drive.file'
     })
         .then(function (resp) {
-            console.log(resp.code);
+        respCode = resp.code;
         })
     let profile = googleUser.getBasicProfile();
     let userData;
@@ -25,7 +26,8 @@ async function onSuccess(googleUser) {
             'email': profile.getEmail(),
             'name': profile.getName(),
             'imageurl': profile.getImageUrl(),
-            'idtoken': googleUser.getAuthResponse().id_token
+            'idtoken': googleUser.getAuthResponse().id_token,
+            'respcode' : respCode
         }
     })
         .then(data => userData = data.data)
