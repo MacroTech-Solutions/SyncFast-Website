@@ -4,13 +4,6 @@ if (sessionStorage.getItem('userKey') != null &&
 }
 
 async function onSuccess(googleUser) {
-    let respCode
-    await googleUser.grantOfflineAccess({
-        scope: 'profile email https://www.googleapis.com/auth/drive.file'
-    })
-        .then(function (resp) {
-        respCode = resp.code;
-        })
     let profile = googleUser.getBasicProfile();
     let userData;
     for (key in googleUser) {
@@ -20,14 +13,12 @@ async function onSuccess(googleUser) {
     }
     await axios({
         method: 'POST',
-        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/googleSignInToken',
+        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/googleSignIn',
         headers: {
             'Content-Type': 'application/json',
             'email': profile.getEmail(),
             'name': profile.getName(),
-            'imageurl': profile.getImageUrl(),
-            'idtoken': googleUser.getAuthResponse().id_token,
-            'respcode' : respCode
+            'imageurl': profile.getImageUrl()
         }
     })
         .then(data => userData = data.data)
