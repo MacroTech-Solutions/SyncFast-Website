@@ -1,1 +1,463 @@
-const _0x22e6=['-350px','src','floor','Chart','pie','##0.00\x22%\x22','{label}\x20{y}','render','line','rgba(1,77,101,.2)','rgba(1,77,101,.1)','bar','#014D65','https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=','&titles=','&rvprop=content','&callback=?','getJSON','query','pages','keys','extract','substring','fontSize','message','getItem','userKey','null','location','login.html','webkitSpeechRecognition','getElementById','continuous','interimResults','lang','en-us','https://syncfastserver.macrotechsolutions.us:9146/http://localhost/createSetup','application/json','access_token','data','catch','log','accessKey','setItem','firebasePresentationKey','currentSlide','currentslide','start','createElement','innerText','bullet','style','display','none','bullets','appendChild','replace','toUpperCase','<p></p>','<br>','onstart','Voice\x20recognition\x20is\x20ON.','onspeechend','No\x20activity.','onerror','no-speech','Try\x20again.','resultIndex','results','transcript','Access\x20Key:\x20','position','absolute','10px','split','length','https://syncfastserver.macrotechsolutions.us:9146/http://localhost/createTitle','heading','backgroundColor','rgb(','random','30px','fullPage','then','toDataURL','image/png','POST','https://syncfastserver.macrotechsolutions.us:9146/http://localhost/slideUrl','image','https://syncfastserver.macrotechsolutions.us:9146/http://localhost/imageUrl','block','includes','resume','continue','toLowerCase','newSlide','innerHTML','images','picture','hasChildNodes','figure','chart','graph','removeChild','childNodes','info','pause','halt','remove','point','last','slideshow','presentation','finish','https://syncfastserver.macrotechsolutions.us:9146/http://localhost/endScreen','href','index.html','All\x20About\x20','What\x20to\x20Know\x20About\x20','Info\x20on\x20','Info\x20About\x20','Facts\x20About\x20','Get\x20to\x20Know\x20','Have\x20You\x20Heard\x20About\x20','charAt','substr','ready','5bdbd1129f9e6f3584db4a8e0f3b1bb2','https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=','&format=json&nojsoncallback=1&text=','&extras=url_o&sort=interestingness-desc&safe_search=1','get','photo','url_o','img','height','70vh','marginLeft'];(function(_0x223dad,_0x9dc03c){const _0x526829=function(_0x46fc3d){while(--_0x46fc3d){_0x223dad['push'](_0x223dad['shift']());}};_0x526829(++_0x9dc03c);}(_0x22e6,0xa3));const _0x5db6=function(_0x223dad,_0x9dc03c){_0x223dad=_0x223dad-0x0;let _0x526829=_0x22e6[_0x223dad];return _0x526829;};if(sessionStorage[_0x5db6('0x0')](_0x5db6('0x1'))==null||sessionStorage[_0x5db6('0x0')](_0x5db6('0x1'))==_0x5db6('0x2')){window[_0x5db6('0x3')]['href']=_0x5db6('0x4');}let SpeechRecognition=window[_0x5db6('0x5')];let recognition=new SpeechRecognition();let textDiv=document[_0x5db6('0x6')]('bullets');let final_transcript='';let interim_transcript='';let lastInput;let currentSlideTitle;recognition[_0x5db6('0x7')]=!![];recognition[_0x5db6('0x8')]=!![];let bulletNum=0x0;let firstSentence=!![];let secondStop=![];let state=![];let var1;let myCanvas;let chart;recognition[_0x5db6('0x9')]=_0x5db6('0xa');setup();async function setup(){let _0x37f943;await axios({'method':'POST','url':_0x5db6('0xb'),'headers':{'Content-Type':_0x5db6('0xc'),'userkey':sessionStorage[_0x5db6('0x0')](_0x5db6('0x1')),'accesstoken':localStorage[_0x5db6('0x0')](_0x5db6('0xd'))}})['then'](_0x5825d2=>_0x37f943=_0x5825d2[_0x5db6('0xe')])[_0x5db6('0xf')](_0xb20566=>console[_0x5db6('0x10')](_0xb20566));sessionStorage['setItem'](_0x5db6('0x11'),_0x37f943['accesskey']);sessionStorage[_0x5db6('0x12')](_0x5db6('0x13'),_0x37f943['firebasepresentationkey']);sessionStorage['setItem'](_0x5db6('0x14'),_0x37f943[_0x5db6('0x15')]);}recognition[_0x5db6('0x16')]();let myBullet=document[_0x5db6('0x17')]('li');myBullet[_0x5db6('0x18')]=interim_transcript;myBullet['id']=_0x5db6('0x19')+bulletNum;myBullet[_0x5db6('0x1a')][_0x5db6('0x1b')]=_0x5db6('0x1c');myBullet['style']['fontSize']='30px';document[_0x5db6('0x6')](_0x5db6('0x1d'))[_0x5db6('0x1e')](myBullet);var first_char=/\S/;function capitalize(_0x5618fc){return _0x5618fc[_0x5db6('0x1f')](first_char,function(_0x20fa36){return _0x20fa36[_0x5db6('0x20')]();});}var two_line=/\n\n/g;var one_line=/\n/g;function linebreak(_0x5af5ec){return _0x5af5ec[_0x5db6('0x1f')](two_line,_0x5db6('0x21'))[_0x5db6('0x1f')](one_line,_0x5db6('0x22'));}recognition[_0x5db6('0x23')]=function(){console[_0x5db6('0x10')](_0x5db6('0x24'));};recognition[_0x5db6('0x25')]=function(){console['log'](_0x5db6('0x26'));};recognition[_0x5db6('0x27')]=function(_0x5280e2){if(_0x5280e2['error']==_0x5db6('0x28')){console[_0x5db6('0x10')](_0x5db6('0x29'));}};recognition['onresult']=async function(_0xccd342){interim_transcript='';for(var _0x19d236=_0xccd342[_0x5db6('0x2a')];_0x19d236<_0xccd342['results']['length'];++_0x19d236){if(_0xccd342[_0x5db6('0x2b')][_0x19d236]['isFinal']){final_transcript+=_0xccd342[_0x5db6('0x2b')][_0x19d236][0x0][_0x5db6('0x2c')];}else{interim_transcript+=_0xccd342[_0x5db6('0x2b')][_0x19d236][0x0][_0x5db6('0x2c')];}}final_transcript=capitalize(final_transcript);console['log'](linebreak(final_transcript));console[_0x5db6('0x10')](linebreak(interim_transcript));if(firstSentence&&interim_transcript!=''){lastInput=interim_transcript;firstSentence=![];secondStop=!![];document[_0x5db6('0x6')]('accessKey')[_0x5db6('0x18')]=_0x5db6('0x2d')+sessionStorage[_0x5db6('0x0')](_0x5db6('0x11'));document['getElementById'](_0x5db6('0x11'))[_0x5db6('0x1a')][_0x5db6('0x2e')]=_0x5db6('0x2f');document['getElementById'](_0x5db6('0x11'))[_0x5db6('0x1a')]['left']=_0x5db6('0x30');document['getElementById'](_0x5db6('0x11'))[_0x5db6('0x1a')]['top']=_0x5db6('0x30');}else if(secondStop&&interim_transcript!=''){lastInput=interim_transcript;}else if(secondStop&&interim_transcript==''){secondStop=![];words=lastInput[_0x5db6('0x31')]('\x20');currentSlideTitle=capitalizeFirstLetter(words[words[_0x5db6('0x32')]-0x1]);axios({'method':'POST','url':_0x5db6('0x33'),'headers':{'Content-Type':_0x5db6('0xc'),'slidetitle':currentSlideTitle,'firebasepresentationkey':sessionStorage[_0x5db6('0x0')](_0x5db6('0x13'))}});document['getElementById'](_0x5db6('0x34'))['innerText']=randomBeginning()+capitalizeFirstLetter(words[words[_0x5db6('0x32')]-0x1]);document[_0x5db6('0x6')](_0x5db6('0x34'))[_0x5db6('0x1a')][_0x5db6('0x35')]=_0x5db6('0x36')+(Math[_0x5db6('0x37')]()*0x65+0x32)+','+(Math['random']()*0x65+0x32)+','+(Math[_0x5db6('0x37')]()*0x65+0x32)+')';}else if(!firstSentence&&!secondStop){if(interim_transcript==''){await checkInput(lastInput);if(state==![]){bulletNum++;let _0x2a7488=document[_0x5db6('0x17')]('li');_0x2a7488[_0x5db6('0x18')]=interim_transcript;_0x2a7488['id']=_0x5db6('0x19')+bulletNum;_0x2a7488[_0x5db6('0x1a')][_0x5db6('0x1b')]=_0x5db6('0x1c');_0x2a7488[_0x5db6('0x1a')]['fontSize']=_0x5db6('0x38');document[_0x5db6('0x6')]('bullets')[_0x5db6('0x1e')](_0x2a7488);final_transcript='';}html2canvas(document['getElementById'](_0x5db6('0x39')))[_0x5db6('0x3a')](_0x43edcc=>{myCanvas=_0x43edcc;});var1=myCanvas[_0x5db6('0x3b')](_0x5db6('0x3c'));console[_0x5db6('0x10')](var1);axios({'method':_0x5db6('0x3d'),'url':_0x5db6('0x3e'),'headers':{'Content-Type':_0x5db6('0xc'),'slideurl':var1,'firebasepresentationkey':sessionStorage[_0x5db6('0x0')]('firebasePresentationKey')}});let _0x5e03ec=document[_0x5db6('0x6')](_0x5db6('0x3f'))['src'];axios({'method':'POST','url':_0x5db6('0x40'),'headers':{'Content-Type':_0x5db6('0xc'),'imageurl':_0x5e03ec,'firebasepresentationkey':sessionStorage[_0x5db6('0x0')](_0x5db6('0x13'))}});}else{if(state==![]){document[_0x5db6('0x6')](_0x5db6('0x19')+bulletNum)[_0x5db6('0x1a')][_0x5db6('0x1b')]=_0x5db6('0x41');document[_0x5db6('0x6')](_0x5db6('0x19')+bulletNum)['innerText']='•\x20'+interim_transcript;}let _0x35acc5;lastInput=interim_transcript;}}};async function checkInput(_0x5e493a){if(_0x5e493a[_0x5db6('0x42')](_0x5db6('0x43'))||_0x5e493a[_0x5db6('0x42')](_0x5db6('0x44'))){state=![];}if(state==![]){if(_0x5e493a[_0x5db6('0x45')]()[_0x5db6('0x42')]('slide')){type=_0x5db6('0x46');console[_0x5db6('0x10')]('slide');let _0x937bc4=_0x5e493a[_0x5db6('0x31')]('\x20');currentSlideTitle=_0x937bc4[_0x937bc4['length']-0x1];document[_0x5db6('0x6')](_0x5db6('0x1d'))[_0x5db6('0x47')]='';document['getElementById'](_0x5db6('0x48'))[_0x5db6('0x47')]='';document[_0x5db6('0x6')](_0x5db6('0x34'))[_0x5db6('0x18')]=randomBeginning()+capitalizeFirstLetter(_0x937bc4[_0x937bc4[_0x5db6('0x32')]-0x1]);document['getElementById'](_0x5db6('0x34'))[_0x5db6('0x1a')]['backgroundColor']='rgb('+(Math['random']()*0x65+0x32)+','+(Math['random']()*0x65+0x32)+','+(Math[_0x5db6('0x37')]()*0x65+0x32)+')';}else if(_0x5e493a['includes'](_0x5db6('0x3f'))||_0x5e493a[_0x5db6('0x42')](_0x5db6('0x49'))){console['log'](_0x5db6('0x3f'));let _0x112e4e=await document[_0x5db6('0x6')](_0x5db6('0x19')+bulletNum);if(_0x112e4e[_0x5db6('0x4a')]()){_0x112e4e['removeChild'](_0x112e4e['childNodes'][0x0]);}displayImage();}else if(_0x5e493a['includes']('graph')||_0x5e493a[_0x5db6('0x42')](_0x5db6('0x4b'))||_0x5e493a[_0x5db6('0x42')](_0x5db6('0x4c'))){console[_0x5db6('0x10')](_0x5db6('0x4d'));let _0x564804=await document['getElementById'](_0x5db6('0x19')+bulletNum);if(_0x564804[_0x5db6('0x4a')]()){_0x564804[_0x5db6('0x4e')](_0x564804[_0x5db6('0x4f')][0x0]);}bulletNum--;displayGraph();}else if(_0x5e493a[_0x5db6('0x42')]('second')||_0x5e493a[_0x5db6('0x42')](_0x5db6('0x50'))){let _0x137be7=await document[_0x5db6('0x6')](_0x5db6('0x19')+bulletNum);if(_0x137be7[_0x5db6('0x4a')]()){_0x137be7[_0x5db6('0x4e')](_0x137be7[_0x5db6('0x4f')][0x0]);}getWiki(currentSlideTitle);}else if(_0x5e493a[_0x5db6('0x42')](_0x5db6('0x51'))||_0x5e493a['includes'](_0x5db6('0x52'))){state=!![];let _0x1eb749=await document[_0x5db6('0x6')](_0x5db6('0x19')+bulletNum);if(_0x1eb749[_0x5db6('0x4a')]()){_0x1eb749[_0x5db6('0x4e')](_0x1eb749[_0x5db6('0x4f')][0x0]);}bulletNum--;}else if(_0x5e493a[_0x5db6('0x42')](_0x5db6('0x53'))&&_0x5e493a[_0x5db6('0x42')](_0x5db6('0x54'))||_0x5e493a[_0x5db6('0x42')]('remove')&&_0x5e493a[_0x5db6('0x42')](_0x5db6('0x19'))||_0x5e493a[_0x5db6('0x42')](_0x5db6('0x19'))&&_0x5e493a[_0x5db6('0x42')](_0x5db6('0x54'))||_0x5e493a['includes'](_0x5db6('0x53'))&&_0x5e493a[_0x5db6('0x42')](_0x5db6('0x55'))||_0x5e493a['includes']('last')&&_0x5e493a[_0x5db6('0x42')](_0x5db6('0x19'))){let _0x4c3d2a=await document[_0x5db6('0x6')](_0x5db6('0x19')+bulletNum);if(_0x4c3d2a[_0x5db6('0x4a')]()){_0x4c3d2a[_0x5db6('0x4e')](_0x4c3d2a['childNodes'][0x0]);}bulletNum--;let _0x2a69b3=await document[_0x5db6('0x6')](_0x5db6('0x19')+bulletNum);if(_0x2a69b3[_0x5db6('0x4a')]()){_0x2a69b3[_0x5db6('0x4e')](_0x4c3d2a[_0x5db6('0x4f')][0x0]);}bulletNum--;}else if(_0x5e493a['includes']('end')&&_0x5e493a['includes'](_0x5db6('0x56'))||_0x5e493a[_0x5db6('0x42')]('end')&&_0x5e493a[_0x5db6('0x42')](_0x5db6('0x57'))||_0x5e493a[_0x5db6('0x42')](_0x5db6('0x58'))&&_0x5e493a['includes'](_0x5db6('0x57'))||_0x5e493a[_0x5db6('0x42')](_0x5db6('0x58'))&&_0x5e493a[_0x5db6('0x42')](_0x5db6('0x56'))){axios({'method':_0x5db6('0x3d'),'url':_0x5db6('0x59'),'headers':{'Content-Type':_0x5db6('0xc'),'firebasepresentationkey':sessionStorage['getItem'](_0x5db6('0x13'))}});window[_0x5db6('0x3')][_0x5db6('0x5a')]=_0x5db6('0x5b');}}}function randomBeginning(){let _0x52fc9f=[_0x5db6('0x5c'),_0x5db6('0x5d'),'The\x20Facts\x20on\x20',_0x5db6('0x5e'),_0x5db6('0x5f'),_0x5db6('0x60'),'Learn\x20About\x20',_0x5db6('0x61'),_0x5db6('0x62'),'Learn\x20More\x20About\x20'];let _0x304722=parseInt(Math[_0x5db6('0x37')]()*_0x52fc9f[_0x5db6('0x32')]);return _0x52fc9f[_0x304722];}function capitalizeFirstLetter(_0x56d0b8){if(typeof _0x56d0b8==undefined)return;var _0x192b4c=_0x56d0b8[0x0]||_0x56d0b8[_0x5db6('0x63')](0x0);return _0x192b4c?_0x192b4c[_0x5db6('0x20')]()+_0x56d0b8[_0x5db6('0x64')](0x1):'';}function displayImage(){searchWord=currentSlideTitle;$(document)[_0x5db6('0x65')](function(){var _0xb753d=_0x5db6('0x66');let _0x2142ef=_0x5db6('0x67')+_0xb753d+_0x5db6('0x68')+searchWord+_0x5db6('0x69');return axios[_0x5db6('0x6a')](_0x2142ef)['then'](_0x149672=>{var _0x41f3eb=_0x149672[_0x5db6('0xe')]['photos'][_0x5db6('0x6b')]['filter'](function(_0x59f07c){if(_0x59f07c['url_o']!=undefined){return _0x59f07c;}});randomNumber=parseInt(Math[_0x5db6('0x37')]()*0x19);var _0x2c2422=_0x41f3eb[randomNumber][_0x5db6('0x6c')];let _0x36eef1=document[_0x5db6('0x6')](_0x5db6('0x48'));_0x36eef1[_0x5db6('0x47')]='';let _0x4843ba=document[_0x5db6('0x17')](_0x5db6('0x6d'));_0x4843ba[_0x5db6('0x1a')][_0x5db6('0x6e')]=_0x5db6('0x6f');_0x4843ba[_0x5db6('0x1a')]['width']='auto';_0x4843ba[_0x5db6('0x1a')][_0x5db6('0x70')]=_0x5db6('0x71');_0x4843ba['id']=_0x5db6('0x3f');_0x4843ba[_0x5db6('0x72')]=_0x2c2422;_0x36eef1[_0x5db6('0x1e')](_0x4843ba);});});}async function displayGraph(){let _0x478cfb=Math[_0x5db6('0x73')](Math[_0x5db6('0x37')]()*0x3);let _0x2c8e3b=capitalizeFirstLetter(currentSlideTitle);if(_0x478cfb==0x1){let _0xa25095=Math['floor'](Math[_0x5db6('0x37')]()*0x1f4);let _0x899eb=Math['floor'](Math[_0x5db6('0x37')]()*0x1f4);let _0x55ee4c=Math[_0x5db6('0x73')](Math[_0x5db6('0x37')]()*0x1f4);let _0x1662ed=Math['floor'](Math[_0x5db6('0x37')]()*0x1f4);let _0x1ed4fd=_0xa25095+_0x899eb+_0x55ee4c+_0x1662ed;_0xa25095=_0xa25095/_0x1ed4fd*0x64;_0x899eb=_0x899eb/_0x1ed4fd*0x64;_0x55ee4c=_0x55ee4c/_0x1ed4fd*0x64;_0x1662ed=_0x1662ed/_0x1ed4fd*0x64;chart=await new CanvasJS[(_0x5db6('0x74'))](_0x5db6('0x48'),{'animationEnabled':!![],'title':{'text':_0x2c8e3b},'data':[{'type':_0x5db6('0x75'),'startAngle':0xf0,'yValueFormatString':_0x5db6('0x76'),'indexLabel':_0x5db6('0x77'),'dataPoints':[{'y':_0xa25095,'label':''},{'y':_0x899eb,'label':''},{'y':_0x55ee4c,'label':''},{'y':_0x1662ed,'label':''}]}]});console[_0x5db6('0x10')](chart);chart[_0x5db6('0x78')]();}else if(_0x478cfb==0x2){chart=await new CanvasJS[(_0x5db6('0x74'))]('images',{'animationEnabled':!![],'theme':'light2','title':{'text':_0x2c8e3b},'axisY':{'includeZero':![]},'data':[{'type':_0x5db6('0x79'),'dataPoints':[{'y':Math['floor'](Math[_0x5db6('0x37')]()*0x7)},{'y':Math['floor'](Math[_0x5db6('0x37')]()*0x7)},{'y':Math['floor'](Math['random']()*0x7)},{'y':Math[_0x5db6('0x73')](Math[_0x5db6('0x37')]()*0x7)},{'y':Math[_0x5db6('0x73')](Math['random']()*0x7)},{'y':Math[_0x5db6('0x73')](Math[_0x5db6('0x37')]()*0x7)},{'y':Math[_0x5db6('0x73')](Math[_0x5db6('0x37')]()*0x7)},{'y':Math[_0x5db6('0x73')](Math[_0x5db6('0x37')]()*0x7)}]}]});chart[_0x5db6('0x78')]();}else{chart=await new CanvasJS['Chart'](_0x5db6('0x48'),{'animationEnabled':!![],'title':{'text':_0x2c8e3b},'axisX':{'interval':0x1},'axisY2':{'interlacedColor':_0x5db6('0x7a'),'gridColor':_0x5db6('0x7b')},'data':[{'type':_0x5db6('0x7c'),'axisYType':'secondary','color':_0x5db6('0x7d'),'dataPoints':[{'y':Math[_0x5db6('0x73')](Math[_0x5db6('0x37')]()*0x4),'label':''},{'y':Math[_0x5db6('0x73')](Math[_0x5db6('0x37')]()*0x4)+0x4,'label':''},{'y':Math[_0x5db6('0x73')](Math[_0x5db6('0x37')]()*0x4)+0x8,'label':''},{'y':Math[_0x5db6('0x73')](Math[_0x5db6('0x37')]()*0x4)+0xc,'label':''}]}]});chart['render']();}chart['id']=_0x5db6('0x3f');}function getWiki(_0x3c7500){var _0xf5a871=_0x5db6('0x7e');_0xf5a871+=_0x5db6('0x7f')+_0x3c7500;_0xf5a871+=_0x5db6('0x80');_0xf5a871+=_0x5db6('0x81');$[_0x5db6('0x82')](_0xf5a871,function(_0x8c763){var _0x499658=_0x8c763[_0x5db6('0x83')][_0x5db6('0x84')];var _0x499658=_0x8c763[_0x5db6('0x83')][_0x5db6('0x84')];var _0x5ebbf8=Object[_0x5db6('0x85')](_0x499658)[0x0];console['log'](_0x499658[_0x5ebbf8][_0x5db6('0x86')]);try{console[_0x5db6('0x10')](_0x499658[_0x5ebbf8][_0x5db6('0x86')]);let _0x23c4e1=_0x499658[_0x5ebbf8][_0x5db6('0x86')][_0x5db6('0x31')]('.');console['log'](_0x499658[_0x5ebbf8][_0x5db6('0x86')]);if(_0x23c4e1[0x1]==undefined){getWiki(_0x3c7500[_0x5db6('0x87')](0x0,_0x3c7500['length']-0x1));return;}bulletNum++;let _0x8e3aad=document['createElement']('li');_0x8e3aad[_0x5db6('0x1a')]['display']='none';_0x8e3aad[_0x5db6('0x18')]='•\x20'+_0x23c4e1[0x0];_0x8e3aad['id']=_0x5db6('0x19')+bulletNum;_0x8e3aad[_0x5db6('0x1a')]['fontSize']=_0x5db6('0x38');document[_0x5db6('0x6')](_0x5db6('0x1d'))[_0x5db6('0x1e')](_0x8e3aad);document[_0x5db6('0x6')](_0x5db6('0x19')+bulletNum)[_0x5db6('0x1a')][_0x5db6('0x1b')]=_0x5db6('0x41');bulletNum++;let _0x480f16=document[_0x5db6('0x17')]('li');_0x480f16['style'][_0x5db6('0x1b')]=_0x5db6('0x1c');_0x480f16[_0x5db6('0x18')]='•\x20'+_0x23c4e1[0x1];_0x480f16['id']=_0x5db6('0x19')+bulletNum;_0x480f16[_0x5db6('0x1a')][_0x5db6('0x88')]=_0x5db6('0x38');document[_0x5db6('0x6')](_0x5db6('0x1d'))[_0x5db6('0x1e')](_0x480f16);document['getElementById'](_0x5db6('0x19')+bulletNum)[_0x5db6('0x1a')][_0x5db6('0x1b')]='block';}catch(_0x221bce){console['log'](_0x221bce[_0x5db6('0x89')]);}});}
+if (sessionStorage.getItem('userKey') == null || sessionStorage.getItem('userKey') == "null") {
+  window.location.href = "login.html";
+}
+
+let SpeechRecognition = window.webkitSpeechRecognition;
+let recognition = new SpeechRecognition();
+let textDiv = document.getElementById('bullets');
+let final_transcript = '';
+let interim_transcript = '';
+let lastInput;
+let currentSlideTitle;
+recognition.continuous = true;
+recognition.interimResults = true;
+let bulletNum = 0;
+let firstSentence = true;
+let secondStop = false;
+let state = false;
+let var1;
+let myCanvas;
+
+let chart;
+
+recognition.lang = "en-us";
+
+setup();
+
+async function setup() {
+  let result;
+  await axios({
+    method: 'POST',
+    url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/createSetup',
+    headers: {
+      'Content-Type': 'application/json',
+      'userkey': sessionStorage.getItem('userKey'),
+      'accesstoken': localStorage.getItem('access_token')
+    }
+  })
+    .then(data => result = data.data)
+    .catch(err => console.log(err))
+  sessionStorage.setItem('accessKey', result.accesskey);
+  sessionStorage.setItem('firebasePresentationKey', result.firebasepresentationkey)
+  sessionStorage.setItem('currentSlide', result.currentslide);
+}
+
+recognition.start();
+let myBullet = document.createElement('li');
+myBullet.innerText = interim_transcript;
+myBullet.id = `bullet${bulletNum}`;
+myBullet.style.display = "none";
+myBullet.style.fontSize = "30px";
+document.getElementById('bullets').appendChild(myBullet);
+
+var first_char = /\S/;
+function capitalize(s) {
+  return s.replace(first_char, function (m) { return m.toUpperCase(); });
+}
+
+var two_line = /\n\n/g;
+var one_line = /\n/g;
+function linebreak(s) {
+  return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
+}
+
+recognition.onstart = function () {
+  console.log('Voice recognition is ON.');
+}
+
+recognition.onspeechend = function () {
+  console.log('No activity.');
+}
+
+recognition.onerror = function (event) {
+  if (event.error == 'no-speech') {
+    console.log('Try again.');
+  }
+}
+
+recognition.onresult = async function (event) {
+  interim_transcript = '';
+
+  for (var i = event.resultIndex; i < event.results.length; ++i) {
+    if (event.results[i].isFinal) {
+      final_transcript += event.results[i][0].transcript;
+    } else {
+      interim_transcript += event.results[i][0].transcript;
+    }
+  }
+  final_transcript = capitalize(final_transcript);
+  console.log(linebreak(final_transcript));
+  console.log(linebreak(interim_transcript));
+  if (firstSentence && interim_transcript != '') {
+    lastInput = interim_transcript;
+    firstSentence = false;
+    secondStop = true;
+    document.getElementById('accessKey').innerText = `Access Key: ${sessionStorage.getItem('accessKey')}`;
+    document.getElementById('accessKey').style.position = 'absolute';
+    document.getElementById('accessKey').style.left = '10px';
+    document.getElementById('accessKey').style.top = '10px';
+  } else if (secondStop && interim_transcript != '') {
+    lastInput = interim_transcript;
+  } else if (secondStop && interim_transcript == '') {
+    secondStop = false;
+    words = lastInput.split(" ");
+    currentSlideTitle = capitalizeFirstLetter(words[words.length - 1]);
+    axios({
+      method: 'POST',
+      url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/createTitle',
+      headers: {
+        'Content-Type': 'application/json',
+        'slidetitle': currentSlideTitle,
+        'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey')
+      }
+    });
+    document.getElementById('heading').innerText = randomBeginning() + capitalizeFirstLetter(words[words.length - 1]);
+    document.getElementById('heading').style.backgroundColor = `rgb(${Math.random() * 101 + 50},${Math.random() * 101 + 50},${Math.random() * 101 + 50})`;
+  } else if (!firstSentence && !secondStop) {
+    if (interim_transcript == '') {
+      await checkInput(lastInput);
+      if (state == false) {
+        bulletNum++;
+        let myBullet = document.createElement('li');
+        myBullet.innerText = interim_transcript;
+        myBullet.id = `bullet${bulletNum}`;
+        myBullet.style.display = "none";
+        myBullet.style.fontSize = "30px";
+        document.getElementById('bullets').appendChild(myBullet);
+        final_transcript = '';
+      }
+      html2canvas(document.getElementById("fullPage")).then(canvas => {
+        myCanvas = canvas;
+      });
+      var1 = myCanvas.toDataURL("image/png");
+      console.log(var1);
+      axios({
+        method: 'POST',
+        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/slideUrl',
+        headers: {
+          'Content-Type': 'application/json',
+          'slideurl': var1,
+          'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey')
+        }
+      });
+      let imageUrl = document.getElementById("image").src;
+
+      axios({
+        method: 'POST',
+        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/imageUrl',
+        headers: {
+          'Content-Type': 'application/json',
+          'imageurl': imageUrl,
+          'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey')
+        }
+      });
+    } else {
+      if (state == false) {
+        document.getElementById(`bullet${bulletNum}`).style.display = "block";
+        document.getElementById(`bullet${bulletNum}`).innerText = "• " + interim_transcript;
+      }
+      let myCanvas;
+      lastInput = interim_transcript;
+    }
+  }
+};
+
+async function checkInput(input) {
+
+  if ((input.includes("resume") || input.includes("continue"))) {
+    state = false;
+  }
+  if (state == false) {
+    if (input.toLowerCase().includes("slide")) {
+      type = "newSlide";
+      console.log("slide");
+      let words = input.split(" ");
+      currentSlideTitle = words[words.length - 1];
+      document.getElementById('bullets').innerHTML = "";
+      document.getElementById('images').innerHTML = "";
+      document.getElementById('heading').innerText = randomBeginning() + capitalizeFirstLetter(words[words.length - 1]);
+      document.getElementById('heading').style.backgroundColor = `rgb(${Math.random() * 101 + 50},${Math.random() * 101 + 50},${Math.random() * 101 + 50})`;
+    }
+    else if (input.includes("image") || input.includes("picture")) {
+      console.log("image");
+      let list = await document.getElementById(`bullet${bulletNum}`);
+      if (list.hasChildNodes()) {
+        list.removeChild(list.childNodes[0]);
+      }
+      displayImage();
+
+      //search bing for image and put it on right side
+    }
+    else if (input.includes("graph") || input.includes("figure") || input.includes("chart")) {
+      console.log("graph")
+      let list = await document.getElementById(`bullet${bulletNum}`);
+      if (list.hasChildNodes()) {
+        list.removeChild(list.childNodes[0]);
+      }
+      bulletNum--;
+      displayGraph();
+      //generate random graph
+    }
+    else if (input.includes("second") || input.includes("info")) {
+      let list = await document.getElementById(`bullet${bulletNum}`);
+      if (list.hasChildNodes()) {
+        list.removeChild(list.childNodes[0]);
+      }
+      getWiki(currentSlideTitle);
+    }
+    else if (input.includes("pause") || input.includes("halt")) {
+      state = true;
+      let list = await document.getElementById(`bullet${bulletNum}`);
+      if (list.hasChildNodes()) {
+        list.removeChild(list.childNodes[0]);
+      }
+      bulletNum--;
+    }
+
+    else if (input.includes("remove") && input.includes("point")
+      || input.includes("remove") && input.includes("bullet")
+      || input.includes("bullet") && input.includes("point")
+      || input.includes("remove") && input.includes("last")
+      || input.includes("last") && input.includes("bullet")
+    ) {
+      let list = await document.getElementById(`bullet${bulletNum}`);
+      if (list.hasChildNodes()) {
+        list.removeChild(list.childNodes[0]);
+      }
+      bulletNum--;
+      let list2 = await document.getElementById(`bullet${bulletNum}`);
+      if (list2.hasChildNodes()) {
+        list2.removeChild(list.childNodes[0]);
+      }
+      bulletNum--;
+    }
+    else if (input.includes("end") && input.includes("slideshow") || input.includes("end") && input.includes("presentation") || input.includes("finish") && input.includes("presentation") || input.includes("finish") && input.includes("slideshow")) {
+      axios({
+        method: 'POST',
+        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/endScreen',
+        headers: {
+          'Content-Type': 'application/json',
+          'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey')
+        }
+      });
+      //send endscreen.png to all viewers
+      window.location.href = "index.html";
+    }
+  }
+}
+function randomBeginning() {
+  let possibilities = [
+    "All About ",
+    "What to Know About ",
+    "The Facts on ",
+    "Info on ",
+    "Info About ",
+    "Facts About ",
+    "Learn About ",
+    "Get to Know ",
+    "Have You Heard About ",
+    "Learn More About "
+  ];
+
+  let i = parseInt(Math.random() * (possibilities.length));
+  return possibilities[i];
+}
+
+function capitalizeFirstLetter(string) {
+  if (typeof string == undefined) return;
+  var firstLetter = string[0] || string.charAt(0);
+  return firstLetter ? firstLetter.toUpperCase() + string.substr(1) : '';
+}
+
+function displayImage() {
+  searchWord = currentSlideTitle;
+
+  $(document).ready(function () {
+    var API_KEY = '5bdbd1129f9e6f3584db4a8e0f3b1bb2';
+    let url = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${API_KEY}&format=json&nojsoncallback=1&text=${searchWord}&extras=url_o&sort=interestingness-desc&safe_search=1`
+    return axios.get(url).then(res => {
+      var validPhotos = res.data.photos.photo.filter(function (photo) {
+        if (photo.url_o != undefined) {
+          return photo;
+        }
+      });
+      randomNumber = parseInt(Math.random() * 25);
+      var displayPic = validPhotos[randomNumber].url_o;
+      let imageDiv = document.getElementById('images');
+      imageDiv.innerHTML = "";
+      let imageElement = document.createElement('img');
+      imageElement.style.height = "70vh";
+      imageElement.style.width = "auto";
+      imageElement.style.marginLeft = "-350px";
+      imageElement.id = "image";
+      imageElement.src = displayPic;
+      imageDiv.appendChild(imageElement);
+    });
+    // $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
+    //   {
+    //     tags: searchWord,
+    //     tagmode: "any",
+    //     format: "json"
+    //   },
+    //   function (data) {
+    //     var rnd = Math.floor(Math.random() * data.items.length);
+
+    //     var image_src = data.items[rnd]['media']['m'].replace("_m", "_b");
+
+    //     let imageDiv = document.getElementById('images');
+    //     imageDiv.innerHTML = "";
+    //     let imageElement = document.createElement('img');
+    //     imageElement.style.height = "70vh";
+    //     imageElement.style.width = "auto";
+    //     imageElement.style.marginLeft = "-350px";
+    //     imageElement.src = image_src;
+    //     imageDiv.appendChild(imageElement);
+
+    //   });
+
+  });
+}
+
+async function displayGraph() {
+
+  let choice = Math.floor(Math.random() * 3);
+  let name = capitalizeFirstLetter(currentSlideTitle);
+  if (choice == 1) {
+    let one = Math.floor(Math.random() * 500);
+    let two = Math.floor(Math.random() * 500);
+    let three = Math.floor(Math.random() * 500);
+    let four = Math.floor(Math.random() * 500);
+    let total = one + two + three + four;
+    one = one / total * 100;
+    two = two / total * 100;
+    three = three / total * 100;
+    four = four / total * 100;
+
+    chart = await new CanvasJS.Chart("images", {
+      animationEnabled: true,
+      title: {
+        text: name
+      },
+      data: [{
+        type: "pie",
+        startAngle: 240,
+        yValueFormatString: "##0.00\"%\"",
+        indexLabel: "{label} {y}",
+        dataPoints: [
+          { y: one, label: "" },
+          { y: two, label: "" },
+          { y: three, label: "" },
+          { y: four, label: "" },
+        ]
+      }]
+    });
+    console.log(chart);
+    chart.render();
+  } else if (choice == 2) {
+    chart = await new CanvasJS.Chart("images", {
+      animationEnabled: true,
+      theme: "light2",
+      title: {
+        text: name
+      },
+      axisY: {
+        includeZero: false
+      },
+      data: [{
+        type: "line",
+        dataPoints: [
+          { y: Math.floor(Math.random() * 7) },
+          { y: Math.floor(Math.random() * 7) },
+          { y: Math.floor(Math.random() * 7) },
+          { y: Math.floor(Math.random() * 7) },
+          { y: Math.floor(Math.random() * 7) },
+          { y: Math.floor(Math.random() * 7) },
+          { y: Math.floor(Math.random() * 7) },
+          { y: Math.floor(Math.random() * 7) }
+        ]
+      }]
+    });
+    chart.render();
+  } else {
+
+    chart = await new CanvasJS.Chart("images", {
+      animationEnabled: true,
+
+      title: {
+        text: name
+      },
+      axisX: {
+        interval: 1
+      },
+      axisY2: {
+        interlacedColor: "rgba(1,77,101,.2)",
+        gridColor: "rgba(1,77,101,.1)",
+      },
+      data: [{
+        type: "bar",
+        axisYType: "secondary",
+        color: "#014D65",
+        dataPoints: [
+          { y: Math.floor(Math.random() * 4), label: "" },
+          { y: Math.floor(Math.random() * 4) + 4, label: "" },
+          { y: Math.floor(Math.random() * 4) + 8, label: "" },
+          { y: Math.floor(Math.random() * 4) + 12, label: "" }
+        ]
+      }]
+    });
+    chart.render();
+  }
+  chart.id = "image";
+
+}
+/*let imageDiv = document.getElementById('images');
+imageDiv.innerHTML = "";
+let imageElement = document.createElement('img');
+imageElement.style.height = "70vh";
+imageElement.style.width = "auto";
+imageElement.style.marginLeft = "-350px";
+imageElement.src = displayPic;
+imageDiv.appendChild(imageElement);*/
+
+function getWiki(place) {
+  var URL = 'https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=';
+
+  URL += "&titles=" + place;
+  URL += "&rvprop=content";
+  URL += "&callback=?";
+  $.getJSON(URL, function (data) {
+    var obj = data.query.pages;
+    var obj = data.query.pages;
+    var ob = Object.keys(obj)[0];
+    console.log(obj[ob]["extract"]);
+    try {
+      console.log(obj[ob]["extract"]);
+      let sentences = obj[ob]["extract"].split(".");
+      console.log(obj[ob]["extract"]);
+      if (sentences[1] == undefined) {
+        getWiki(place.substring(0, place.length - 1));
+        return;
+      }
+      bulletNum++;
+      let myBullet = document.createElement('li');
+      myBullet.style.display = "none";
+      myBullet.innerText = "• " + sentences[0];
+      myBullet.id = `bullet${bulletNum}`;
+      myBullet.style.fontSize = "30px";
+      document.getElementById('bullets').appendChild(myBullet);
+      document.getElementById(`bullet${bulletNum}`).style.display = "block";
+      bulletNum++;
+      let myBullet2 = document.createElement('li');
+      myBullet2.style.display = "none";
+      myBullet2.innerText = "• " + sentences[1];
+      myBullet2.id = `bullet${bulletNum}`;
+      myBullet2.style.fontSize = "30px";
+      document.getElementById('bullets').appendChild(myBullet2);
+      document.getElementById(`bullet${bulletNum}`).style.display = "block";
+    }
+    catch (err) {
+      console.log(err.message);
+    }
+
+  });
+}
