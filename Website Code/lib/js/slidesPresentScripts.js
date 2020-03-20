@@ -5,7 +5,7 @@ if (sessionStorage.getItem('presentationID') == null || sessionStorage.getItem('
 document.getElementById("linkBtn").addEventListener("click", openLink);
 //document.getElementById("qrBtn").addEventListener("click", openQRCode);
 
-let socket = new WebSocket("wss://syncfastserver.macrotechsolutions.us:2123");
+let socket = new WebSocket("wss://syncfastserver.macrotechsolutions.us:4211");
 
 socket.onopen = function (e) {
     console.log("Connected to socket");
