@@ -14,7 +14,7 @@ if (myKey) {
     submitKey();
 }
 
-let socket = new WebSocket("wss://syncfastserver.macrotechsolutions.us:4211");
+let socket = new WebSocket("ws://syncfastserver.macrotechsolutions.us:1319");
 
 socket.onopen = function (e) {
     console.log("Connected to socket");
