@@ -42,6 +42,7 @@ submit.style.display = "none";
 submit.addEventListener('click', accessKeySubmitted);
 let openURL = "";
 let openQR = ""
+let connected = false;
 
 // Client ID and API key from the Developer Console
 let CLIENT_ID = "510632149212-b3nju2fd9omib1l67qal0ot1214rr75s.apps.googleusercontent.com";
@@ -174,6 +175,10 @@ async function firebaseCommands() {
         .then(data => result = data.data)
         .catch(err => console.log(err))
     sessionStorage.setItem('firebasePresentationKey', result.firebasepresentationkey);
+    if(!connected){
+        establishConnection();
+        connected = true;
+    }
     sessionStorage.setItem('currentSlide', result.currentslidenum);
 }
 
@@ -227,8 +232,6 @@ async function establishConnection() {
         }
     });
 }
-
-establishConnection();
 
 async function updatePage() {
     gapi.client.slides.presentations.pages.getThumbnail({
