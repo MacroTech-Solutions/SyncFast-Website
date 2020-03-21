@@ -14,7 +14,11 @@ socket.onopen = function (e) {
 
 socket.onmessage = function (event) {
     let socketData = event.data;
-    console.log(socketData);
+    if (socketData == `next${sessionStorage.getItem('firebasePresentationKey')}`) {
+        nextSlide();
+    } else if (socketData == `previous${sessionStorage.getItem('firebasePresentationKey')}`) {
+        previousSlide();
+    }
 };
 
 let myVal;
@@ -185,15 +189,6 @@ async function firebaseCommands() {
 async function previousSlide() {
     if (sessionStorage.getItem('currentSlide') > 0) {
         slideNum = (parseInt(sessionStorage.getItem('currentSlide')) - 1).toString();
-        // await axios({
-        //     method: 'POST',
-        //     url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/changeSlideNum',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
-        //         'slidenum': (parseInt(sessionStorage.getItem('currentSlide')) - 1).toString()
-        //     }
-        // });
         sessionStorage.setItem('currentSlide', ((parseInt(sessionStorage.getItem('currentSlide')) - 1).toString()));
     } else {
         alert("You are currently viewing the first slide.");
@@ -203,16 +198,6 @@ async function previousSlide() {
 
 async function nextSlide() {
     if (sessionStorage.getItem('currentSlide') < length - 1) {
-
-        // await axios({
-        //     method: 'POST',
-        //     url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/changeSlideNum',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
-        //         'slidenum': (parseInt(sessionStorage.getItem('currentSlide')) + 1).toString()
-        //     }
-        // });
         console.log("1");
         await sessionStorage.setItem('currentSlide', ((parseInt(sessionStorage.getItem('currentSlide')) + 1).toString()));
         console.log("2");
@@ -272,7 +257,6 @@ async function findImage(imageUrl) {
     var splitArray = result.split("\n");
     var url = "";
     for (var x = 0; x < splitArray.length; x++) {
-        //if (splitArray[x].substring(0,8) == "https://"){
         testString = splitArray[x].replace(" ", "");
         if ((/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/).test(testString)) {
             url = testString;

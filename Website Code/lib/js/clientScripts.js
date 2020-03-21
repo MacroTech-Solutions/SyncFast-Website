@@ -1,4 +1,3 @@
-const database = firebase.database().ref();
 document.querySelector("#submit").addEventListener("click", onClick);
 let myError = document.createElement("p");
 document.querySelector("#error").append(myError);
@@ -23,7 +22,6 @@ socket.onopen = function (e) {
 
 socket.onmessage = function (event) {
     let socketData = event.data;
-    console.log(socketData);
     if (socketData == sessionStorage.getItem('firebasePresentationKey')) {
         updatePage();
     }
