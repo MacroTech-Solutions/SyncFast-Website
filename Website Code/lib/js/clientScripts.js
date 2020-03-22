@@ -7,6 +7,13 @@ let imageElement2;
 let accessCode;
 let params = new URLSearchParams(document.location.search.substring(1));
 let myKey = params.get("accessKey");
+let firebasePresentationKey;
+let presentationTitle;
+let slideUrl;
+let currentSlideNum;
+let maxSlideNum;
+let currentPresSlideNum;
+document.querySelector(".buttons").style.display = "none";
 
 if (myKey) {
     accessCode = myKey;
@@ -24,11 +31,11 @@ socket.onopen = function (e) {
 socket.onmessage = function (event) {
     let socketData = event.data;
     console.log(socketData);
-    if (socketData == sessionStorage.getItem('firebasePresentationKey')) {
+    if (socketData == firebasePresentationKey) {
         updatePage();
-    } else if(socketData == `lock${sessionStorage.getItem('firebasePresentationKey')}`){
+    } else if (socketData == `lock${firebasePresentationKey}`) {
         lockScreen();
-    } else if(socketData == `unlock${sessionStorage.getItem('firebasePresentationKey')}`){
+    } else if (socketData == `unlock${firebasePresentationKey}`) {
         unlockScreen();
     }
 
@@ -53,17 +60,25 @@ async function onClick() {
         alert("Invalid Access Code");
     } else {
         myError.innerText = "";
-        sessionStorage.setItem('firebasePresentationKey', result.firebasepresentationkey);
-        sessionStorage.setItem('slideUrl', result.slideurl);
+        firebasePresentationKey = result.firebasepresentationkey;
+        slideUrl = result.slideurl;
+        if (result.lockstate == 'false') {
+            unlockScreen();
+        } else{
+            lockScreen();
+        }
+        currentPresSlideNum = result.slidenum;
+        maxSlideNum = result.slidenum;
+        currentSlideNum = result.slidenum;
         sessionStorage.setItem('imageUrl', result.imageurl);
-        sessionStorage.setItem('presentationTitle', result.presentationtitle);
+        presentationTitle = result.presentationtitle;
         document.querySelector("#accessKeyInput").style.display = "none";
         document.querySelector("#submit").style.display = "none";
         document.querySelector("#accessKeyText").style.display = "none";
         imageElement = document.createElement("img");
         imageElement.id = "presImg";
-        imageElement.title = sessionStorage.getItem('presentationTitle');
-        imageElement.src = sessionStorage.getItem('slideUrl');
+        imageElement.title = presentationTitle;
+        imageElement.src = slideUrl;
         imageElement.style.width = "80vw";
         imageElement.style.height = "auto";
         imageElement2 = document.createElement("img");
@@ -99,27 +114,79 @@ async function updatePage() {
     })
         .then(data => result = data.data)
         .catch(err => console.log(err))
-    sessionStorage.setItem('slideUrl', result.slideurl);
-    sessionStorage.setItem('imageUrl', result.imageurl);
-    imageElement.src = sessionStorage.getItem('slideUrl');
-    imageElement2.src = sessionStorage.getItem('imageUrl');
-    if(result.lockstate == 'true'){
-        lockScreen();
-        lockState = true;
-    } else{
+    if (parseInt(result.slidenum) > parseInt(maxSlideNum)) {
+        maxSlideNum = result.slidenum;
+    }
+    if (result.lockstate == 'false') {
         unlockScreen();
-        lockState = false;
+        if (currentPresSlideNum == currentSlideNum) {
+            currentSlideNum = result.slidenum;
+            slideUrl = result.slideurl;
+            sessionStorage.setItem('imageUrl', result.imageurl);
+            imageElement.src = slideUrl;
+        }
+    } else {
+        lockScreen();
+        slideUrl = result.slideurl;
+        currentSlideNum = result.slidenum;
+        sessionStorage.setItem('imageUrl', result.imageurl);
+        imageElement.src = slideUrl;
+    }
+    currentPresSlideNum = result.slidenum;
+}
+
+function lockScreen() {
+    console.log("locked");
+    lockState = true;
+    document.querySelector(".buttons").style.display = "none";
+}
+
+function unlockScreen() {
+    console.log("unlocked");
+    lockState = false;
+    document.querySelector(".buttons").style.display = "inline";
+}
+
+async function previousSlide() {
+    if (parseInt(currentSlideNum) > 0) {
+        currentSlideNum = (parseInt(currentSlideNum) - 1).toString();
+        await axios({
+            method: 'POST',
+            url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/clientGetSlide',
+            headers: {
+                'Content-Type': 'application/json',
+                'accesscode': accessCode,
+                'slidenum': currentSlideNum
+            }
+        })
+            .then(data => result = data.data)
+            .catch(err => console.log(err))
+        slideUrl = result.slideurl;
+        imageElement.src = slideUrl;
+    } else {
+        alert("You are currently viewing the first slide.");
     }
 }
 
-function lockScreen(){
-    console.log("locked");
-    lockState = true;
-}
-
-function unlockScreen(){
-    console.log("unlocked");
-    lockState = false;
+async function nextSlide() {
+    if (parseInt(currentSlideNum) < parseInt(maxSlideNum)) {
+        currentSlideNum = (parseInt(currentSlideNum) + 1).toString();
+        await axios({
+            method: 'POST',
+            url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/clientGetSlide',
+            headers: {
+                'Content-Type': 'application/json',
+                'accesscode': accessCode,
+                'slidenum': currentSlideNum
+            }
+        })
+            .then(data => result = data.data)
+            .catch(err => console.log(err))
+        slideUrl = result.slideurl;
+        imageElement.src = slideUrl;
+    } else {
+        alert("You are currently viewing the last available slide.");
+    }
 }
 
 async function submitKey() {
@@ -139,17 +206,17 @@ async function submitKey() {
         alert("Invalid Access Code");
     } else {
         myError.innerText = "";
-        sessionStorage.setItem('firebasePresentationKey', result.firebasepresentationkey);
-        sessionStorage.setItem('slideUrl', result.slideurl);
+        firebasePresentationKey = result.firebasepresentationkey;
+        slideUrl = result.slideurl;
         sessionStorage.setItem('imageUrl', result.imageurl);
-        sessionStorage.setItem('presentationTitle', result.presentationtitle);
+        presentationTitle = result.presentationtitle;
         document.querySelector("#accessKeyInput").style.display = "none";
         document.querySelector("#submit").style.display = "none";
         document.querySelector("#accessKeyText").style.display = "none";
         imageElement = document.createElement("img");
         imageElement.id = "presImg";
-        imageElement.title = sessionStorage.getItem('presentationTitle');
-        imageElement.src = sessionStorage.getItem('slideUrl');
+        imageElement.title = presentationTitle;
+        imageElement.src = slideUrl;
         imageElement.style.width = "80vw";
         imageElement.style.height = "auto";
         imageElement2 = document.createElement("img");

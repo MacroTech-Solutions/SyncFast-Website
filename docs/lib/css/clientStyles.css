@@ -13,6 +13,15 @@ a {
     width: auto;
 }
 
+.button {
+    border-radius: 22px;
+    border: none;
+    background-color:rgb(15, 200, 255);
+    border:solid black;
+    border-radius: 25px;
+    margin-top: 20px;
+}
+
 #logo {
     height: 80%;
 }
