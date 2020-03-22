@@ -30,8 +30,11 @@ let newCode;
 let presentation;
 let screenState = "standard";
 let change = document.querySelector('#change');
+let lock = document.querySelector('#lock');
+let lockState = true;
 let changeKey = document.querySelector('#changeKey');
 change.addEventListener('click', changeAccess);
+lock.addEventListener('click', lockAccess);
 let p = document.createElement("h4");
 p.id = "access";
 let changeInput = document.createElement('input');
@@ -130,7 +133,8 @@ async function listSlides() {
                 headers: {
                     'Content-Type': 'application/json',
                     'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
-                    'slideurl': slideUrl
+                    'slideurl': slideUrl,
+                    'slidenum': sessionStorage.getItem('currentSlide')
                 }
             });
             await axios({
@@ -179,7 +183,7 @@ async function firebaseCommands() {
         .then(data => result = data.data)
         .catch(err => console.log(err))
     sessionStorage.setItem('firebasePresentationKey', result.firebasepresentationkey);
-    if(!connected){
+    if (!connected) {
         establishConnection();
         connected = true;
     }
@@ -327,6 +331,33 @@ function changeAccess() {
     change.style.display = "none";
     changeInput.style.display = "inline";
     submit.style.display = "inline";
+}
+
+async function lockAccess() {
+    lockState = !lockState;
+    if (lockState) {
+        await axios({
+            method: 'POST',
+            url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/lockPresentation',
+            headers: {
+                'Content-Type': 'application/json',
+                'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
+                'lockstate': 'true'
+            }
+        })
+        lock.innerText = "Unlock Presentation";
+    } else {
+        await axios({
+            method: 'POST',
+            url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/lockPresentation',
+            headers: {
+                'Content-Type': 'application/json',
+                'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
+                'lockstate': 'false'
+            }
+        })
+        lock.innerText = "Lock Presentation";
+    }
 }
 
 async function accessKeySubmitted() {

@@ -1,6 +1,6 @@
 if (sessionStorage.getItem('userKey') != null &&
     sessionStorage.getItem('userKey') != "null") {
-    window.location.href = "landing.html";
+    window.location.href = "host.html";
 }
 
 async function onSuccess(googleUser) {
@@ -26,7 +26,7 @@ async function onSuccess(googleUser) {
     sessionStorage.setItem('googleID', userData.googleid);
     sessionStorage.setItem('userKey', userData.userkey);
     sessionStorage.setItem('profilePic', profile.getImageUrl());
-    window.location.href = "landing.html";
+    window.location.href = "host.html";
 }
 
 function onFailure(error) {
@@ -73,7 +73,7 @@ async function signInEmail(event) {
     } else {
         sessionStorage.setItem('userKey', result.data);
         sessionStorage.setItem('profilePic', result.imageurl);
-        window.location.href = "landing.html";
+        window.location.href = "host.html";
     }
 }
 

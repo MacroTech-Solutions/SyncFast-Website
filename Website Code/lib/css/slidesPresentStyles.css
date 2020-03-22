@@ -101,7 +101,7 @@ iframe {
     color: green;
 }
 
-#change {
+#lock, #change {
     background-color: white;
     color: black;
     border-radius: 22px;

@@ -14,6 +14,7 @@ if (myKey) {
 }
 
 let socket = new WebSocket("wss://syncfastserver.macrotechsolutions.us:4211");
+let lockState;
 
 socket.onopen = function (e) {
     console.log("Connected to socket");
@@ -22,9 +23,15 @@ socket.onopen = function (e) {
 
 socket.onmessage = function (event) {
     let socketData = event.data;
+    console.log(socketData);
     if (socketData == sessionStorage.getItem('firebasePresentationKey')) {
         updatePage();
+    } else if(socketData == `lock${sessionStorage.getItem('firebasePresentationKey')}`){
+        lockScreen();
+    } else if(socketData == `unlock${sessionStorage.getItem('firebasePresentationKey')}`){
+        unlockScreen();
     }
+
 };
 
 async function onClick() {
@@ -96,6 +103,23 @@ async function updatePage() {
     sessionStorage.setItem('imageUrl', result.imageurl);
     imageElement.src = sessionStorage.getItem('slideUrl');
     imageElement2.src = sessionStorage.getItem('imageUrl');
+    if(result.lockstate == 'true'){
+        lockScreen();
+        lockState = true;
+    } else{
+        unlockScreen();
+        lockState = false;
+    }
+}
+
+function lockScreen(){
+    console.log("locked");
+    lockState = true;
+}
+
+function unlockScreen(){
+    console.log("unlocked");
+    lockState = false;
 }
 
 async function submitKey() {
