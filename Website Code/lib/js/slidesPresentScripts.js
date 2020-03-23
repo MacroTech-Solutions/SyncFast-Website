@@ -8,7 +8,7 @@ document.getElementById("linkBtn").addEventListener("click", openLink);
 let socket = new WebSocket("wss://syncfastserver.macrotechsolutions.us:4211");
 
 socket.onopen = function (e) {
-    console.log("Connectin Established");
+    console.log("Connection Established");
 };
 
 socket.onmessage = function (event) {
@@ -17,6 +17,8 @@ socket.onmessage = function (event) {
         nextSlide();
     } else if (socketData == `previous${sessionStorage.getItem('firebasePresentationKey')}`) {
         previousSlide();
+    } else if (socketData == `hostLock${sessionStorage.getItem('firebasePresentationKey')}`) {
+        lockAccess();
     }
 };
 
