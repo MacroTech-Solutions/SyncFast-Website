@@ -67,7 +67,7 @@ iframe {
 
 #signOut {
     height: 25px;
-    background-image: linear-gradient(white, #FDDAEC, #f900bc80);
+    background-image: rgb(0, 123, 255);
     font-family: 'karla', sans-serif;
     border-radius: 22px;
     border: none;
@@ -88,7 +88,7 @@ iframe {
 .button {
     border-radius: 22px;
     border: none;
-    background-color:rgb(15, 200, 255);
+    background-color:rgb(0, 123, 255);
     border:solid black;
     border-radius: 25px;
     margin-top: 20px;
