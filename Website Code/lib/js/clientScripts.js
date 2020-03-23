@@ -24,8 +24,7 @@ let socket = new WebSocket("wss://syncfastserver.macrotechsolutions.us:4211");
 let lockState;
 
 socket.onopen = function (e) {
-    console.log("Connected to socket");
-    socket.send("Connected");
+    console.log("Connection Established");
 };
 
 socket.onmessage = function (event) {

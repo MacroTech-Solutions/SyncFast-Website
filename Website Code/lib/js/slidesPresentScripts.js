@@ -8,8 +8,7 @@ document.getElementById("linkBtn").addEventListener("click", openLink);
 let socket = new WebSocket("wss://syncfastserver.macrotechsolutions.us:4211");
 
 socket.onopen = function (e) {
-    console.log("Connected to socket");
-    socket.send("Connected");
+    console.log("Connectin Established");
 };
 
 socket.onmessage = function (event) {
@@ -115,12 +114,21 @@ function handleAuthClick(event) {
  * https://docs.google.com/presentation/d/1EAYk18WDjIG-zp_0vLm3CsfQh_i8eXc67Jo2O9C6Vuc/edit
  */
 async function listSlides() {
+    let notes;
     gapi.client.slides.presentations.get({
         presentationId: sessionStorage.getItem('presentationID')
     }).then(async function (response) {
         await firebaseCommands();
         presentation = response.result;
         length = presentation.slides.length;
+        await gapi.client.slides.presentations.pages.get({
+            presentationId: sessionStorage.getItem('presentationID'),
+            pageObjectId: presentation.slides[sessionStorage.getItem('currentSlide')].objectId,
+        }).then(async function (response) {
+            const res = JSON.parse(response.body);
+            notes = await res.slideProperties.notesPage.pageElements[1].shape.text.textElements.pop().textRun.content;
+            console.log(notes);
+        });
         gapi.client.slides.presentations.pages.getThumbnail({
             presentationId: sessionStorage.getItem('presentationID'),
             pageObjectId: presentation.slides[sessionStorage.getItem('currentSlide')].objectId,
@@ -134,7 +142,8 @@ async function listSlides() {
                     'Content-Type': 'application/json',
                     'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
                     'slideurl': slideUrl,
-                    'slidenum': sessionStorage.getItem('currentSlide')
+                    'slidenum': sessionStorage.getItem('currentSlide'),
+                    'notes': notes
                 }
             });
             await axios({
@@ -202,9 +211,7 @@ async function previousSlide() {
 
 async function nextSlide() {
     if (sessionStorage.getItem('currentSlide') < length - 1) {
-        console.log("1");
         await sessionStorage.setItem('currentSlide', ((parseInt(sessionStorage.getItem('currentSlide')) + 1).toString()));
-        console.log("2");
     } else {
         alert("You are currently viewing the last slide.");
     }
@@ -223,18 +230,24 @@ async function establishConnection() {
 }
 
 async function updatePage() {
+    let notes;
+    await gapi.client.slides.presentations.pages.get({
+        presentationId: sessionStorage.getItem('presentationID'),
+        pageObjectId: presentation.slides[sessionStorage.getItem('currentSlide')].objectId,
+    }).then(async function (response) {
+        const res = JSON.parse(response.body);
+        notes = await res.slideProperties.notesPage.pageElements[1].shape.text.textElements.pop().textRun.content;
+    });
     gapi.client.slides.presentations.pages.getThumbnail({
         presentationId: sessionStorage.getItem('presentationID'),
         pageObjectId: presentation.slides[sessionStorage.getItem('currentSlide')].objectId,
     }).then(async function (response) {
-        console.log("3");
         const res = JSON.parse(response.body);
         slideUrl = res.contentUrl;
         findImage(slideUrl);
         findQR(slideUrl);
         imageElement.src = slideUrl;
         imageElement2.src = slideUrl;
-        console.log("4");
         await axios({
             method: 'POST',
             url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/updatePage',
@@ -242,10 +255,10 @@ async function updatePage() {
                 'Content-Type': 'application/json',
                 'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
                 'slidenum': sessionStorage.getItem('currentSlide'),
-                'slideurl': slideUrl
+                'slideurl': slideUrl,
+                'notes': notes
             }
         });
-        console.log("5");
     }, function (response) {
         console.log('Error: ' + response.result.error.message);
     });
@@ -283,7 +296,6 @@ async function findQR(imageUrl) {
     })
         .then(data => result = data.data[0].symbol[0].data)
         .catch(err => console.log(err))
-    console.log(result)
     var url = "";
     if ((/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/).test(result)) {
         url = result;
