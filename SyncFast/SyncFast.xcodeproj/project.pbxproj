@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4201ECBC24251C2F00DFC4A5 /* PresentationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4201ECBB24251C2F00DFC4A5 /* PresentationVC.swift */; };
 		4275A40E23CBEACB0071AF46 /* SelectModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4275A40D23CBEACB0071AF46 /* SelectModeViewController.swift */; };
 		428B056A236DCD0F009D4EA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428B0569236DCD0F009D4EA3 /* AppDelegate.swift */; };
 		428B056C236DCD0F009D4EA3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428B056B236DCD0F009D4EA3 /* SceneDelegate.swift */; };
@@ -16,15 +17,14 @@
 		428B057E236DCE4A009D4EA3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 428B057D236DCE4A009D4EA3 /* GoogleService-Info.plist */; };
 		428B0580236DD30E009D4EA3 /* EnterCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428B057F236DD30E009D4EA3 /* EnterCodeVC.swift */; };
 		428B0582236DD323009D4EA3 /* ImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428B0581236DD323009D4EA3 /* ImageVC.swift */; };
-		428B0584236E26CC009D4EA3 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428B0583236E26CC009D4EA3 /* ScannerViewController.swift */; };
-		428B0588236E27A9009D4EA3 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 428B0586236E27A8009D4EA3 /* MBProgressHUD.m */; };
-		428B058A236E28A2009D4EA3 /* BluetoothSerial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428B0589236E28A2009D4EA3 /* BluetoothSerial.swift */; };
 		428B058C236E4400009D4EA3 /* SyncFast Logo (1).jpg in Resources */ = {isa = PBXBuildFile; fileRef = 428B058B236E4400009D4EA3 /* SyncFast Logo (1).jpg */; };
 		BE9488C8B25DFA2D989EE032 /* Pods_SyncFast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46CB1681AA519E839058F5D2 /* Pods_SyncFast.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1F745C178DFC15D577F936D4 /* Pods-SyncFast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SyncFast.release.xcconfig"; path = "Pods/Target Support Files/Pods-SyncFast/Pods-SyncFast.release.xcconfig"; sourceTree = "<group>"; };
+		4201ECBB24251C2F00DFC4A5 /* PresentationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationVC.swift; sourceTree = "<group>"; };
+		4201ECBD24251E4F00DFC4A5 /* SyncFast-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SyncFast-Bridging-Header.h"; sourceTree = "<group>"; };
 		4275A40D23CBEACB0071AF46 /* SelectModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectModeViewController.swift; sourceTree = "<group>"; };
 		428B0566236DCD0F009D4EA3 /* SyncFast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SyncFast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		428B0569236DCD0F009D4EA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -36,11 +36,6 @@
 		428B057D236DCE4A009D4EA3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		428B057F236DD30E009D4EA3 /* EnterCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCodeVC.swift; sourceTree = "<group>"; };
 		428B0581236DD323009D4EA3 /* ImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageVC.swift; sourceTree = "<group>"; };
-		428B0583236E26CC009D4EA3 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
-		428B0585236E27A8009D4EA3 /* SyncFast-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SyncFast-Bridging-Header.h"; sourceTree = "<group>"; };
-		428B0586236E27A8009D4EA3 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		428B0587236E27A9009D4EA3 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		428B0589236E28A2009D4EA3 /* BluetoothSerial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothSerial.swift; sourceTree = "<group>"; };
 		428B058B236E4400009D4EA3 /* SyncFast Logo (1).jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "SyncFast Logo (1).jpg"; sourceTree = "<group>"; };
 		46CB1681AA519E839058F5D2 /* Pods_SyncFast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SyncFast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4B519E2EEAADC25B626159D /* Pods-SyncFast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SyncFast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SyncFast/Pods-SyncFast.debug.xcconfig"; sourceTree = "<group>"; };
@@ -80,21 +75,18 @@
 			isa = PBXGroup;
 			children = (
 				428B058B236E4400009D4EA3 /* SyncFast Logo (1).jpg */,
-				428B0589236E28A2009D4EA3 /* BluetoothSerial.swift */,
-				428B0587236E27A9009D4EA3 /* MBProgressHUD.h */,
-				428B0586236E27A8009D4EA3 /* MBProgressHUD.m */,
 				428B0569236DCD0F009D4EA3 /* AppDelegate.swift */,
 				428B056B236DCD0F009D4EA3 /* SceneDelegate.swift */,
 				428B057F236DD30E009D4EA3 /* EnterCodeVC.swift */,
 				4275A40D23CBEACB0071AF46 /* SelectModeViewController.swift */,
-				428B0583236E26CC009D4EA3 /* ScannerViewController.swift */,
+				4201ECBB24251C2F00DFC4A5 /* PresentationVC.swift */,
 				428B0581236DD323009D4EA3 /* ImageVC.swift */,
 				428B056F236DCD0F009D4EA3 /* Main.storyboard */,
 				428B0572236DCD10009D4EA3 /* Assets.xcassets */,
 				428B0574236DCD10009D4EA3 /* LaunchScreen.storyboard */,
 				428B0577236DCD10009D4EA3 /* Info.plist */,
 				428B057D236DCE4A009D4EA3 /* GoogleService-Info.plist */,
-				428B0585236E27A8009D4EA3 /* SyncFast-Bridging-Header.h */,
+				4201ECBD24251E4F00DFC4A5 /* SyncFast-Bridging-Header.h */,
 			);
 			path = SyncFast;
 			sourceTree = "<group>";
@@ -249,12 +241,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				428B056A236DCD0F009D4EA3 /* AppDelegate.swift in Sources */,
-				428B0588236E27A9009D4EA3 /* MBProgressHUD.m in Sources */,
 				428B0582236DD323009D4EA3 /* ImageVC.swift in Sources */,
 				4275A40E23CBEACB0071AF46 /* SelectModeViewController.swift in Sources */,
 				428B0580236DD30E009D4EA3 /* EnterCodeVC.swift in Sources */,
-				428B0584236E26CC009D4EA3 /* ScannerViewController.swift in Sources */,
-				428B058A236E28A2009D4EA3 /* BluetoothSerial.swift in Sources */,
+				4201ECBC24251C2F00DFC4A5 /* PresentationVC.swift in Sources */,
 				428B056C236DCD0F009D4EA3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

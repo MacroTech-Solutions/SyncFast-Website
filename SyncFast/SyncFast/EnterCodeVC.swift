@@ -10,13 +10,84 @@ import UIKit
 import FirebaseDatabase
 import CoreBluetooth
 import QuartzCore
+import AVFoundation
 
-
-
-class EnterCodeVC: UIViewController, UITextFieldDelegate {
+class EnterCodeVC: UIViewController, UITextFieldDelegate, AVCaptureMetadataOutputObjectsDelegate{
+    
+    var captureSession: AVCaptureSession!
+    var previewLayer: AVCaptureVideoPreviewLayer!
     
     
-    @IBOutlet weak var Connect: UIBarButtonItem!
+    
+    @IBAction func scan(_ sender: Any) {
+        view.backgroundColor = UIColor.black
+        captureSession = AVCaptureSession()
+
+        guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
+        let videoInput: AVCaptureDeviceInput
+
+        do {
+            videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
+        } catch {
+            return
+        }
+
+        if (captureSession.canAddInput(videoInput)) {
+            captureSession.addInput(videoInput)
+        } else {
+            return
+        }
+
+        let metadataOutput = AVCaptureMetadataOutput()
+
+        if (captureSession.canAddOutput(metadataOutput)) {
+            captureSession.addOutput(metadataOutput)
+
+            metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+            metadataOutput.metadataObjectTypes = [.qr]
+        } else {
+            return
+        }
+
+        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        previewLayer.frame = view.layer.bounds
+        previewLayer.videoGravity = .resizeAspectFill
+        view.layer.addSublayer(previewLayer)
+
+        captureSession.startRunning()
+    }
+    
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        captureSession.stopRunning()
+        dismiss(animated: true)
+        
+        if let metadataObject = metadataObjects.first {
+            guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
+            guard let stringValue = readableObject.stringValue else { return }
+            AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+            found(code: stringValue)
+        }
+        
+        
+    }
+
+    func found(code: String) {
+        var dict = URL(string:code)!.params()
+        if dict.count == 1 && dict["accessKey"] != nil{
+            enteredCode = dict["accessKey"] as! String
+            getStorage(value2: "test")
+            
+        } else {
+            let alert = UIAlertController(title: "No Presentation", message: "There is no presentation found for scanned QR Code. Please click Back.", preferredStyle: .alert)
+            let confirm = UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
+            })
+            alert.addAction(confirm)
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    
+    
     var enteredCode = ""
     var correspondingKey = ""
     var PresentationName: String = ""
@@ -28,114 +99,84 @@ class EnterCodeVC: UIViewController, UITextFieldDelegate {
     var headers: [String] = []
     var names: [String] = []
     var correctHead: String = ""
+    var response: String = ""
     
     func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
         self.view.endEditing(true)
         return true
     }
     
-    func getInfo(CompletionHandler: @escaping (Bool?, Error?) -> Void){
-        do {
-            let url = NSURL(string: "https://h2grow.herokuapp.com/api")!
-            let request = NSMutableURLRequest(url: url as URL)
-            request.httpMethod = "POST"
+    func getStorage(value2: String) {
+           printMessagesForUser(parameters: value2) {
+               (returnval, error) in
+               if (returnval)!
+               {
+                   DispatchQueue.main.async {
+                    if self.response == "Valid Access Code"{
+                           
+                           self.performSegue(withIdentifier: "validCode", sender: self)
+                       } else{
+                           let alert = UIAlertController(title: "Invalid Code", message: "The code you entered does not correspond to a presentation.", preferredStyle: .alert)
+                           let confirm = UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
+                               self.CodeBox.text = ""
+                           })
+                           alert.addAction(confirm)
+                           self.present(alert, animated: true, completion: nil)
+                       }
+                   }
+               } else {
+                   print(error)
+               }
+           }
+           DispatchQueue.main.async { // Correct
+           }
+       }
+       
+       func printMessagesForUser(parameters: String, CompletionHandler: @escaping (Bool?, Error?) -> Void){
+           let json = [parameters]
+           do {
+               let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+               
+               
+               let url = NSURL(string: "https://syncfastserver.macrotechsolutions.us:9146/http://localhost/clientJoin")!
+               let request = NSMutableURLRequest(url: url as URL)
+               request.httpMethod = "POST"
+               request.setValue(enteredCode, forHTTPHeaderField: "accessCode")
+            request.setValue("*", forHTTPHeaderField: "Origin")
             
-            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-            request.httpBody = try JSONSerialization.data(withJSONObject: [""], options: .prettyPrinted)
-            let task = URLSession.shared.dataTask(with: request as URLRequest){ data, response, error in
-                self.ref.child("presentations").observeSingleEvent(of: .value, with: { (snapshot) in
-                    
-                    let value = snapshot.value as? NSDictionary
-                    
-                    for (key,values) in value! {
-                        let value2 = values as? NSDictionary
-                        var head = key as! String
-                        var keyExists = value2?["accessKey"] != nil
-                        var presname = ""
-                        var access = ""
-                        if keyExists {
-                            access = value2?["accessKey"] as! String
-                        }
-                        keyExists = value2?["presentationTitle"] != nil
-                        if keyExists {
-                            presname = value2?["presentationTitle"] as! String
-                        }
-                        
-                        self.accessKeys.append(access)
-                        self.headers.append(head)
-                        self.names.append(presname)
+               request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+               
+               let task = URLSession.shared.dataTask(with: request as URLRequest){ data, response, error in
+                   if let returned = String(data: data!, encoding: .utf8) {
+                       let dict = returned.toJSON() as? [String:AnyObject] // can be any type here
+                       print(dict)
+                    self.response = dict!["data"] as! String
+                    if self.response == "Valid Access Code" {
+                        self.PresentationName = dict!["presentatontitle"] as! String
+                        self.correctHead = dict!["firebasepresentationkey"] as! String
                     }
-                    CompletionHandler(true,nil)
                     
-                })
-                
-            }
-            task.resume()
-        } catch {
-            print(error)
-        }
-    }
-    
-    func correspond(CompletionHandler: @escaping (Bool?, Error?) -> Void){
-        do {
-            let url = NSURL(string: "https://h2grow.herokuapp.com/api")!
-            let request = NSMutableURLRequest(url: url as URL)
-            request.httpMethod = "POST"
-            
-            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-            request.httpBody = try JSONSerialization.data(withJSONObject: [""], options: .prettyPrinted)
-            let task = URLSession.shared.dataTask(with: request as URLRequest){ data, response, error in
-                self.ref.child("tags").observeSingleEvent(of: .value, with: { (snapshot) in
                     
-                    let values = snapshot.value as? NSDictionary
-                    self.enteredCode.remove(at: self.enteredCode.index(before: self.enteredCode.endIndex))
-                    let keyExists = values?[self.enteredCode] != nil
-                    if keyExists {
-                        self.correspondingKey = values?[self.enteredCode] as! String
-                    }
+                       CompletionHandler(true,nil)
+                       
+                       //self.Severity.text = "hello"
+                   } else {
+                   }
+                   
+                   //self.Severity.text = "test"
+                   
+               }
+               task.resume()
+           } catch {
+               
+               print(error)
+           }
+       }
 
-                    CompletionHandler(true,nil)
-                    
-                })
-                
-            }
-            task.resume()
-        } catch {
-            print(error)
-        }
-    }
     
     @IBAction func EnterClick(_ sender: Any) {
-        getInfo() {
-            (returnval, error) in
-            if (returnval)!
-            {
-                DispatchQueue.main.async {
-                    var done = false
-                    for var x in 0...self.accessKeys.count-1 {
-                        if self.CodeBox.text == self.accessKeys[x] {
-                            self.correctHead = self.headers[x]
-                            if !done {
-                                self.performSegue(withIdentifier: "validCode", sender: self)
-                            }
-                            done = true
-                        }
-                    }
-                    if !done {
-                        let alert = UIAlertController(title: "Invalid Code", message: "The code you entered does not correspond to a presentation.", preferredStyle: .alert)
-                        let confirm = UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
-                            self.CodeBox.text = ""
-                        })
-                        alert.addAction(confirm)
-                        self.present(alert, animated: true, completion: nil)
-                    }
-                }
-            } else {
-                print(error)
-            }
-        }
-        DispatchQueue.main.async {
-        }
+        enteredCode = CodeBox.text!
+        getStorage(value2: "test")
     }
     
     override func viewDidLoad() {
@@ -157,36 +198,16 @@ class EnterCodeVC: UIViewController, UITextFieldDelegate {
         names = []
         correctHead = ""
         sent = false
+        AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.all)
+
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-    }
-    
-    @objc func keyboardWillShow(_ notification: Notification) {
-        // animate the text field to stay above the keyboard
-        var info = (notification as NSNotification).userInfo!
-        let value = info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
-        let keyboardFrame = value.cgRectValue
-        
-        //TODO: Not animating properly
-        UIView.animate(withDuration: 1, delay: 0, options: UIView.AnimationOptions(), animations: { () -> Void in
-        }, completion: { Bool -> Void in
-            self.textViewScrollToBottom()
-        })
-    }
-    
-    
-    @objc func keyboardWillHide(_ notification: Notification) {
-        // bring the text field back down..
-        UIView.animate(withDuration: 1, delay: 0, options: UIView.AnimationOptions(), animations: { () -> Void in
-        }, completion: nil)
-        
-    }
-    
-    func textViewScrollToBottom() {
-        //let range = NSMakeRange(NSString(string: mainTextView.text).length - 1, 1)
-        //mainTextView.scrollRangeToVisible(range)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -196,88 +217,22 @@ class EnterCodeVC: UIViewController, UITextFieldDelegate {
             ImageVC.prestitle = PresentationName
         }
     }
-    
-    func sendName(inputtemp2 : String) {
-        /*
-        var inputtemp = inputtemp2
-        if inputtemp == "double" {
-            serial.sendMessageToDevice("Duplicate scan")
-        } else {
-            inputtemp = inputtemp.substring(to: inputtemp.index(before: inputtemp.endIndex))
-            var input = inputtemp
-            var index: Int = -1
-            for var x in 0...data.idArray.count-1 {
-                var testStr = String(data.idArray[x])
-                if testStr == input {
-                    index = x
-                    break
-                }
-            }
-            if index != -1 {
-                print(data.nameArray[index])
-                serial.sendMessageToDevice(data.nameArray[index])
-                serial.sendMessageToDevice(",")
-                serial.sendMessageToDevice(String(data.priceArray[index]))
-                serial.sendMessageToDevice(",")
-                serial.sendMessageToDevice("notpurchased")
-                serial.sendMessageToDevice(",")
-                serial.sendMessageToDevice("noerror")
-            } else {
-                serial.sendMessageToDevice("Item not found")
-            }
-        }
- */
-        
-    }
-    
-    func serialDidReceiveString(_ message: String) {
-        enteredCode = message
-        correspond() {
-            (returnval, error) in
-            if (returnval)!
-            {
-                DispatchQueue.main.async {
-                    self.getInfo() {
-                        (returnval, error) in
-                        if (returnval)!
-                        {
-                            DispatchQueue.main.async {
-                                var done = false
-                                for var x in 0...self.accessKeys.count-1 {
-                                    if self.correspondingKey == self.accessKeys[x] {
-                                        self.correctHead = self.headers[x]
-                                        if self.sent == false {
-                                            self.PresentationName = self.names[x]
-                                            serial.sendMessageToDevice(self.names[x])
-                                            self.sent = true
-                                            self.performSegue(withIdentifier: "validCode", sender: self)
-                                            done = true
-                                        }
-                                        
-                                    }
-                                }
-                                if !done {
-                                    serial.sendMessageToDevice("Incorrect")
-                                }
-                            }
-                        } else {
-                            print(error)
-                        }
-                    }
-                    DispatchQueue.main.async {
-                    }
-                }
-            } else {
-                print(error)
-            }
-        }
-        DispatchQueue.main.async {
-        }
-        
-        
-        
-        
-    }
 
 }
 
+extension URL {
+  func params() -> [String:Any] {
+    var dict = [String:Any]()
+
+    if let components = URLComponents(url: self, resolvingAgainstBaseURL: false) {
+      if let queryItems = components.queryItems {
+        for item in queryItems {
+          dict[item.name] = item.value!
+        }
+      }
+      return dict
+    } else {
+      return [:]
+    }
+  }
+}

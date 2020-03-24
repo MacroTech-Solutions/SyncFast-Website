@@ -9,5 +9,6 @@ target 'SyncFast' do
 	pod 'Firebase'
 	pod 'FirebaseDatabase'
 	pod 'GoogleSignIn'
-
+	pod 'Starscream'
+	pod 'SwiftWebSocket'
 end
