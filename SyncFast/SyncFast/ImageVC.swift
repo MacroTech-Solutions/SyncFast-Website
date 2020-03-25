@@ -11,9 +11,6 @@ import WebKit
 import Starscream
 
 class ImageVC: UIViewController, UITextFieldDelegate {
-    func didReceive(event: WebSocketEvent, client: WebSocket) {
-        <#code#>
-    }
     
     
     var socket: WebSocket?
@@ -94,13 +91,8 @@ class ImageVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        socket = WebSocket(request: param as URLRequest)
     }
-    
-    deinit {
-      socket.disconnect(forceTimeout: 0)
-      socket.delegate = nil
-    }
+
     
     
     override func viewWillAppear(_ animated: Bool) {
