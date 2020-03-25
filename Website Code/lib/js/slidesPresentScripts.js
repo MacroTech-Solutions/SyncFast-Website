@@ -13,6 +13,7 @@ socket.onopen = function (e) {
 
 socket.onmessage = function (event) {
     let socketData = event.data;
+    console.log(socketData);
     if (socketData == `next${sessionStorage.getItem('firebasePresentationKey')}`) {
         nextSlide();
     } else if (socketData == `previous${sessionStorage.getItem('firebasePresentationKey')}`) {
@@ -128,7 +129,11 @@ async function listSlides() {
             pageObjectId: presentation.slides[sessionStorage.getItem('currentSlide')].objectId,
         }).then(async function (response) {
             const res = JSON.parse(response.body);
-            notes = await res.slideProperties.notesPage.pageElements[1].shape.text.textElements.pop().textRun.content;
+            try{
+                notes = await res.slideProperties.notesPage.pageElements[1].shape.text.textElements.pop().textRun.content;
+            } catch(e){
+                console.log(e);
+            }
             console.log(notes);
         });
         gapi.client.slides.presentations.pages.getThumbnail({
@@ -238,7 +243,11 @@ async function updatePage() {
         pageObjectId: presentation.slides[sessionStorage.getItem('currentSlide')].objectId,
     }).then(async function (response) {
         const res = JSON.parse(response.body);
-        notes = await res.slideProperties.notesPage.pageElements[1].shape.text.textElements.pop().textRun.content;
+        try{
+            notes = await res.slideProperties.notesPage.pageElements[1].shape.text.textElements.pop().textRun.content;
+        } catch(e){
+            console.log(e);
+        }
     });
     gapi.client.slides.presentations.pages.getThumbnail({
         presentationId: sessionStorage.getItem('presentationID'),
