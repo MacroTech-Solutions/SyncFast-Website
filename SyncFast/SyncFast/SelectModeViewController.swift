@@ -99,6 +99,11 @@ class SelectModeViewController: UIViewController, GIDSignInDelegate {
         }
        }
        
+    
+    @IBAction func HelpBtn(_ sender: Any) {
+        
+    }
+    
        
        
        func printMessagesForUser(parameters: String, CompletionHandler: @escaping (Bool?, Error?) -> Void){
