@@ -29,7 +29,6 @@ socket.onopen = function (e) {
 
 socket.onmessage = function (event) {
     let socketData = event.data;
-    console.log(socketData);
     if (socketData == firebasePresentationKey) {
         updatePage();
     } else if (socketData == `lock${firebasePresentationKey}`) {
@@ -54,7 +53,6 @@ async function onClick() {
     })
         .then(data => result = data.data)
         .catch(err => console.log(err))
-    console.log(result);
     if (result.data == "Incorrect Access Code") {
         alert("Invalid Access Code");
     } else {
@@ -135,13 +133,11 @@ async function updatePage() {
 }
 
 function lockScreen() {
-    console.log("locked");
     lockState = true;
     document.querySelector(".buttons").style.display = "none";
 }
 
 function unlockScreen() {
-    console.log("unlocked");
     lockState = false;
     document.querySelector(".buttons").style.display = "inline";
 }
@@ -200,7 +196,6 @@ async function submitKey() {
     })
         .then(data => result = data.data)
         .catch(err => console.log(err))
-    console.log(result);
     if (result.data == "Incorrect Access Code") {
         alert("Invalid Access Code");
     } else {
