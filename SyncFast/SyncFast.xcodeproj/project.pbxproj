@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4201ECBC24251C2F00DFC4A5 /* PresentationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4201ECBB24251C2F00DFC4A5 /* PresentationVC.swift */; };
 		4201ECC1242E3EAF00DFC4A5 /* syncfastclear.png in Resources */ = {isa = PBXBuildFile; fileRef = 4201ECC0242E3EAF00DFC4A5 /* syncfastclear.png */; };
+		4201ECC8242E416800DFC4A5 /* icons8-forward-arrow-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 4201ECC6242E416700DFC4A5 /* icons8-forward-arrow-100.png */; };
+		4201ECC9242E416800DFC4A5 /* icons8-reply-arrow-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 4201ECC7242E416700DFC4A5 /* icons8-reply-arrow-100.png */; };
 		4275A40E23CBEACB0071AF46 /* SelectModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4275A40D23CBEACB0071AF46 /* SelectModeViewController.swift */; };
 		428B056A236DCD0F009D4EA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428B0569236DCD0F009D4EA3 /* AppDelegate.swift */; };
 		428B056C236DCD0F009D4EA3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428B056B236DCD0F009D4EA3 /* SceneDelegate.swift */; };
@@ -27,6 +29,8 @@
 		4201ECBB24251C2F00DFC4A5 /* PresentationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationVC.swift; sourceTree = "<group>"; };
 		4201ECBD24251E4F00DFC4A5 /* SyncFast-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SyncFast-Bridging-Header.h"; sourceTree = "<group>"; };
 		4201ECC0242E3EAF00DFC4A5 /* syncfastclear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = syncfastclear.png; path = ../../../../../Downloads/syncfastclear.png; sourceTree = "<group>"; };
+		4201ECC6242E416700DFC4A5 /* icons8-forward-arrow-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons8-forward-arrow-100.png"; path = "../../../../../Downloads/icons8-forward-arrow-100.png"; sourceTree = "<group>"; };
+		4201ECC7242E416700DFC4A5 /* icons8-reply-arrow-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons8-reply-arrow-100.png"; path = "../../../../../Downloads/icons8-reply-arrow-100.png"; sourceTree = "<group>"; };
 		4275A40D23CBEACB0071AF46 /* SelectModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectModeViewController.swift; sourceTree = "<group>"; };
 		428B0566236DCD0F009D4EA3 /* SyncFast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SyncFast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		428B0569236DCD0F009D4EA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +80,8 @@
 		428B0568236DCD0F009D4EA3 /* SyncFast */ = {
 			isa = PBXGroup;
 			children = (
+				4201ECC6242E416700DFC4A5 /* icons8-forward-arrow-100.png */,
+				4201ECC7242E416700DFC4A5 /* icons8-reply-arrow-100.png */,
 				4201ECC0242E3EAF00DFC4A5 /* syncfastclear.png */,
 				428B058B236E4400009D4EA3 /* SyncFast Logo (1).jpg */,
 				428B0569236DCD0F009D4EA3 /* AppDelegate.swift */,
@@ -173,11 +179,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4201ECC9242E416800DFC4A5 /* icons8-reply-arrow-100.png in Resources */,
 				428B0576236DCD10009D4EA3 /* LaunchScreen.storyboard in Resources */,
 				428B057E236DCE4A009D4EA3 /* GoogleService-Info.plist in Resources */,
 				4201ECC1242E3EAF00DFC4A5 /* syncfastclear.png in Resources */,
 				428B058C236E4400009D4EA3 /* SyncFast Logo (1).jpg in Resources */,
 				428B0573236DCD10009D4EA3 /* Assets.xcassets in Resources */,
+				4201ECC8242E416800DFC4A5 /* icons8-forward-arrow-100.png in Resources */,
 				428B0571236DCD0F009D4EA3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
