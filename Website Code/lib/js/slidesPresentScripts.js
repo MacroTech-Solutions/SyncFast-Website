@@ -35,6 +35,11 @@ let change = document.querySelector('#change');
 let lock = document.querySelector('#lock');
 let lockState = true;
 let changeKey = document.querySelector('#changeKey');
+let notesSection = document.querySelector('.notes');
+let notes = "";
+let notesState = false;
+notesSection.style.display = "none";
+let notesButton = document.querySelector('#notesButton');
 change.addEventListener('click', changeAccess);
 lock.addEventListener('click', lockAccess);
 let p = document.createElement("h4");
@@ -117,7 +122,6 @@ function handleAuthClick(event) {
  * https://docs.google.com/presentation/d/1EAYk18WDjIG-zp_0vLm3CsfQh_i8eXc67Jo2O9C6Vuc/edit
  */
 async function listSlides() {
-    let notes;
     gapi.client.slides.presentations.get({
         presentationId: sessionStorage.getItem('presentationID')
     }).then(async function (response) {
@@ -131,10 +135,12 @@ async function listSlides() {
             const res = JSON.parse(response.body);
             try{
                 notes = await res.slideProperties.notesPage.pageElements[1].shape.text.textElements.pop().textRun.content;
+                notesSection.innerText = notes;
             } catch(e){
                 console.log(e);
+                notes = "";
+                notesSection.innerText = notes;
             }
-            console.log(notes);
         });
         gapi.client.slides.presentations.pages.getThumbnail({
             presentationId: sessionStorage.getItem('presentationID'),
@@ -237,7 +243,6 @@ async function establishConnection() {
 }
 
 async function updatePage() {
-    let notes;
     await gapi.client.slides.presentations.pages.get({
         presentationId: sessionStorage.getItem('presentationID'),
         pageObjectId: presentation.slides[sessionStorage.getItem('currentSlide')].objectId,
@@ -245,8 +250,11 @@ async function updatePage() {
         const res = JSON.parse(response.body);
         try{
             notes = await res.slideProperties.notesPage.pageElements[1].shape.text.textElements.pop().textRun.content;
+            notesSection.innerText = notes;
         } catch(e){
             console.log(e);
+            notes = "";
+            notesSection.innerText = notes;
         }
     });
     gapi.client.slides.presentations.pages.getThumbnail({
@@ -381,6 +389,17 @@ async function lockAccess() {
         })
         lock.innerText = "Lock Presentation";
     }
+}
+
+function toggleNotes(){
+    if(notesState){
+        notesSection.style.display = "none";
+        notesButton.innerText = "Show Speaker Notes";
+    } else{
+        notesSection.style.display = "";
+        notesButton.innerText = "Hide Speaker Notes";
+    }
+    notesState = !notesState;
 }
 
 async function accessKeySubmitted() {
