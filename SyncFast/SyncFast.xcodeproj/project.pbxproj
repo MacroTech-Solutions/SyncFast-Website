@@ -31,6 +31,7 @@
 		4201ECC0242E3EAF00DFC4A5 /* syncfastclear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = syncfastclear.png; path = ../../../../../Downloads/syncfastclear.png; sourceTree = "<group>"; };
 		4201ECC6242E416700DFC4A5 /* icons8-forward-arrow-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons8-forward-arrow-100.png"; path = "../../../../../Downloads/icons8-forward-arrow-100.png"; sourceTree = "<group>"; };
 		4201ECC7242E416700DFC4A5 /* icons8-reply-arrow-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons8-reply-arrow-100.png"; path = "../../../../../Downloads/icons8-reply-arrow-100.png"; sourceTree = "<group>"; };
+		4201ECDE24338F0200DFC4A5 /* SyncFast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SyncFast.entitlements; sourceTree = "<group>"; };
 		4275A40D23CBEACB0071AF46 /* SelectModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectModeViewController.swift; sourceTree = "<group>"; };
 		428B0566236DCD0F009D4EA3 /* SyncFast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SyncFast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		428B0569236DCD0F009D4EA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +81,7 @@
 		428B0568236DCD0F009D4EA3 /* SyncFast */ = {
 			isa = PBXGroup;
 			children = (
+				4201ECDE24338F0200DFC4A5 /* SyncFast.entitlements */,
 				4201ECC6242E416700DFC4A5 /* icons8-forward-arrow-100.png */,
 				4201ECC7242E416700DFC4A5 /* icons8-reply-arrow-100.png */,
 				4201ECC0242E3EAF00DFC4A5 /* syncfastclear.png */,
@@ -403,6 +405,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SyncFast/SyncFast.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BMPVP9B9U3;
 				INFOPLIST_FILE = SyncFast/Info.plist;
@@ -425,6 +428,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SyncFast/SyncFast.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BMPVP9B9U3;
 				INFOPLIST_FILE = SyncFast/Info.plist;

@@ -8,12 +8,8 @@
 
 import UIKit
 import WebKit
-import Starscream
 
 class ImageVC: UIViewController, UITextFieldDelegate {
-    
-    
-    var socket: WebSocket?
     
     @IBOutlet weak var imageView: UIImageView!
     

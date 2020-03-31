@@ -101,7 +101,9 @@ class SelectModeViewController: UIViewController, GIDSignInDelegate {
        
     
     @IBAction func HelpBtn(_ sender: Any) {
-        
+        if let url = URL(string: "https://www.macrotechsolutions.us/contact-us") {
+            UIApplication.shared.open(url)
+        }
     }
     
        

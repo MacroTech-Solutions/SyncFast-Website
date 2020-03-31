@@ -65,18 +65,44 @@ class EnterCodeVC: UIViewController, UITextFieldDelegate, AVCaptureMetadataOutpu
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
             guard let stringValue = readableObject.stringValue else { return }
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-            found(code: stringValue)
+            if stringValue != nil && stringValue != "" {
+                found(code: stringValue)
+            } else {
+                let alert = UIAlertController(title: "No Presentation", message: "There is no presentation found for scanned QR Code. Please click Back.", preferredStyle: .alert)
+                let confirm = UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
+                })
+                alert.addAction(confirm)
+                self.present(alert, animated: true, completion: nil)
+            }
         }
         
         
     }
+    
+    func verifyUrl (urlString: String?) -> Bool {
+        if let urlString = urlString {
+            if let url = NSURL(string: urlString) {
+                return UIApplication.shared.canOpenURL(url as URL)
+            }
+        }
+        return false
+    }
 
     func found(code: String) {
-        var dict = URL(string:code)!.params()
-        if dict.count == 1 && dict["accessKey"] != nil{
-            enteredCode = dict["accessKey"] as! String
-            getStorage(value2: "test")
-            
+        print(code)
+        if verifyUrl(urlString: code) {
+            var dict = URL(string:code)!.params()
+            if dict.count == 1 && dict["accessKey"] != nil{
+                enteredCode = dict["accessKey"] as! String
+                getStorage(value2: "test")
+                
+            } else {
+                let alert = UIAlertController(title: "No Presentation", message: "There is no presentation found for scanned QR Code. Please click Back.", preferredStyle: .alert)
+                let confirm = UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
+                })
+                alert.addAction(confirm)
+                self.present(alert, animated: true, completion: nil)
+            }
         } else {
             let alert = UIAlertController(title: "No Presentation", message: "There is no presentation found for scanned QR Code. Please click Back.", preferredStyle: .alert)
             let confirm = UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
@@ -84,6 +110,7 @@ class EnterCodeVC: UIViewController, UITextFieldDelegate, AVCaptureMetadataOutpu
             alert.addAction(confirm)
             self.present(alert, animated: true, completion: nil)
         }
+        
     }
     
     

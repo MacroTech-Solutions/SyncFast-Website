@@ -189,12 +189,16 @@ class PresentationVC: UIViewController {
                     self.notes = dict!["notes"] as! String
                     self.slideNumber = dict!["slidenum"] as! String
                     self.prestitle = dict!["presentatontitle"] as! String
-                    
-                    var temp: String = dict!["lockstate"] as! String
-                    if temp == "true"{
+                    print(dict)
+                    if let _ = dict!["lockstate"] {
+                        var temp: String = dict!["lockstate"] as! String
+                        if temp == "true"{
+                            self.locked = true
+                        } else{
+                            self.locked = false
+                        }
+                    } else {
                         self.locked = true
-                    } else{
-                        self.locked = false
                     }
  
                  }
