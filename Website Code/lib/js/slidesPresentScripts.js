@@ -217,7 +217,7 @@ async function previousSlide() {
         slideNum = (parseInt(sessionStorage.getItem('currentSlide')) - 1).toString();
         sessionStorage.setItem('currentSlide', ((parseInt(sessionStorage.getItem('currentSlide')) - 1).toString()));
     } else {
-        alert("You are currently viewing the first slide.");
+        //alert("You are currently viewing the first slide.");
     }
     updatePage();
 }
@@ -226,7 +226,7 @@ async function nextSlide() {
     if (sessionStorage.getItem('currentSlide') < length - 1) {
         await sessionStorage.setItem('currentSlide', ((parseInt(sessionStorage.getItem('currentSlide')) + 1).toString()));
     } else {
-        alert("You are currently viewing the last slide.");
+        //alert("You are currently viewing the last slide.");
     }
     updatePage();
 }
