@@ -36,7 +36,7 @@ let lock = document.querySelector('#lock');
 let lockState = true;
 let changeKey = document.querySelector('#changeKey');
 let notesSection = document.querySelector('.notes');
-let notes = " ";
+let notes = "No notes available.";
 let notesState = false;
 notesSection.style.display = "none";
 let notesButton = document.querySelector('#notesButton');
@@ -138,7 +138,7 @@ async function listSlides() {
                 notesSection.innerText = notes;
             } catch(e){
                 console.log(e);
-                notes = " ";
+                notes = "No notes available.";
                 notesSection.innerText = notes;
             }
         });
@@ -253,7 +253,7 @@ async function updatePage() {
             notesSection.innerText = notes;
         } catch(e){
             console.log(e);
-            notes = " ";
+            notes = "No notes available.";
             notesSection.innerText = notes;
         }
     });
