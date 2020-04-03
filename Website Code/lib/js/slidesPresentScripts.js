@@ -32,6 +32,7 @@ let newCode;
 let presentation;
 let screenState = "standard";
 let change = document.querySelector('#change');
+let loadingElement = document.querySelector('#loading');
 let lock = document.querySelector('#lock');
 let lockState = true;
 let changeKey = document.querySelector('#changeKey');
@@ -168,6 +169,7 @@ async function listSlides() {
                     'presentationtitle': presentation.title
                 }
             });
+            loadingElement.style.display = "none";
             imageElement = document.createElement("img");
             imageElement.id = "presImg";
             imageElement.title = presentation.title;
