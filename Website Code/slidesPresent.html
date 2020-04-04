@@ -27,6 +27,14 @@
         <div class="nav">
             <div class="left">
                 <img id="logo" src="assets/SyncFast Logo Dark.png" onclick="window.location.href='index.html'">
+                <div class="dropdown">
+                    <button class="button"> <img src = "assets/utility.png" height = 40 width = 40> </button>
+                    <div class="dropdown-content">
+                      <button id="qrCodeBtn" class = button onclick = openQRCodePres()> Show QR </button>
+                      <button id="notesButton" class = button onclick = toggleNotes()> Show Speaker Notes </button>
+                      <button id="newPres" class = button onclick = newPres()> Choose New Presentation </button>
+                    </div>
+                </div>
             </div>
             <div class="center">
                 <button id="change">Change</button>
@@ -50,23 +58,10 @@
                 <img id="loading" src="assets/loading.gif">
             </div>
             <div class="notes">
-            
-
-                <!-- Sai please move this to the top left
-                    <div class="dropdown">
-                    <button class="button"> <img src = "assets/utility.png" height = 40 width = 40> </button>
-                    <div class="dropdown-content">
-                      <button class = button onclick = openQRCodePres()> Show QR </button>
-                      <button class = button onclick = openQRCodePres()> Show Speaker Notes </button>
-                      <button class = button onclick = openQRCodePres()> Choose New Presentation </button>
-                    </div> -->
             </div>
             <div class="buttons">
-                <!-- <button id="qrCodeBtn" class="button" onclick="openQRCodePres()">Show QR</button> -->
                 <button id="prevSlide" class="button" onclick="previousSlide()">Previous Slide</button>
-                <!-- <button id="newPres" class="button" onclick="newPres()">Choose New Presentation </button> -->
                 <button id="nextSlide" class="button" onclick="nextSlide()">Next Slide</button>
-                <!-- <button id="notesButton" class="button" onclick="toggleNotes()">Show Speaker Notes</button> -->
                 <button id="fullScreen" class = "button3" onClick="fullScreen()"><img src="assets/full-screen-white.png" height = 40 width = 40 /></button>
                 <button id="linkBtn" class="button2" style="display:none">Open URL</button>
                 <button id="qrBtn" class="button2" style="display:none">Open QR</button>
