@@ -32,6 +32,7 @@ let newCode;
 let presentation;
 let screenState = "standard";
 let change = document.querySelector('#change');
+let loadingElement = document.querySelector('#loading');
 let lock = document.querySelector('#lock');
 let lockState = true;
 let changeKey = document.querySelector('#changeKey');
@@ -168,6 +169,7 @@ async function listSlides() {
                     'presentationtitle': presentation.title
                 }
             });
+            loadingElement.style.display = "none";
             imageElement = document.createElement("img");
             imageElement.id = "presImg";
             imageElement.title = presentation.title;
@@ -217,7 +219,7 @@ async function previousSlide() {
         slideNum = (parseInt(sessionStorage.getItem('currentSlide')) - 1).toString();
         sessionStorage.setItem('currentSlide', ((parseInt(sessionStorage.getItem('currentSlide')) - 1).toString()));
     } else {
-        //alert("You are currently viewing the first slide.");
+        alert("You are currently viewing the first slide.");
     }
     updatePage();
 }
@@ -226,7 +228,7 @@ async function nextSlide() {
     if (sessionStorage.getItem('currentSlide') < length - 1) {
         await sessionStorage.setItem('currentSlide', ((parseInt(sessionStorage.getItem('currentSlide')) + 1).toString()));
     } else {
-        //alert("You are currently viewing the last slide.");
+        alert("You are currently viewing the last slide.");
     }
     updatePage();
 }
