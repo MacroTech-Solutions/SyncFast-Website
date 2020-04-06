@@ -168,7 +168,7 @@
             </objects>
             <point key="canvasLocation" x="1065.217391304348" y="231.69642857142856"/>
         </scene>
-        <!--PresentationVC-->
+        <!--Access Key-->
         <scene sceneID="V1a-W3-0cT">
             <objects>
                 <viewController id="S0X-fc-58z" customClass="PresentationVC" customModule="SyncFast" customModuleProvider="target" sceneMemberID="viewController">
@@ -278,7 +278,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Enq-eD-f2B"/>
                     </view>
-                    <navigationItem key="navigationItem" id="IOT-U1-FXL">
+                    <navigationItem key="navigationItem" title="Access Key" id="IOT-U1-FXL">
                         <barButtonItem key="rightBarButtonItem" title="Lock" image="lock.fill" catalog="system" id="hql-Jg-f2d">
                             <connections>
                                 <action selector="Lock:" destination="S0X-fc-58z" id="nTO-96-mDU"/>
@@ -291,6 +291,7 @@
                         <outlet property="Notes" destination="YYx-Px-3JG" id="tuw-GF-gea"/>
                         <outlet property="SlideNum" destination="0do-zI-WoG" id="VNB-aU-gBn"/>
                         <outlet property="imageview" destination="r8t-hP-Hnz" id="zew-2a-6GY"/>
+                        <outlet property="keytitle" destination="IOT-U1-FXL" id="Ec4-fS-bTM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="elA-vv-CBZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

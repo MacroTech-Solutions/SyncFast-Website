@@ -13,7 +13,6 @@ class SelectModeViewController: UIViewController, GIDSignInDelegate {
     
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        print("data")
         if let error = error {
           if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
             print("The user has not signed in before or they have since signed out.")
@@ -39,6 +38,8 @@ class SelectModeViewController: UIViewController, GIDSignInDelegate {
         super.viewDidLoad()
         GIDSignIn.sharedInstance()?.presentingViewController = self
         GIDSignIn.sharedInstance().delegate = self
+        
+
         // Do any additional setup after loading the view.
     }
     
@@ -60,6 +61,7 @@ class SelectModeViewController: UIViewController, GIDSignInDelegate {
        }
     
     override func viewWillAppear(_ animated: Bool) {
+        
     AppDelegate.AppUtility.lockOrientation(UIInterfaceOrientationMask.portrait, andRotateTo: UIInterfaceOrientation.portrait)
         }
     
@@ -76,12 +78,17 @@ class SelectModeViewController: UIViewController, GIDSignInDelegate {
                if (returnval)!
                {
                 DispatchQueue.main.async {
+                    
                     if self.givealert == true{
-                        let alert = UIAlertController(title: "No Presentation", message: "There is no presentation found for the signed in account.", preferredStyle: .alert)
+                        let alert = UIAlertController(title: "No Presentation", message: "There is no presentation found for the signed in account. To host a presentation:\n1. Go to http://syncfast.net\n2. Sign into your Google account\n3. Select the Host option\n4. Select desired presentation\n5. Try again when completed.", preferredStyle: .alert)
                         let confirm = UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
                             self.givealert = false
                         })
+                        let reload = UIAlertAction(title: "Reload", style: .default, handler: { (action) in
+                            self.getStorage(value2: "test")
+                        })
                         alert.addAction(confirm)
+                        alert.addAction(reload)
                         self.present(alert, animated: true, completion: nil)
                     }
                     if self.name != "" && self.valid == true{
@@ -117,7 +124,7 @@ class SelectModeViewController: UIViewController, GIDSignInDelegate {
                let url = NSURL(string: "https://syncfastserver.macrotechsolutions.us:9146/http://localhost/hostRemote")!
                let request = NSMutableURLRequest(url: url as URL)
                request.httpMethod = "POST"
-               request.addValue("artschand@ctemc.org", forHTTPHeaderField: "email")
+               request.addValue(email, forHTTPHeaderField: "email")
                request.addValue("*", forHTTPHeaderField: "Origin")
                
                request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -125,6 +132,8 @@ class SelectModeViewController: UIViewController, GIDSignInDelegate {
                    if let returned = String(data: data!, encoding: .utf8) {
                        let dict = returned.toJSON() as? [String:AnyObject] // can be any type here
                     var response = dict!["data"] as! String
+                    print("hello")
+                    print(dict)
                     if response == "Valid User"{
                         self.valid = true
                         self.givealert = false

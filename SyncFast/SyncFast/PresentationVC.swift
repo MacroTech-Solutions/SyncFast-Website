@@ -16,9 +16,11 @@ class PresentationVC: UIViewController {
     var imageURL: String = ""
     var newURL: String = ""
     var notes: String = ""
-    var slideNumber: String = ""
+    var slideNumber: Int = 0
     var prestitle: String = ""
     var locked: Bool = true
+    var active: Bool = true
+    var givealert = true
     
     var accesskey: String = ""
     
@@ -31,6 +33,8 @@ class PresentationVC: UIViewController {
         
         
     }
+    
+    @IBOutlet weak var keytitle: UINavigationItem!
     
     @IBAction func Lock(_ sender: Any) {
         togglelock(value2: "test")
@@ -46,6 +50,7 @@ class PresentationVC: UIViewController {
     @IBOutlet weak var Notes: UITextView!
     
     override func viewWillAppear(_ animated: Bool) {
+        givealert = true
         getStorage(value2: email)
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in
             self.getStorage2(value2: "test")
@@ -118,7 +123,7 @@ class PresentationVC: UIViewController {
             if (returnval)!
             {
                 DispatchQueue.main.async {
-                 if self.response == "Valid Access Code"{
+                    if self.response == "Valid Access Code" && self.active == true{
                         
                         let wordToRemove = "data:image/png;base64,"
                     
@@ -139,8 +144,9 @@ class PresentationVC: UIViewController {
                                 self.imageview?.image = imagee
                             }
                             self.Notes.text = self.notes
-                            self.SlideNum.text = "Slide \(self.slideNumber)"
-                            self.AccessKeyBox.text = "\(self.prestitle) - \(self.accesskey)"
+                            self.SlideNum.text = "Slide \(self.slideNumber + 1)"
+                            self.AccessKeyBox.text = "\(self.prestitle)"
+                            self.keytitle.title = "Access Key - " + self.accesskey
                             if self.locked == false{
                                 self.LockButton.image = UIImage(systemName: "lock.open.fill")
 
@@ -149,13 +155,20 @@ class PresentationVC: UIViewController {
                             }
                     }
                     } else{
-                    /*
-                        let alert = UIAlertController(title: "Invalid Code", message: "Access code was changed or the presentation was closed.", preferredStyle: .alert)
-                        let confirm = UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
-                        })
-                        alert.addAction(confirm)
-                        self.present(alert, animated: true, completion: nil)
- */
+                        if self.givealert == true{
+                            self.givealert = false
+                            let alert = UIAlertController(title: "Invalid Presentation", message: "Access code was changed or the presentation was closed.", preferredStyle: .alert)
+                            let confirm = UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
+                                _ = self.navigationController?.popViewController(animated: true)
+
+                            })
+                            alert.addAction(confirm)
+                            self.present(alert, animated: true, completion: nil)
+                        } else{
+                            
+                        }
+                        
+ 
                     }
                 }
             } else {
@@ -185,21 +198,41 @@ class PresentationVC: UIViewController {
                     let dict = returned.toJSON() as? [String:AnyObject] // can be any type here
                  self.response = dict!["data"] as! String
                  if self.response == "Valid Access Code" {
-                    self.newURL = dict!["slideurl"] as! String
-                    self.notes = dict!["notes"] as! String
-                    self.slideNumber = dict!["slidenum"] as! String
-                    self.prestitle = dict!["presentatontitle"] as! String
-                    print(dict)
-                    if let _ = dict!["lockstate"] {
-                        var temp: String = dict!["lockstate"] as! String
-                        if temp == "true"{
-                            self.locked = true
-                        } else{
-                            self.locked = false
-                        }
+                    if let _ = dict!["slideurl"] {
+                        self.newURL = dict!["slideurl"] as! String
+                                          /*
+                                           if let _ = dict!["notes"] {
+                                               self.notes = dict!["notes"] as! String
+                                           } else {
+                                               self.notes = ""
+                                           }
+                                            
+                        */
+                                           print(dict)
+                                           self.notes = dict!["notes"] as! String
+                                           var temp: String = dict!["slidenum"] as! String
+                                           self.slideNumber = Int(temp)!
+                                           if let _ = dict!["presentationtitle"] {
+                                               self.prestitle = dict!["presentatontitle"] as! String
+                                           } else {
+                                               self.prestitle = "No Title"
+                                           }
+                                           self.prestitle = dict!["presentatontitle"] as! String
+                                           print(dict)
+                                           if let _ = dict!["lockstate"] {
+                                               var temp: String = dict!["lockstate"] as! String
+                                               if temp == "true"{
+                                                   self.locked = true
+                                               } else{
+                                                   self.locked = false
+                                               }
+                                           } else {
+                                               self.locked = true
+                                           }
                     } else {
-                        self.locked = true
+                        self.active = false
                     }
+                    
  
                  }
                  
