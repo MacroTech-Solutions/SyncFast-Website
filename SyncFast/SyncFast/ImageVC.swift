@@ -166,7 +166,7 @@ class ImageVC: UIViewController, UITextFieldDelegate {
                     self.response = dict!["data"] as! String
                     if self.response == "Valid Access Code" {
                        self.newURL = dict!["slideurl"] as! String
-                       self.prestitle = dict!["presentatontitle"] as! String
+                       self.prestitle = dict!["presentationtitle"] as! String
     
                     }
                     

@@ -155,6 +155,8 @@ class PresentationVC: UIViewController {
                             }
                     }
                     } else{
+                        /*
+                        print(self.response)
                         if self.givealert == true{
                             self.givealert = false
                             let alert = UIAlertController(title: "Invalid Presentation", message: "Access code was changed or the presentation was closed.", preferredStyle: .alert)
@@ -167,7 +169,7 @@ class PresentationVC: UIViewController {
                         } else{
                             
                         }
-                        
+                        */
  
                     }
                 }
@@ -197,7 +199,7 @@ class PresentationVC: UIViewController {
                 if let returned = String(data: data!, encoding: .utf8) {
                     let dict = returned.toJSON() as? [String:AnyObject] // can be any type here
                  self.response = dict!["data"] as! String
-                 if self.response == "Valid Access Code" {
+                    if self.response == "Valid Access Code" || self.response == "Valid User" {
                     if let _ = dict!["slideurl"] {
                         self.newURL = dict!["slideurl"] as! String
                                           /*
@@ -208,17 +210,15 @@ class PresentationVC: UIViewController {
                                            }
                                             
                         */
-                                           print(dict)
                                            self.notes = dict!["notes"] as! String
                                            var temp: String = dict!["slidenum"] as! String
                                            self.slideNumber = Int(temp)!
                                            if let _ = dict!["presentationtitle"] {
-                                               self.prestitle = dict!["presentatontitle"] as! String
+                                               self.prestitle = dict!["presentationtitle"] as! String
                                            } else {
                                                self.prestitle = "No Title"
                                            }
-                                           self.prestitle = dict!["presentatontitle"] as! String
-                                           print(dict)
+                                           self.prestitle = dict!["presentationtitle"] as! String
                                            if let _ = dict!["lockstate"] {
                                                var temp: String = dict!["lockstate"] as! String
                                                if temp == "true"{
@@ -230,11 +230,14 @@ class PresentationVC: UIViewController {
                                                self.locked = true
                                            }
                     } else {
+                        print(dict)
                         self.active = false
                     }
                     
  
-                 }
+                 } else {
+                    print(dict)
+                    }
                  
                  
                     CompletionHandler(true,nil)
@@ -325,7 +328,6 @@ class PresentationVC: UIViewController {
             let url = NSURL(string: "https://syncfastserver.macrotechsolutions.us:9146/http://localhost/nextSlide")!
             let request = NSMutableURLRequest(url: url as URL)
             request.httpMethod = "POST"
-            print(firebasekey)
             request.setValue(firebasekey, forHTTPHeaderField: "firebasepresentationkey")
             request.setValue("*", forHTTPHeaderField: "Origin")
             

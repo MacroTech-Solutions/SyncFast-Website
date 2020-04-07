@@ -179,7 +179,7 @@ class EnterCodeVC: UIViewController, UITextFieldDelegate, AVCaptureMetadataOutpu
                        print(dict)
                     self.response = dict!["data"] as! String
                     if self.response == "Valid Access Code" {
-                        self.PresentationName = dict!["presentatontitle"] as! String
+                        self.PresentationName = dict!["presentationtitle"] as! String
                         self.correctHead = dict!["firebasepresentationkey"] as! String
                     }
                     
