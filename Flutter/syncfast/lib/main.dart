@@ -330,8 +330,8 @@ class _ViewPresPageState extends State<ViewPresPage> {
             FittedBox(
                 child: Container(
                     child: Image(
-              image: NetworkImage(clientJson["slideurl"]),
-            )))
+                      image: NetworkImage(clientJson["slideurl"]),
+                    )))
           ],
         ),
       ),
@@ -460,7 +460,7 @@ class _HostSignInState extends State<HostSignIn> {
               splashColor: Colors.grey,
               onPressed: () async {
                 final GoogleSignInAccount googleSignInAccount =
-                    await googleSignIn.signIn();
+                await googleSignIn.signIn();
                 Map<String, String> headers = {
                   "Content-type": "application/json",
                   "Origin": "*",
@@ -476,7 +476,7 @@ class _HostSignInState extends State<HostSignIn> {
                     "Content-type": "application/json",
                     "Origin": "*",
                     "firebasepresentationkey":
-                        hostJson["firebasepresentationkey"]
+                    hostJson["firebasepresentationkey"]
                   };
                   Response response = await post(
                       'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/remoteAuth',
@@ -624,8 +624,8 @@ class _HostRemotePageState extends State<HostRemotePage> {
             ),
             FittedBox(
                 child: Container(
-              child: Image(image: NetworkImage(hostJson["slideurl"])),
-            )),
+                  child: Image(image: NetworkImage(hostJson["slideurl"])),
+                )),
             Padding(
               padding: const EdgeInsets.only(top: 30.0, bottom: 30.0),
               child: Text(
@@ -642,7 +642,7 @@ class _HostRemotePageState extends State<HostRemotePage> {
                       "Content-type": "application/json",
                       "Origin": "*",
                       "firebasepresentationkey":
-                          hostJson["firebasepresentationkey"]
+                      hostJson["firebasepresentationkey"]
                     };
                     Response response = await post(
                         'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/previousSlide',
@@ -657,7 +657,7 @@ class _HostRemotePageState extends State<HostRemotePage> {
                       "Content-type": "application/json",
                       "Origin": "*",
                       "firebasepresentationkey":
-                          hostJson["firebasepresentationkey"]
+                      hostJson["firebasepresentationkey"]
                     };
                     Response response = await post(
                         'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/nextSlide',
@@ -665,7 +665,7 @@ class _HostRemotePageState extends State<HostRemotePage> {
 
                   },
                   child: Image(
-                    image: AssetImage('assets/nextSlide.png')
+                      image: AssetImage('assets/nextSlide.png')
                   )),
             ]),
             RaisedButton(
