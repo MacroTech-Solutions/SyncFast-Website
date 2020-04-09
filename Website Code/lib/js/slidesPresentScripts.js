@@ -174,9 +174,8 @@ async function listSlides() {
                 url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/presentationLength',
                 headers: {
                     'Content-Type': 'application/json',
-                    'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
-                    'length': length,
-                    'presentationtitle': presentation.title
+                    'firebasepresentationkey': sessionStorage.getItem('firebasepresentationkey'),
+                    'length': length
                 }
             });
             loadingElement.style.display = "none";
