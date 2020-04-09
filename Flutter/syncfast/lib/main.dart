@@ -50,18 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    return WillPopScope(
-        onWillPop: () async {
-          googleSignIn.signOut();
-          SystemChrome.setPreferredOrientations([
-            DeviceOrientation.landscapeRight,
-            DeviceOrientation.landscapeLeft,
-            DeviceOrientation.portraitUp,
-            DeviceOrientation.portraitDown,
-          ]);
-          return true;
-        },
-        child: Scaffold(
+    return Scaffold(
           appBar: AppBar(
             title: Text(widget.title),
           ),
@@ -144,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-        ));
+        );
   }
 }
 
@@ -184,18 +173,7 @@ class _ClientJoinPageState extends State<ClientJoinPage> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    return WillPopScope(
-        onWillPop: () async {
-          googleSignIn.signOut();
-          SystemChrome.setPreferredOrientations([
-            DeviceOrientation.landscapeRight,
-            DeviceOrientation.landscapeLeft,
-            DeviceOrientation.portraitUp,
-            DeviceOrientation.portraitDown,
-          ]);
-          return true;
-        },
-        child: Scaffold(
+    return Scaffold(
           appBar: AppBar(
             title: Text("View Presentation"),
           ),
@@ -272,7 +250,7 @@ class _ClientJoinPageState extends State<ClientJoinPage> {
               ],
             ),
           ),
-        ));
+        );
   }
 }
 
@@ -331,18 +309,7 @@ class _ViewPresPageState extends State<ViewPresPage> {
         });
       }
     });
-    return WillPopScope(
-        onWillPop: () async {
-          googleSignIn.signOut();
-          SystemChrome.setPreferredOrientations([
-            DeviceOrientation.landscapeRight,
-            DeviceOrientation.landscapeLeft,
-            DeviceOrientation.portraitUp,
-            DeviceOrientation.portraitDown,
-          ]);
-          return true;
-        },
-        child: Scaffold(
+    return Scaffold(
           appBar: AppBar(
             title: Text("View Presentation"),
           ),
@@ -382,7 +349,7 @@ class _ViewPresPageState extends State<ViewPresPage> {
               ],
             ),
           ),
-        ));
+        );
   }
 }
 
@@ -423,18 +390,7 @@ class _HostSignInState extends State<HostSignIn> {
       DeviceOrientation.portraitDown,
     ]);
     googleSignIn.signOut();
-    return WillPopScope(
-        onWillPop: () async {
-          googleSignIn.signOut();
-          SystemChrome.setPreferredOrientations([
-            DeviceOrientation.landscapeRight,
-            DeviceOrientation.landscapeLeft,
-            DeviceOrientation.portraitUp,
-            DeviceOrientation.portraitDown,
-          ]);
-          return true;
-        },
-        child: Scaffold(
+    return Scaffold(
           appBar: AppBar(
             title: Text("Sign In"),
           ),
@@ -590,7 +546,7 @@ class _HostSignInState extends State<HostSignIn> {
               ],
             ),
           ),
-        ));
+        );
   }
 }
 
@@ -650,18 +606,8 @@ class _HostRemotePageState extends State<HostRemotePage> {
       }
     });
     print(hostJson);
-    return WillPopScope(
-        onWillPop: () async {
-          googleSignIn.signOut();
-          SystemChrome.setPreferredOrientations([
-            DeviceOrientation.landscapeRight,
-            DeviceOrientation.landscapeLeft,
-            DeviceOrientation.portraitUp,
-            DeviceOrientation.portraitDown,
-          ]);
-          return true;
-        },
-        child: Scaffold(
+    googleSignIn.signOut();
+    return Scaffold(
           appBar: AppBar(
             title: Text("Host Remote"),
           ),
@@ -769,6 +715,6 @@ class _HostRemotePageState extends State<HostRemotePage> {
               ],
             ),
           ),
-        ));
+        );
   }
 }
