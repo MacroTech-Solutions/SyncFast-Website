@@ -169,6 +169,16 @@ async function listSlides() {
                     'presentationtitle': presentation.title
                 }
             });
+            await axios({
+                method: 'POST',
+                url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/presentationLength',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
+                    'length': length,
+                    'presentationtitle': presentation.title
+                }
+            });
             loadingElement.style.display = "none";
             imageElement = document.createElement("img");
             imageElement.id = "presImg";
