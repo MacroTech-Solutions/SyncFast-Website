@@ -16,6 +16,8 @@ void main() {
 String url = "https://www.macrotechsolutions.us/contact-us.html";
 
 String accessCode;
+String username;
+String password;
 var clientJson;
 var hostJson;
 
@@ -404,8 +406,8 @@ class _ViewPresPageState extends State<ViewPresPage> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeLeft,
-      DeviceOrientation.landscapeRight,
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
     ]);
     var channel = IOWebSocketChannel.connect(
         "wss://syncfastserver.macrotechsolutions.us:4211");
@@ -506,6 +508,7 @@ class _HostSignInState extends State<HostSignIn> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+
     googleSignIn.signOut();
     return Scaffold(
       appBar: AppBar(
@@ -537,7 +540,7 @@ class _HostSignInState extends State<HostSignIn> {
                 decoration: InputDecoration(hintText: "Email Address"),
                 onChanged: (String str) {
                   setState(() {
-                    accessCode = str;
+                    username = str;
                   });
                 },
               ),
@@ -549,47 +552,68 @@ class _HostSignInState extends State<HostSignIn> {
                 obscureText: true,
                 onChanged: (String str) {
                   setState(() {
-                    accessCode = str;
+                    password = str;
+                    print(password);
                   });
                 },
               ),
             ),
-            RaisedButton(
-                onPressed: () async {
-                  Map<String, String> headers = {
-                    "Content-type": "application/json",
-                    "Origin": "*",
-                    "accesscode": accessCode
-                  };
-                  Response response = await post(
-                      'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/clientJoin',
-                      headers: headers);
-                  //createAlertDialog(context);
-                  clientJson = jsonDecode(response.body);
-                  if (clientJson["data"] == "Incorrect Access Code") {
-                    createAlertDialog(context, "Incorrect Access Code",
-                        "Access code $accessCode is invalid. Please try again.");
-                  } else {
-                    dispose() {
-                      SystemChrome.setPreferredOrientations([
-                        DeviceOrientation.landscapeRight,
-                        DeviceOrientation.landscapeLeft,
-                        DeviceOrientation.portraitUp,
-                        DeviceOrientation.portraitDown,
-                      ]);
-                      super.dispose();
-                    }
+            ListTile(
+                title: RaisedButton(
+                    onPressed: () async {
+                      Map<String, String> headers = {
+                        "Content-type": "application/json",
+                        "Origin": "*",
+                        "email": username,
+                        "password": password
+                      };
+                      Response response = await post(
+                          'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/remoteEmail',
+                          headers: headers);
+                      //createAlertDialog(context);
+                      hostJson = jsonDecode(response.body);
+                      print(response);
+                      if (hostJson["data"] == "Valid User") {
+                        Map<String, String> headers = {
+                          "Content-type": "application/json",
+                          "Origin": "*",
+                          "firebasepresentationkey":
+                              hostJson["firebasepresentationkey"]
+                        };
+                        Response response = await post(
+                            'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/remoteAuth',
+                            headers: headers);
+                        hostJson = jsonDecode(response.body);
+                        dispose() {
+                          SystemChrome.setPreferredOrientations([
+                            DeviceOrientation.landscapeRight,
+                            DeviceOrientation.landscapeLeft,
+                            DeviceOrientation.portraitUp,
+                            DeviceOrientation.portraitDown,
+                          ]);
+                          super.dispose();
+                        }
 
-                    Navigator.push(
-                        context,
-                        new MaterialPageRoute(
-                            builder: (context) => new ViewPresPage()));
-                  }
-                },
-                child: Text("Submit")),
+                        Navigator.push(
+                            context,
+                            new MaterialPageRoute(
+                                builder: (context) => new HostRemotePage()));
+                      } else {
+                        createAlertDialog(context, "Error", hostJson["data"]);
+                      }
+                    },
+                    child: Text("Submit"))),
+            Padding(
+              padding: const EdgeInsets.only(top: 30.0),
+              child: Text(
+                "OR",
+                style: TextStyle(
+                  fontSize: 20.0,
+                ),
+              ),
+            ),
             SizedBox(height: 50),
             RaisedButton(
-              splashColor: Colors.grey,
               onPressed: () async {
                 final GoogleSignInAccount googleSignInAccount =
                     await googleSignIn.signIn();
@@ -633,10 +657,6 @@ class _HostSignInState extends State<HostSignIn> {
                       "The email address $googleSignInAccount is not associated with an account. Please host a presentationon https://syncfast.macrotechsolutions.us.");
                 }
               },
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40)),
-              highlightElevation: 0,
-//              borderSide: BorderSide(color: Colors.grey),
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                 child: Row(
@@ -754,10 +774,11 @@ class _HostRemotePageState extends State<HostRemotePage> {
                 fontSize: 20.0,
               ),
             ),
-            FittedBox(
-                child: Container(
-              child: Image(image: NetworkImage(hostJson["slideurl"])),
-            )),
+//            FittedBox(
+//                child: Container(
+//              child: Image(image: NetworkImage(hostJson["slideurl"])),
+//            )),
+            Image(image: NetworkImage(hostJson["slideurl"])),
             Padding(
               padding: const EdgeInsets.only(top: 30.0, bottom: 30.0),
               child: Text(
