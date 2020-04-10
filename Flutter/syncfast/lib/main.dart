@@ -6,10 +6,14 @@ import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:web_socket_channel/io.dart';
+import 'package:barcode_scan/barcode_scan.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 void main() {
   runApp(MyApp());
 }
+
+String url = "https://www.macrotechsolutions.us/contact-us.html";
 
 String accessCode;
 var clientJson;
@@ -23,7 +27,19 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
-      home: MyHomePage(title: 'SyncFast'),
+      routes: {
+        "/": (_) => MyHomePage(title: 'SyncFast'),
+        "/webview": (_) => WebviewScaffold(
+          url: url,
+          appBar: AppBar(
+            title: Text("Contact MacroTech"),
+          ),
+          withJavascript: true,
+          withLocalStorage: true,
+          withZoom: true,
+        )
+      },
+      //home: MyHomePage(title: 'SyncFast'),
     );
   }
 }
@@ -44,6 +60,26 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final webView = FlutterWebviewPlugin();
+  TextEditingController controller = TextEditingController(text: url);
+
+  @override
+  void initState() {
+    super.initState();
+
+    webView.close();
+    controller.addListener(() {
+      url = controller.text;
+    });
+  }
+
+  @override
+  void dispose() {
+    webView.dispose();
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -127,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ListTile(
                     title: RaisedButton(
                         onPressed: () async {
-                          //html.window.location.href = "https://www.macrotechsolutions.us/contact-us/";
+                          Navigator.of(context).pushNamed("/webview");
                         },
                         child: Text("Help"))),
               ],
@@ -173,6 +209,7 @@ class _ClientJoinPageState extends State<ClientJoinPage> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+    String result = "";
     return Scaffold(
           appBar: AppBar(
             title: Text("View Presentation"),
@@ -247,6 +284,78 @@ class _ClientJoinPageState extends State<ClientJoinPage> {
                           }
                         },
                         child: Text("Submit"))),
+                Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: Text("OR",
+                    style: TextStyle(
+                      fontSize: 20.0,
+                    ),),
+                ),
+                FloatingActionButton.extended(
+                  icon: Icon(Icons.camera_alt),
+                  label: Text("Scan QR"),
+                  onPressed: () async {
+                    try {
+                      String qrResult = await BarcodeScanner.scan();
+                      result = qrResult;
+                      if(result.contains("syncfast") && result.contains("?accessKey=")){
+                        accessCode = result.substring(result.indexOf('=') + 1);
+                        Map<String, String> headers = {
+                          "Content-type": "application/json",
+                          "Origin": "*",
+                          "accesscode": accessCode
+                        };
+                        Response response = await post(
+                            'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/clientJoin',
+                            headers: headers);
+                        //createAlertDialog(context);
+                        clientJson = jsonDecode(response.body);
+                        if (clientJson["data"] == "Incorrect Access Code") {
+                          createAlertDialog(context, "Incorrect Access Code",
+                              "Access code $accessCode is invalid. Please try again.");
+                        } else {
+                          dispose() {
+                            SystemChrome.setPreferredOrientations([
+                              DeviceOrientation.landscapeRight,
+                              DeviceOrientation.landscapeLeft,
+                              DeviceOrientation.portraitUp,
+                              DeviceOrientation.portraitDown,
+                            ]);
+                            super.dispose();
+                          }
+
+                          Navigator.push(
+                              context,
+                              new MaterialPageRoute(
+                                  builder: (context) => new ViewPresPage()));
+                        }
+                      } else{
+                        createAlertDialog(context, "Scan QR", "Invalid QR Code");
+                      }
+                    } on PlatformException catch (ex) {
+                      if (ex.code == BarcodeScanner.CameraAccessDenied) {
+                        setState(() {
+                          createAlertDialog(context, "Scan QR", "Please enable camera permissions for SyncFast.");
+                        });
+                      } else {
+                        setState(() {
+                          result = "Unknown Error $ex";
+                          createAlertDialog(context, "Scan QR", "Unkown Error Occured: $ex");
+                        });
+                      }
+                    } on FormatException {
+                      setState(() {
+                        result = "You pressed the back button before scanning anything";
+                        createAlertDialog(context, "Scan QR", "No QR Code was recognized.");
+                      });
+                    } catch (ex) {
+                      setState(() {
+                        result = "Unknown Error $ex";
+                        createAlertDialog(context, "Scan QR", "Unkown Error Occured: $ex");
+                      });
+                    }
+                  },
+                )
               ],
             ),
           ),
