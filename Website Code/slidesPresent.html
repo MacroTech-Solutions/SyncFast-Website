@@ -28,18 +28,18 @@
             <div class="left">
                 <img id="logo" src="assets/SyncFast Logo Dark.png" onclick="window.location.href='index.html'">
                 <div class="dropdown">
-                    <button class="button"> <img src = "assets/utility.png" height = 40 width = 40> </button>
+                    <button class="button2"> <img src = "assets/utility.png" height = 40 width = 40> </button>
                     <div class="dropdown-content">
                       <button id="qrCodeBtn" class = button onclick = openQRCodePres()> Show QR </button>
                       <button id="notesButton" class = button onclick = toggleNotes()> Show Speaker Notes </button>
                       <button id="newPres" class = button onclick = newPres()> Choose New Presentation </button>
+                      <button id="lock" class = button>Unlock Presentation</button>
                     </div>
                 </div>
             </div>
             <div class="center">
                 <button id="change">Change</button>
                 <form id="changeKey"></form>
-                <button id="lock">Unlock Presentation</button>
             </div>
             <div class="right">
                 <button id="signOut" onclick="signOut()">Sign Out</button>
@@ -60,8 +60,8 @@
             <div class="notes">
             </div>
             <div class="buttons">
-                <button id="prevSlide" class="button" onclick="previousSlide()">Previous Slide</button>
-                <button id="nextSlide" class="button" onclick="nextSlide()">Next Slide</button>
+                <button id="prevSlide" class="button2" onclick="previousSlide()">Previous Slide</button>
+                <button id="nextSlide" class="button2" onclick="nextSlide()">Next Slide</button>
                 <button id="fullScreen" class = "button3" onClick="fullScreen()"><img src="assets/full-screen-white.png" height = 40 width = 40 /></button>
                 <button id="linkBtn" class="button2" style="display:none">Open URL</button>
                 <button id="qrBtn" class="button2" style="display:none">Open QR</button>
