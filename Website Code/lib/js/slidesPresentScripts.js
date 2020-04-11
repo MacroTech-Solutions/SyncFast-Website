@@ -7,11 +7,11 @@ document.getElementById("linkBtn").addEventListener("click", openLink);
 
 let socket = new WebSocket("wss://syncfastserver.macrotechsolutions.us:4211");
 
-socket.onopen = function (e) {
+socket.onopen = function(e) {
     console.log("Connection Established");
 };
 
-socket.onmessage = function (event) {
+socket.onmessage = function(event) {
     let socketData = event.data;
     console.log(socketData);
     if (socketData == `next${sessionStorage.getItem('firebasePresentationKey')}`) {
@@ -88,13 +88,13 @@ function initClient() {
         clientId: CLIENT_ID,
         discoveryDocs: DISCOVERY_DOCS,
         scope: SCOPES
-    }).then(function () {
+    }).then(function() {
         // Listen for sign-in state changes.
         gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 
         // Handle the initial sign-in state.
         updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-    }, function (error) {
+    }, function(error) {
         console.log(JSON.stringify(error, null, 2));
     });
 }
@@ -125,19 +125,19 @@ function handleAuthClick(event) {
 async function listSlides() {
     gapi.client.slides.presentations.get({
         presentationId: sessionStorage.getItem('presentationID')
-    }).then(async function (response) {
+    }).then(async function(response) {
         await firebaseCommands();
         presentation = response.result;
         length = presentation.slides.length;
         await gapi.client.slides.presentations.pages.get({
             presentationId: sessionStorage.getItem('presentationID'),
             pageObjectId: presentation.slides[sessionStorage.getItem('currentSlide')].objectId,
-        }).then(async function (response) {
+        }).then(async function(response) {
             const res = JSON.parse(response.body);
-            try{
+            try {
                 notes = await res.slideProperties.notesPage.pageElements[1].shape.text.textElements.pop().textRun.content;
                 notesSection.innerText = notes;
-            } catch(e){
+            } catch (e) {
                 console.log(e);
                 notes = "No notes available.";
                 notesSection.innerText = notes;
@@ -146,7 +146,7 @@ async function listSlides() {
         gapi.client.slides.presentations.pages.getThumbnail({
             presentationId: sessionStorage.getItem('presentationID'),
             pageObjectId: presentation.slides[sessionStorage.getItem('currentSlide')].objectId,
-        }).then(async function (response) {
+        }).then(async function(response) {
             const res = JSON.parse(response.body);
             slideUrl = res.contentUrl;
             await axios({
@@ -192,10 +192,10 @@ async function listSlides() {
             document.querySelector(".img2").appendChild(imageElement2);
             p.innerText = `Access Code: ${sessionStorage.getItem('accessKey')}`;
             document.querySelector(".center").prepend(p);
-        }, function (response) {
+        }, function(response) {
             console.log('Error: ' + response.result.error.message);
         });
-    }, function (response) {
+    }, function(response) {
         console.log('Error: ' + response.result.error.message);
     });
 }
@@ -207,13 +207,13 @@ function openQRCodePres() {
 async function firebaseCommands() {
     let result = "";
     await axios({
-        method: 'POST',
-        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/hostCommands',
-        headers: {
-            'Content-Type': 'application/json',
-            'accesskey': sessionStorage.getItem('accessKey')
-        }
-    })
+            method: 'POST',
+            url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/hostCommands',
+            headers: {
+                'Content-Type': 'application/json',
+                'accesskey': sessionStorage.getItem('accessKey')
+            }
+        })
         .then(data => result = data.data)
         .catch(err => console.log(err))
     sessionStorage.setItem('firebasePresentationKey', result.firebasepresentationkey);
@@ -258,12 +258,12 @@ async function updatePage() {
     await gapi.client.slides.presentations.pages.get({
         presentationId: sessionStorage.getItem('presentationID'),
         pageObjectId: presentation.slides[sessionStorage.getItem('currentSlide')].objectId,
-    }).then(async function (response) {
+    }).then(async function(response) {
         const res = JSON.parse(response.body);
-        try{
+        try {
             notes = await res.slideProperties.notesPage.pageElements[1].shape.text.textElements.pop().textRun.content;
             notesSection.innerText = notes;
-        } catch(e){
+        } catch (e) {
             console.log(e);
             notes = "No notes available.";
             notesSection.innerText = notes;
@@ -272,7 +272,7 @@ async function updatePage() {
     gapi.client.slides.presentations.pages.getThumbnail({
         presentationId: sessionStorage.getItem('presentationID'),
         pageObjectId: presentation.slides[sessionStorage.getItem('currentSlide')].objectId,
-    }).then(async function (response) {
+    }).then(async function(response) {
         const res = JSON.parse(response.body);
         slideUrl = res.contentUrl;
         findImage(slideUrl);
@@ -290,16 +290,16 @@ async function updatePage() {
                 'notes': notes
             }
         });
-    }, function (response) {
+    }, function(response) {
         console.log('Error: ' + response.result.error.message);
     });
 }
 
 async function findImage(imageUrl) {
     await axios({
-        method: 'GET',
-        url: 'https://api.ocr.space/parse/imageurl?apikey=9fccee195588957&url=' + imageUrl,
-    })
+            method: 'GET',
+            url: 'https://api.ocr.space/parse/imageurl?apikey=9fccee195588957&url=' + imageUrl,
+        })
         .then(data => result = data.data.ParsedResults[0].ParsedText)
         .catch(err => console.log(err))
     var splitArray = result.split("\n");
@@ -322,9 +322,9 @@ async function findImage(imageUrl) {
 
 async function findQR(imageUrl) {
     await axios({
-        method: 'GET',
-        url: 'https://api.qrserver.com/v1/read-qr-code/?fileurl=' + imageUrl,
-    })
+            method: 'GET',
+            url: 'https://api.qrserver.com/v1/read-qr-code/?fileurl=' + imageUrl,
+        })
         .then(data => result = data.data[0].symbol[0].data)
         .catch(err => console.log(err))
     var url = "";
@@ -403,11 +403,11 @@ async function lockAccess() {
     }
 }
 
-function toggleNotes(){
-    if(notesState){
+function toggleNotes() {
+    if (notesState) {
         notesSection.style.display = "none";
         notesButton.innerText = "Show Speaker Notes";
-    } else{
+    } else {
         notesSection.style.display = "";
         notesButton.innerText = "Hide Speaker Notes";
     }
@@ -419,14 +419,14 @@ async function accessKeySubmitted() {
     newCode = changeInput.value;
     let result = "";
     await axios({
-        method: 'POST',
-        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/changeAccessKey',
-        headers: {
-            'Content-Type': 'application/json',
-            'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
-            'newcode': newCode
-        }
-    })
+            method: 'POST',
+            url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/changeAccessKey',
+            headers: {
+                'Content-Type': 'application/json',
+                'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),
+                'newcode': newCode
+            }
+        })
         .then(data => result = data.data)
         .catch(err => console.log(err))
     if (result.data == "Success") {
@@ -466,4 +466,37 @@ function standardScreen() {
         document.webkitExitFullscreen();
     else if (document.msExitFullscreen)
         document.msExitFullscreen();
+}
+
+function showDropdown() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+}
+
+function setup() {
+
+}
+
+function draw() {
+
+}
+
+function keyPressed() {
+    if (keyCode === LEFT_ARROW) {
+        previousSlide();
+    } else if (keyCode === RIGHT_ARROW) {
+        nextSlide();
+    }
 }
