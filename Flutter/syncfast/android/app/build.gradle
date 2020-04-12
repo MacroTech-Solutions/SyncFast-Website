@@ -46,6 +46,20 @@ android {
     }
 
     signingConfigs {
+        release {
+            storeFile file('key.jks')
+            storePassword 'SimpleShopping123!'
+            keyAlias 'androiddebugkey'
+            keyPassword 'SimpleShopping123!'
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+
+    signingConfigs {
         debug {
             storeFile file('key.jks')
             storePassword 'SimpleShopping123!'

@@ -731,7 +731,7 @@ class _HostSignInState extends State<HostSignIn> {
                           ),
                           TextSpan(
                             text:
-                                'If you are receiving a sign in error, please verify that you have a presentation running on the same account at https://syncfast.macrotechsolutions.us.\n',
+                                'If you are receiving a sign in error, please verify that you have a presentation running on the same account at https://syncfast.net.\n',
                             style: TextStyle(fontSize: 20),
                           ),
                         ],
@@ -1095,7 +1095,7 @@ class _HostRemotePageState extends State<HostRemotePage> {
             )),
             ButtonBar(alignment: MainAxisAlignment.center, children: <Widget>[
               Padding(
-                  padding: const EdgeInsets.all(30.0),
+                  padding: const EdgeInsets.all(15.0),
               child: RaisedButton(
                   onPressed: () async {
                     if (hostJson["slidenum"] != "0") {
@@ -1115,10 +1115,10 @@ class _HostRemotePageState extends State<HostRemotePage> {
                   },
                   child: Image(
                     image: AssetImage('assets/previousSlide.png'),
-                    width: 100,
+                    width: 75,
                   ))),
               Padding(
-                  padding: const EdgeInsets.all(30.0),
+                  padding: const EdgeInsets.all(15.0),
                   child:RaisedButton(
                   onPressed: () async {
                     if (hostJson["slidenum"] !=
@@ -1139,7 +1139,7 @@ class _HostRemotePageState extends State<HostRemotePage> {
                   },
                   child: Image(
                     image: AssetImage('assets/nextSlide.png'),
-                    width: 100,
+                    width: 75,
                   ))),
             ]),
             Padding(
