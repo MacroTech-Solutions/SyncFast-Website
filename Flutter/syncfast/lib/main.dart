@@ -63,8 +63,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Future<String> helpContext(
-      BuildContext context, String title, Widget body) {
+  Future<String> helpContext(BuildContext context, String title, Widget body) {
     return showDialog(
         context: context,
         builder: (context) {
@@ -114,32 +113,43 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.help),
-            onPressed: () async {
-              helpContext(context, "Help",
-                Text.rich(TextSpan(
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: 'View Presentation\n',
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
-                    ),
-                    TextSpan(
-                      text: 'Use this feature to access a SyncFast presentation with a QR code or an access key.\n',
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    TextSpan(
-                      text: '\nHost Remote\n',
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
-                    ),
-                    TextSpan(
-                      text: 'Use this feature to control an existing presentation hosted on SyncFast.\n',
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ],
-                ),
-              ));
-            }
-          )],
+              icon: Icon(Icons.help),
+              onPressed: () async {
+                helpContext(
+                    context,
+                    "Help",
+                    Text.rich(
+                      TextSpan(
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: 'View Presentation\n',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                decoration: TextDecoration.underline),
+                          ),
+                          TextSpan(
+                            text:
+                                'Use this feature to access a SyncFast presentation with a QR code or an access key.\n',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          TextSpan(
+                            text: '\nHost Remote\n',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                decoration: TextDecoration.underline),
+                          ),
+                          TextSpan(
+                            text:
+                                'Use this feature to control an existing presentation hosted on SyncFast.\n',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ],
+                      ),
+                    ));
+              })
+        ],
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -161,12 +171,12 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(30.0),
-          child: Image(
-              image: AssetImage('assets/logo.png'),
-              height: 150,
-            )),
+            Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: Image(
+                  image: AssetImage('assets/logo.png'),
+                  height: 150,
+                )),
             ListTile(
               title: RaisedButton(
                 onPressed: () {
@@ -250,8 +260,7 @@ class _ClientJoinPageState extends State<ClientJoinPage> {
         });
   }
 
-  Future<String> helpContext(
-      BuildContext context, String title, Widget body) {
+  Future<String> helpContext(BuildContext context, String title, Widget body) {
     return showDialog(
         context: context,
         builder: (context) {
@@ -277,37 +286,60 @@ class _ClientJoinPageState extends State<ClientJoinPage> {
       DeviceOrientation.portraitDown,
     ]);
     String result = "";
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () {
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ]);
+      Navigator.push(
+          context,
+          new MaterialPageRoute(
+              builder: (context) => new MyHomePage(title: 'SyncFast')));
+      return;
+    },
+    child: Scaffold(
       appBar: AppBar(
         title: Text("View Presentation"),
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.help),
               onPressed: () async {
-                helpContext(context, "Help",
-                    Text.rich(TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: 'Enter Access Code\n',
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
-                        ),
-                        TextSpan(
-                          text: 'Enter the access key that you received from your host in the field and press submit.\n',
-                          style: TextStyle(fontSize: 20),
-                        ),
-                        TextSpan(
-                          text: '\nScan QR\n',
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
-                        ),
-                        TextSpan(
-                          text: 'If you have a QR code instead, click the Scan QR code button to open a camera view and point the camera at your QR code.\n',
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ],
-                    ),
+                helpContext(
+                    context,
+                    "Help",
+                    Text.rich(
+                      TextSpan(
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: 'Enter Access Code\n',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                decoration: TextDecoration.underline),
+                          ),
+                          TextSpan(
+                            text:
+                                'Enter the access key that you received from your host in the field and press submit.\n',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          TextSpan(
+                            text: '\nScan QR\n',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                decoration: TextDecoration.underline),
+                          ),
+                          TextSpan(
+                            text:
+                                'If you have a QR code instead, click the Scan QR code button to open a camera view and point the camera at your QR code.\n',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ],
+                      ),
                     ));
-              }
-          )],
+              })
+        ],
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -329,12 +361,12 @@ class _ClientJoinPageState extends State<ClientJoinPage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-        Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: Image(
-              image: AssetImage('assets/logo.png'),
-              height: 150,
-            )),
+            Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: Image(
+                  image: AssetImage('assets/logo.png'),
+                  height: 150,
+                )),
             Padding(
               padding: const EdgeInsets.only(left: 30.0, right: 30.0),
               child: TextField(
@@ -460,11 +492,14 @@ class _ClientJoinPageState extends State<ClientJoinPage> {
                   });
                 }
               },
+            ),
+            Padding(
+              padding: const EdgeInsets.all(30.0),
             )
           ],
         ),
       ),
-    );
+    ));
   }
 }
 
@@ -498,8 +533,7 @@ class _ViewPresPageState extends State<ViewPresPage> {
         });
   }
 
-  Future<String> helpContext(
-      BuildContext context, String title, Widget body) {
+  Future<String> helpContext(BuildContext context, String title, Widget body) {
     return showDialog(
         context: context,
         builder: (context) {
@@ -544,53 +578,50 @@ class _ViewPresPageState extends State<ViewPresPage> {
       }
     });
     return WillPopScope(
-      onWillPop: (){
-        SystemChrome.setPreferredOrientations([
-          DeviceOrientation.portraitUp,
-          DeviceOrientation.portraitDown,
-        ]);
-        Navigator.push(
-            context,
-            new MaterialPageRoute(
-                builder: (context) => new ClientJoinPage()));
-        return;
-      },
-      child: Scaffold(
-      appBar: AppBar(
-        title: Text('${clientJson["presentationtitle"]}'),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-
-            Expanded(
-                child: Container(
-                    child:
-            Image(
-              image: NetworkImage(clientJson["slideurl"]),
-            ))
-            )
-          ],
-        ),
-      ),
-    ));
+        onWillPop: () {
+          SystemChrome.setPreferredOrientations([
+            DeviceOrientation.portraitUp,
+            DeviceOrientation.portraitDown,
+          ]);
+          Navigator.push(
+              context,
+              new MaterialPageRoute(
+                  builder: (context) => new ClientJoinPage()));
+          return;
+        },
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text('${clientJson["presentationtitle"]}'),
+          ),
+          body: Center(
+            // Center is a layout widget. It takes a single child and positions it
+            // in the middle of the parent.
+            child: Column(
+              // Column is also a layout widget. It takes a list of children and
+              // arranges them vertically. By default, it sizes itself to fit its
+              // children horizontally, and tries to be as tall as its parent.
+              //
+              // Invoke "debug painting" (press "p" in the console, choose the
+              // "Toggle Debug Paint" action from the Flutter Inspector in Android
+              // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+              // to see the wireframe for each widget.
+              //
+              // Column has various properties to control how it sizes itself and
+              // how it positions its children. Here we use mainAxisAlignment to
+              // center the children vertically; the main axis here is the vertical
+              // axis because Columns are vertical (the cross axis would be
+              // horizontal).
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                    child: Container(
+                        child: Image(
+                  image: NetworkImage(clientJson["slideurl"]),
+                )))
+              ],
+            ),
+          ),
+        ));
   }
 }
 
@@ -624,8 +655,7 @@ class _HostSignInState extends State<HostSignIn> {
         });
   }
 
-  Future<String> helpContext(
-      BuildContext context, String title, Widget body) {
+  Future<String> helpContext(BuildContext context, String title, Widget body) {
     return showDialog(
         context: context,
         builder: (context) {
@@ -659,30 +689,41 @@ class _HostSignInState extends State<HostSignIn> {
           IconButton(
               icon: Icon(Icons.help),
               onPressed: () async {
-                helpContext(context, "Help",
-                    Text.rich(TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: 'Sign In\n',
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
-                        ),
-                        TextSpan(
-                          text: 'Use the same credentials that you used to host your presentation on the SyncFast website to login to the app.\n',
-                          style: TextStyle(fontSize: 20),
-                        ),
-                        TextSpan(
-                          text: '\nTroubleshooting\n',
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
-                        ),
-                        TextSpan(
-                          text: 'If you are receiving a sign in error, please verify that you have a presentation running on the same account at https://syncfast.macrotechsolutions.us.\n',
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ],
-                    ),
+                helpContext(
+                    context,
+                    "Help",
+                    Text.rich(
+                      TextSpan(
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: 'Sign In\n',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                decoration: TextDecoration.underline),
+                          ),
+                          TextSpan(
+                            text:
+                                'Use the same credentials that you used to host your presentation on the SyncFast website to login to the app.\n',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          TextSpan(
+                            text: '\nTroubleshooting\n',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                decoration: TextDecoration.underline),
+                          ),
+                          TextSpan(
+                            text:
+                                'If you are receiving a sign in error, please verify that you have a presentation running on the same account at https://syncfast.macrotechsolutions.us.\n',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ],
+                      ),
                     ));
-              }
-          )],
+              })
+        ],
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -887,8 +928,7 @@ class _HostRemotePageState extends State<HostRemotePage> {
         });
   }
 
-  Future<String> helpContext(
-      BuildContext context, String title, Widget body) {
+  Future<String> helpContext(BuildContext context, String title, Widget body) {
     return showDialog(
         context: context,
         builder: (context) {
@@ -929,11 +969,11 @@ class _HostRemotePageState extends State<HostRemotePage> {
         //createAlertDialog(context);
         setState(() {
           hostJson = jsonDecode(response.body);
-          if(hostJson["lockstate"] == "false"){
+          if (hostJson["lockstate"] == "false") {
             setState(() {
               lockIcon = Icons.lock_open;
             });
-          } else{
+          } else {
             setState(() {
               lockIcon = Icons.lock_outline;
             });
@@ -948,47 +988,57 @@ class _HostRemotePageState extends State<HostRemotePage> {
         title: Text("Access Key - ${hostJson["accesskey"]}"),
         actions: <Widget>[
           IconButton(
-          icon: Icon(lockIcon),
-          onPressed: () async {
-            Map<String, String> headers = {
-              "Content-type": "application/json",
-              "Origin": "*",
-              "firebasepresentationkey":
-              hostJson["firebasepresentationkey"]
-            };
-            Response response = await post(
-                'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/hostLock',
-                headers: headers);
-          },
-          color: Colors.white,
-        ),
+            icon: Icon(lockIcon),
+            onPressed: () async {
+              Map<String, String> headers = {
+                "Content-type": "application/json",
+                "Origin": "*",
+                "firebasepresentationkey": hostJson["firebasepresentationkey"]
+              };
+              Response response = await post(
+                  'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/hostLock',
+                  headers: headers);
+            },
+            color: Colors.white,
+          ),
           IconButton(
               icon: Icon(Icons.help),
               onPressed: () async {
-                helpContext(context, "Help",
-                    Text.rich(TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: 'Host Remote\n',
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
-                        ),
-                        TextSpan(
-                          text: 'This remote allows you to control the presentation running on a web browser without having to interact with that browser directly.\n',
-                          style: TextStyle(fontSize: 20),
-                        ),
-                        TextSpan(
-                          text: '\nTroubleshooting\n',
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),
-                        ),
-                        TextSpan(
-                          text: 'If the functions are not working appropriately, please verify that both the remote and the host device are connected to the internet.\n',
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ],
-                    ),
+                helpContext(
+                    context,
+                    "Help",
+                    Text.rich(
+                      TextSpan(
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: 'Host Remote\n',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                decoration: TextDecoration.underline),
+                          ),
+                          TextSpan(
+                            text:
+                                'This remote allows you to control the presentation running on a web browser without having to interact with that browser directly.\n',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          TextSpan(
+                            text: '\nTroubleshooting\n',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                decoration: TextDecoration.underline),
+                          ),
+                          TextSpan(
+                            text:
+                                'If the functions are not working appropriately, please verify that both the remote and the host device are connected to the internet.\n',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ],
+                      ),
                     ));
-              }
-          )],
+              })
+        ],
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -1010,14 +1060,14 @@ class _HostRemotePageState extends State<HostRemotePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-        Padding(
-        padding: const EdgeInsets.only(top: 20.0, bottom: 30.0),
-            child: Text(
-              '${hostJson["presentationtitle"]}',
-              style: TextStyle(
-                fontSize: 25.0,
-              ),
-            )),
+            Padding(
+                padding: const EdgeInsets.only(top: 20.0, bottom: 30.0),
+                child: Text(
+                  '${hostJson["presentationtitle"]}',
+                  style: TextStyle(
+                    fontSize: 25.0,
+                  ),
+                )),
             Text(
               'Slide #${int.parse(hostJson["slidenum"]) + 1}',
               style: TextStyle(
@@ -1028,24 +1078,17 @@ class _HostRemotePageState extends State<HostRemotePage> {
                 child: Container(
               child: Image(image: NetworkImage(hostJson["slideurl"])),
             )),
-            Padding(
-              padding: const EdgeInsets.only(top: 30.0, bottom: 30.0),
-              child: Text(
-                '${hostJson["notes"]}',
-                style: TextStyle(
-                  fontSize: 20.0,
-                ),
-              ),
-            ),
             ButtonBar(alignment: MainAxisAlignment.center, children: <Widget>[
-              RaisedButton(
+              Padding(
+                  padding: const EdgeInsets.all(30.0),
+              child: RaisedButton(
                   onPressed: () async {
                     if (hostJson["slidenum"] != "0") {
                       Map<String, String> headers = {
                         "Content-type": "application/json",
                         "Origin": "*",
                         "firebasepresentationkey":
-                            hostJson["firebasepresentationkey"]
+                        hostJson["firebasepresentationkey"]
                       };
                       Response response = await post(
                           'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/previousSlide',
@@ -1058,8 +1101,10 @@ class _HostRemotePageState extends State<HostRemotePage> {
                   child: Image(
                     image: AssetImage('assets/previousSlide.png'),
                     width: 100,
-                  )),
-              RaisedButton(
+                  ))),
+              Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child:RaisedButton(
                   onPressed: () async {
                     if (hostJson["slidenum"] !=
                         (int.parse(hostJson["length"]) - 1).toString()) {
@@ -1067,7 +1112,7 @@ class _HostRemotePageState extends State<HostRemotePage> {
                         "Content-type": "application/json",
                         "Origin": "*",
                         "firebasepresentationkey":
-                            hostJson["firebasepresentationkey"]
+                        hostJson["firebasepresentationkey"]
                       };
                       Response response = await post(
                           'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/nextSlide',
@@ -1080,8 +1125,17 @@ class _HostRemotePageState extends State<HostRemotePage> {
                   child: Image(
                     image: AssetImage('assets/nextSlide.png'),
                     width: 100,
-                  )),
+                  ))),
             ]),
+            Padding(
+              padding: const EdgeInsets.only(top: 30.0, bottom: 30.0),
+              child: Text(
+                '${hostJson["notes"]}',
+                style: TextStyle(
+                  fontSize: 20.0,
+                ),
+              ),
+            ),
 
           ],
         ),
