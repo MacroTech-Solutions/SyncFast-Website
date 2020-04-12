@@ -22,6 +22,18 @@ var clientJson;
 var hostJson;
 var lockIcon = Icons.lock_outline;
 
+class HexColor extends Color {
+  static int _getColorFromHex(String hexColor) {
+    hexColor = hexColor.toUpperCase().replaceAll("#", "");
+    if (hexColor.length == 6) {
+      hexColor = "FF" + hexColor;
+    }
+    return int.parse(hexColor, radix: 16);
+  }
+
+  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
+}
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -179,6 +191,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 )),
             ListTile(
               title: RaisedButton(
+                color: HexColor("00b2d1"),
                 onPressed: () {
                   dispose() {
                     SystemChrome.setPreferredOrientations([
@@ -200,6 +213,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ListTile(
                 title: RaisedButton(
+                    color: HexColor("ff5ded"),
                     onPressed: () {
                       dispose() {
                         SystemChrome.setPreferredOrientations([
@@ -219,6 +233,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Text("Host Remote"))),
             ListTile(
                 title: RaisedButton(
+                    color: HexColor("c6c6c8"),
                     onPressed: () async {
                       Navigator.of(context).pushNamed("/webview");
                     },
