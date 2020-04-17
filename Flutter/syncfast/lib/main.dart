@@ -119,6 +119,11 @@ class _MyHomePageState extends State<MyHomePage>{
             initialLink.contains("?accessKey=")) {
           accessCode = initialLink.substring(initialLink.indexOf('=') + 1);
           Navigator.pushReplacementNamed(context, "/join");
+        } else{
+          Navigator.push(
+              context,
+              new MaterialPageRoute(
+                  builder: (context) => new ClientJoinPage()));
         }
       }
     } on PlatformException {
