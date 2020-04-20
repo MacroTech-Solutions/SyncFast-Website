@@ -43,7 +43,7 @@ class Login extends React.Component {
         sessionStorage.setItem('gUser', 'true');
         sessionStorage.setItem('userKey', json.userkey);
         sessionStorage.setItem('profilePic', profile.getImageUrl());
-        window.location = 'Host';
+        window.location = 'host';
     }
 
     onFailure(error) {
@@ -77,7 +77,7 @@ class Login extends React.Component {
             sessionStorage.setItem('userKey', json.data);
             sessionStorage.setItem('gUser', 'false');
             sessionStorage.setItem('profilePic', json.imageurl);
-            window.location = 'Host';
+            window.location = 'host';
         }
     }
 

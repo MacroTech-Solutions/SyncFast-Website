@@ -4,8 +4,6 @@ import './assets/css/styles.min.css';
 import Header from "./Header";
 import Footer from "./Footer";
 import GooglePicker from 'react-google-picker';
-import { Link } from "react-router-dom";
-import { findDOMNode } from 'react-dom';
 import $ from 'jquery';
 
 
@@ -17,7 +15,7 @@ class Host extends React.Component {
             this.state = {
                 authImmediate: true
             }
-        } else{
+        } else {
             this.state = {
                 authImmediate: false
             }
@@ -48,7 +46,7 @@ class Host extends React.Component {
         sessionStorage.setItem('presentationID', fileId)
         sessionStorage.setItem('accessKey', json.accesskey);
         sessionStorage.setItem('currentSlide', "0")
-        window.location = "slidesPresent"
+        window.location = "present"
     }
 
     render() {
@@ -58,12 +56,12 @@ class Host extends React.Component {
                 <section className="features-icons bg-light text-center" style={{ paddingTop: '0px' }}>
                     <p style={{ fontSize: '24px', marginRight: '50px', marginLeft: '50px', paddingTop: '50px' }}><br /><br /></p>
                     <div className="container">
-                        <div className="row" style={{ width: 1140 }}>
+                        <div className="row">
                             <div className="col-lg-16  offset-lg-4 offset-xl-4">
                                 <div className="mx-auto features-icons-item">
-                                    <div className="d-flex features-icons-icon"><GooglePicker className="m-auto" clientId={"510632149212-b3nju2fd9omib1l67qal0ot1214rr75s.apps.googleusercontent.com"}
+                                    <div className="features-icons-icon"><GooglePicker className="m-auto" clientId={"510632149212-b3nju2fd9omib1l67qal0ot1214rr75s.apps.googleusercontent.com"}
                                         developerKey={'AIzaSyDhkJ2yT06tRwXIMEUp9xaj2-LxOnKyvGY'}
-                                        scope={['https://www.googleapis.com/auth/drive.file']}
+                                        scope={['https://www.googleapis.com/auth/drive.file', 'https://www.googleapis.com/auth/presentations.readonly']}
                                         onChange={data => {
                                             if (data.action === "picked") {
                                                 this.pickerCallback(data);

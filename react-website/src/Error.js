@@ -3,10 +3,6 @@ import './assets/fonts/fontawesome5-overrides.min.css';
 import './assets/css/styles.min.css';
 import Header from "./Header";
 import Footer from "./Footer";
-import GooglePicker from 'react-google-picker';
-import { Link } from "react-router-dom";
-import { findDOMNode } from 'react-dom';
-import $ from 'jquery';
 
 
 class Error extends React.Component {
@@ -18,7 +14,7 @@ class Error extends React.Component {
                 <section className="features-icons bg-light text-center" style={{ paddingTop: '0px' }}>
                     <p style={{ fontSize: '24px', marginRight: '50px', marginLeft: '50px', paddingTop: '50px' }}><br /><br /></p>
                     <div className="container">
-                        <div className="row" style={{ width: 1140 }}>
+                        <div className="row">
                             <div className="col-lg-16  offset-lg-4 offset-xl-4">
                                 <div className="mx-auto features-icons-item">
                                     <div className="d-flex features-icons-icon">

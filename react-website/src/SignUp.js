@@ -42,7 +42,7 @@ class SignUp extends React.Component {
         let json = await response.json();
         sessionStorage.setItem('userKey', json.userkey);
         sessionStorage.setItem('profilePic', profile.getImageUrl());
-        window.location = 'Host';
+        window.location = 'host';
     }
 
     onFailure(error) {
@@ -75,7 +75,7 @@ class SignUp extends React.Component {
         } else {
             sessionStorage.setItem('userKey', json.data);
             sessionStorage.setItem('profilePic', json.imageurl);
-            window.location = 'Host';
+            window.location = 'host';
         }
     }
 
