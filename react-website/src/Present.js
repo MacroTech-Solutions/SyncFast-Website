@@ -1,7 +1,7 @@
 import React from 'react';
 import './assets/fonts/fontawesome5-overrides.min.css';
 import './assets/css/styles.min.css';
-import './lib/css/slidesPresentStyles.css';
+import './assets/css/slidesPresentStyles.css';
 import Logo from './assets/img/syncfastlogo.png';
 import $ from 'jquery';
 import Sketch from "react-p5";

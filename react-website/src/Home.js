@@ -28,7 +28,7 @@ function Home() {
               </div>
               <div className="col-lg-4">
                 <div className="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
-                <div className="d-flex features-icons-icon"><Link className="m-auto" to={'./client'}><i className="fas fa-tv m-auto text-primary" style={{cursor: 'pointer'}}></i></Link></div>
+                <div className="d-flex features-icons-icon"><a className="m-auto" href={'https://syncfastserver.macrotechsolutions.us/client'}><i className="fas fa-tv m-auto text-primary" style={{cursor: 'pointer'}}></i></a></div>
                   <h3>View</h3>
                   <p className="lead mb-0">Connect to someone else's presentation using industry-low bandwidth.</p>
                 </div>
