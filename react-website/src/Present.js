@@ -3,7 +3,6 @@ import './assets/fonts/fontawesome5-overrides.min.css';
 import './assets/css/styles.min.css';
 import './assets/css/slidesPresentStyles.css';
 import Logo from './assets/img/syncfastlogo.png';
-import $ from 'jquery';
 import Sketch from "react-p5";
 import { Link } from "react-router-dom";
 import { gapi } from 'gapi-script';

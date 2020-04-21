@@ -8,6 +8,7 @@ import Error from "./Error";
 import Present from "./Present";
 import Terms from "./Terms";
 import Privacy from "./Privacy";
+import Client from "./Client";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route exact path="/present" component={Present} />
         <Route exact path="/privacy" component={Privacy} />
         <Route exact path="/terms" component={Terms} />
+        <Route exact path="/client" component={Client} />
         <Route component={Error} />
       </Switch>
 

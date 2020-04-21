@@ -8,7 +8,6 @@ import {Link} from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 
-
 function Home() {
   return (
     <div className="App">
@@ -21,14 +20,14 @@ function Home() {
             <div className="row">
               <div className="col-lg-4 offset-lg-2 offset-xl-2">
                 <div className="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
-                  <div className="d-flex features-icons-icon"><Link className="material-icons m-auto" to={'./login'}><i className="material-icons m-auto text-primary"  style={{ cursor: 'pointer' }}>cast_connected</i></Link></div>
+                  <div className="d-flex features-icons-icon"><Link className="m-auto" to={'./login'}><i className="material-icons m-auto text-primary"  style={{ cursor: 'pointer' }}>cast_connected</i></Link></div>
                   <h3>Host</h3>
                   <p className="lead mb-0">Host your existing presentation to allow authorized users to access it over the cloud.</p>
                 </div>
               </div>
               <div className="col-lg-4">
                 <div className="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
-                <div className="d-flex features-icons-icon"><a className="m-auto" href={'https://syncfastserver.macrotechsolutions.us/client'}><i className="fas fa-tv m-auto text-primary" style={{cursor: 'pointer'}}></i></a></div>
+                <div className="d-flex features-icons-icon"><Link className="m-auto" to={'./client'}><i className="fas fa-tv m-auto text-primary" style={{cursor: 'pointer'}}></i></Link></div>
                   <h3>View</h3>
                   <p className="lead mb-0">Connect to someone else's presentation using industry-low bandwidth.</p>
                 </div>
