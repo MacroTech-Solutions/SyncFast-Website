@@ -1,1 +1,83 @@
-const _0x449b=['profile\x20email\x20https://www.googleapis.com/auth/drive.file','userkey','null','addEventListener','catch','class','querySelector','https://syncfastserver.macrotechsolutions.us:9146/http://localhost/googleSignIn','application/json','access_token','data','host.html','#emailInput','profilePic','Incorrect\x20Password','log','getElementById','signin2','https://syncfastserver.macrotechsolutions.us:9146/http://localhost/signIn','light','getImageUrl','userKey','Access-Control-Allow-Headers','toLowerCase','location','render','error','setItem','Origin,\x20X-Requested-With,\x20Content-Type,\x20Accept','#passwordInput','POST','getEmail','getItem','value','href','imageurl','then','#submit_button','preventDefault','click','header','my-signin2','Incorrect\x20email\x20address.','innerText','googleid'];(function(_0x1502a3,_0x449b3c){const _0x4e535d=function(_0x49a8e8){while(--_0x49a8e8){_0x1502a3['push'](_0x1502a3['shift']());}};_0x4e535d(++_0x449b3c);}(_0x449b,0xbc));const _0x4e53=function(_0x1502a3,_0x449b3c){_0x1502a3=_0x1502a3-0x0;let _0x4e535d=_0x449b[_0x1502a3];return _0x4e535d;};if(sessionStorage[_0x4e53('0x18')](_0x4e53('0xd'))!=null&&sessionStorage[_0x4e53('0x18')](_0x4e53('0xd'))!=_0x4e53('0x27')){window[_0x4e53('0x10')][_0x4e53('0x1a')]=_0x4e53('0x3');}async function onSuccess(_0x2f8b5f){let _0x31f087=_0x2f8b5f['getBasicProfile']();let _0xad7937;for(key in _0x2f8b5f){if(_0x2f8b5f[key][_0x4e53('0x1')]!=undefined){localStorage[_0x4e53('0x13')]('access_token',_0x2f8b5f[key][_0x4e53('0x1')]);}}await axios({'method':_0x4e53('0x16'),'url':_0x4e53('0x2c'),'headers':{'Content-Type':_0x4e53('0x0'),'email':_0x31f087[_0x4e53('0x17')](),'name':_0x31f087['getName'](),'imageurl':_0x31f087[_0x4e53('0xc')]()}})[_0x4e53('0x1c')](_0x48f5bf=>_0xad7937=_0x48f5bf[_0x4e53('0x2')])[_0x4e53('0x29')](_0x140aba=>console[_0x4e53('0x7')](_0x140aba));sessionStorage[_0x4e53('0x13')]('googleID',_0xad7937[_0x4e53('0x24')]);sessionStorage[_0x4e53('0x13')](_0x4e53('0xd'),_0xad7937[_0x4e53('0x26')]);sessionStorage[_0x4e53('0x13')](_0x4e53('0x5'),_0x31f087['getImageUrl']());window[_0x4e53('0x10')]['href']=_0x4e53('0x3');}function onFailure(_0x27d2c5){res[_0x4e53('0x20')](_0x4e53('0xe'),_0x4e53('0x14'));console['log'](_0x27d2c5);}function renderButton(){gapi[_0x4e53('0x9')][_0x4e53('0x11')](_0x4e53('0x21'),{'scope':_0x4e53('0x25'),'width':0xf0,'height':0x32,'longtitle':!![],'theme':_0x4e53('0xb'),'onsuccess':onSuccess,'onfailure':onFailure});}document[_0x4e53('0x2b')](_0x4e53('0x1d'))[_0x4e53('0x28')](_0x4e53('0x1f'),signInEmail);let notSameError=document[_0x4e53('0x8')](_0x4e53('0x12'));async function signInEmail(_0x106e99){_0x106e99[_0x4e53('0x1e')]();let _0x5008a3=document[_0x4e53('0x2b')](_0x4e53('0x4'))[_0x4e53('0x19')][_0x4e53('0xf')]();let _0x48f45f=document[_0x4e53('0x2b')](_0x4e53('0x15'))[_0x4e53('0x19')];let _0x538214;await axios({'method':_0x4e53('0x16'),'url':_0x4e53('0xa'),'headers':{'Content-Type':_0x4e53('0x0'),'email':_0x5008a3,'password':_0x48f45f}})[_0x4e53('0x1c')](_0x522d83=>_0x538214=_0x522d83[_0x4e53('0x2')])[_0x4e53('0x29')](_0x2ae089=>console[_0x4e53('0x7')](_0x2ae089));if(_0x538214['data']==_0x4e53('0x6')){notSame(_0x4e53('0x6'));}else if(_0x538214[_0x4e53('0x2')]=='Incorrect\x20email\x20address.'){notSame(_0x4e53('0x22'));}else{sessionStorage[_0x4e53('0x13')](_0x4e53('0xd'),_0x538214[_0x4e53('0x2')]);sessionStorage[_0x4e53('0x13')]('profilePic',_0x538214[_0x4e53('0x1b')]);window[_0x4e53('0x10')][_0x4e53('0x1a')]=_0x4e53('0x3');}}function notSame(_0x2beebc){notSameError[_0x4e53('0x23')]=''+_0x2beebc;notSameError[_0x4e53('0x2a')]=_0x4e53('0x12');}
+if (sessionStorage.getItem('userKey') != null &&
+    sessionStorage.getItem('userKey') != "null") {
+    window.location.href = "host.html";
+}
+
+async function onSuccess(googleUser) {
+    let profile = googleUser.getBasicProfile();
+    let userData;
+    for (key in googleUser) {
+        if (googleUser[key].access_token != undefined) {
+            localStorage.setItem('access_token', googleUser[key].access_token);
+        }
+    }
+    await axios({
+        method: 'POST',
+        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/googleSignIn',
+        headers: {
+            'Content-Type': 'application/json',
+            'email': profile.getEmail(),
+            'name': profile.getName(),
+            'imageurl': profile.getImageUrl()
+        }
+    })
+        .then(data => userData = data.data)
+        .catch(err => console.log(err))
+    sessionStorage.setItem('googleID', userData.googleid);
+    sessionStorage.setItem('userKey', userData.userkey);
+    sessionStorage.setItem('profilePic', profile.getImageUrl());
+    window.location.href = "host.html";
+}
+
+function onFailure(error) {
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    console.log(error);
+}
+
+function renderButton() {
+    gapi.signin2.render('my-signin2', {
+        'scope': 'profile email https://www.googleapis.com/auth/drive.file',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'light',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+    });
+}
+
+document.querySelector("#submit_button").addEventListener("click", signInEmail);
+
+let notSameError = document.getElementById('error');
+
+async function signInEmail(event) {
+    event.preventDefault();
+    let email = document.querySelector("#emailInput").value.toLowerCase();
+    let inputPassword = document.querySelector("#passwordInput").value;
+    let result;
+    await axios({
+        method: 'POST',
+        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/signIn',
+        headers: {
+            'Content-Type': 'application/json',
+            'email': email,
+            'password': inputPassword
+        }
+    })
+        .then(data => result = data.data)
+        .catch(err => console.log(err))
+    if (result.data == "Incorrect Password") {
+        notSame("Incorrect Password");
+    } else if (result.data == "Incorrect email address.") {
+        notSame("Incorrect email address.");
+    } else {
+        sessionStorage.setItem('userKey', result.data);
+        sessionStorage.setItem('profilePic', result.imageurl);
+        window.location.href = "host.html";
+    }
+}
+
+function notSame(p) {
+    notSameError.innerText = `${p}`;
+    notSameError.class = "error";
+}

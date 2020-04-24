@@ -1,1 +1,233 @@
-const _0x5759=['You\x20are\x20currently\x20viewing\x20the\x20first\x20slide.','slidenum','Connection\x20Established','then','title','.buttons','get','#error','log','none','height','https://syncfastserver.macrotechsolutions.us:9146/http://localhost/clientGetSlide','absolute','application/json','POST','30vw','width','search','src','80vw','top','createElement','display','firebasepresentationkey','imageurl','substring','#accessKeyInput','right','getItem','appendChild','lockstate','catch','https://syncfastserver.macrotechsolutions.us:9146/http://localhost/clientJoin','toString','Incorrect\x20Access\x20Code','You\x20are\x20currently\x20viewing\x20the\x20last\x20available\x20slide.','slideurl','inline','.img','null','Invalid\x20Access\x20Code','lock','presImg2','#accessKeyText','imageUrl','auto','data','innerText','addEventListener','img','onopen','append','onmessage','false','style','10vw','#submit','querySelector','undefined','unlock','click','myImg','setItem','position'];(function(_0x335784,_0x5759d4){const _0xa44938=function(_0x5f2eae){while(--_0x5f2eae){_0x335784['push'](_0x335784['shift']());}};_0xa44938(++_0x5759d4);}(_0x5759,0x13b));const _0xa449=function(_0x335784,_0x5759d4){_0x335784=_0x335784-0x0;let _0xa44938=_0x5759[_0x335784];return _0xa44938;};document['querySelector'](_0xa449('0x3d'))[_0xa449('0x35')](_0xa449('0x1'),onClick);let myError=document[_0xa449('0x1a')]('p');document[_0xa449('0x3e')](_0xa449('0xc'))[_0xa449('0x38')](myError);let myVal;let imageElement;let imageElement2;let accessCode;let params=new URLSearchParams(document['location'][_0xa449('0x16')][_0xa449('0x1e')](0x1));let myKey=params[_0xa449('0xb')]('accessKey');let firebasePresentationKey;let presentationTitle;let slideUrl;let currentSlideNum;let maxSlideNum;let currentPresSlideNum;document[_0xa449('0x3e')](_0xa449('0xa'))['style'][_0xa449('0x1b')]=_0xa449('0xe');if(myKey){accessCode=myKey;submitKey();}let socket=new WebSocket('wss://syncfastserver.macrotechsolutions.us:4211');let lockState;socket[_0xa449('0x37')]=function(_0x292167){console[_0xa449('0xd')](_0xa449('0x7'));};socket[_0xa449('0x39')]=function(_0xf9cf6b){let _0x43b5fc=_0xf9cf6b['data'];if(_0x43b5fc==firebasePresentationKey){updatePage();}else if(_0x43b5fc==_0xa449('0x2e')+firebasePresentationKey){lockScreen();}else if(_0x43b5fc==_0xa449('0x0')+firebasePresentationKey){unlockScreen();}};async function onClick(){event['preventDefault']();accessCode=document[_0xa449('0x3e')](_0xa449('0x1f'))['value'];let _0x27e377='';await axios({'method':'POST','url':_0xa449('0x25'),'headers':{'Content-Type':_0xa449('0x12'),'accesscode':accessCode}})['then'](_0x59a1dd=>_0x27e377=_0x59a1dd['data'])[_0xa449('0x24')](_0x38b104=>console[_0xa449('0xd')](_0x38b104));if(_0x27e377['data']==_0xa449('0x27')){alert(_0xa449('0x2d'));}else{myError[_0xa449('0x34')]='';firebasePresentationKey=_0x27e377[_0xa449('0x1c')];slideUrl=_0x27e377[_0xa449('0x29')];if(_0x27e377[_0xa449('0x23')]==_0xa449('0x3a')){unlockScreen();}else{lockScreen();}currentPresSlideNum=_0x27e377[_0xa449('0x6')];maxSlideNum=_0x27e377[_0xa449('0x6')];currentSlideNum=_0x27e377[_0xa449('0x6')];sessionStorage[_0xa449('0x3')](_0xa449('0x31'),_0x27e377[_0xa449('0x1d')]);presentationTitle=_0x27e377['presentationtitle'];document['querySelector'](_0xa449('0x1f'))[_0xa449('0x3b')]['display']='none';document[_0xa449('0x3e')](_0xa449('0x3d'))[_0xa449('0x3b')][_0xa449('0x1b')]=_0xa449('0xe');document[_0xa449('0x3e')](_0xa449('0x30'))[_0xa449('0x3b')]['display']=_0xa449('0xe');imageElement=document[_0xa449('0x1a')]('img');imageElement['id']='presImg';imageElement[_0xa449('0x9')]=presentationTitle;imageElement[_0xa449('0x17')]=slideUrl;imageElement[_0xa449('0x3b')][_0xa449('0x15')]=_0xa449('0x18');imageElement[_0xa449('0x3b')][_0xa449('0xf')]='auto';imageElement2=document[_0xa449('0x1a')](_0xa449('0x36'));imageElement2['id']=_0xa449('0x2f');imageElement2['title']=_0xa449('0x2');imageElement2['src']=sessionStorage[_0xa449('0x21')](_0xa449('0x31'));imageElement2[_0xa449('0x3b')][_0xa449('0x15')]='30vw';imageElement2[_0xa449('0x3b')][_0xa449('0xf')]=_0xa449('0x32');imageElement2[_0xa449('0x3b')][_0xa449('0x4')]='absolute';imageElement2[_0xa449('0x3b')][_0xa449('0x20')]=_0xa449('0x3c');imageElement2[_0xa449('0x3b')][_0xa449('0x19')]='40vh';if(sessionStorage[_0xa449('0x21')](_0xa449('0x31'))==_0xa449('0x3f')||sessionStorage[_0xa449('0x21')](_0xa449('0x31'))==_0xa449('0x2c')){imageElement2[_0xa449('0x3b')]['display']=_0xa449('0xe');}else{imageElement2[_0xa449('0x3b')]['display']=_0xa449('0x2a');}document[_0xa449('0x3e')](_0xa449('0x2b'))[_0xa449('0x22')](imageElement);document[_0xa449('0x3e')](_0xa449('0x2b'))[_0xa449('0x22')](imageElement2);}}async function updatePage(){let _0x5a33ab='';await axios({'method':'POST','url':_0xa449('0x25'),'headers':{'Content-Type':'application/json','accesscode':accessCode}})[_0xa449('0x8')](_0x5bff9b=>_0x5a33ab=_0x5bff9b[_0xa449('0x33')])[_0xa449('0x24')](_0x5964cf=>console[_0xa449('0xd')](_0x5964cf));if(parseInt(_0x5a33ab[_0xa449('0x6')])>parseInt(maxSlideNum)){maxSlideNum=_0x5a33ab['slidenum'];}if(_0x5a33ab['lockstate']==_0xa449('0x3a')){unlockScreen();if(currentPresSlideNum==currentSlideNum){currentSlideNum=_0x5a33ab[_0xa449('0x6')];slideUrl=_0x5a33ab[_0xa449('0x29')];sessionStorage[_0xa449('0x3')](_0xa449('0x31'),_0x5a33ab[_0xa449('0x1d')]);imageElement['src']=slideUrl;}}else{lockScreen();slideUrl=_0x5a33ab[_0xa449('0x29')];currentSlideNum=_0x5a33ab['slidenum'];sessionStorage['setItem'](_0xa449('0x31'),_0x5a33ab[_0xa449('0x1d')]);imageElement[_0xa449('0x17')]=slideUrl;}currentPresSlideNum=_0x5a33ab[_0xa449('0x6')];}function lockScreen(){lockState=!![];document[_0xa449('0x3e')](_0xa449('0xa'))['style'][_0xa449('0x1b')]=_0xa449('0xe');}function unlockScreen(){lockState=![];document[_0xa449('0x3e')](_0xa449('0xa'))[_0xa449('0x3b')][_0xa449('0x1b')]='inline';}async function previousSlide(){if(parseInt(currentSlideNum)>0x0){currentSlideNum=(parseInt(currentSlideNum)-0x1)[_0xa449('0x26')]();await axios({'method':_0xa449('0x13'),'url':_0xa449('0x10'),'headers':{'Content-Type':'application/json','accesscode':accessCode,'slidenum':currentSlideNum}})[_0xa449('0x8')](_0x2da02d=>result=_0x2da02d['data'])[_0xa449('0x24')](_0x10beb6=>console['log'](_0x10beb6));slideUrl=result['slideurl'];imageElement[_0xa449('0x17')]=slideUrl;}else{alert(_0xa449('0x5'));}}async function nextSlide(){if(parseInt(currentSlideNum)<parseInt(maxSlideNum)){currentSlideNum=(parseInt(currentSlideNum)+0x1)['toString']();await axios({'method':_0xa449('0x13'),'url':_0xa449('0x10'),'headers':{'Content-Type':'application/json','accesscode':accessCode,'slidenum':currentSlideNum}})['then'](_0x436251=>result=_0x436251[_0xa449('0x33')])['catch'](_0x203ed4=>console[_0xa449('0xd')](_0x203ed4));slideUrl=result['slideurl'];imageElement[_0xa449('0x17')]=slideUrl;}else{alert(_0xa449('0x28'));}}async function submitKey(){let _0x4d7227='';await axios({'method':_0xa449('0x13'),'url':_0xa449('0x25'),'headers':{'Content-Type':_0xa449('0x12'),'accesscode':accessCode}})['then'](_0x4eb9af=>_0x4d7227=_0x4eb9af[_0xa449('0x33')])[_0xa449('0x24')](_0x25d92f=>console[_0xa449('0xd')](_0x25d92f));if(_0x4d7227['data']==_0xa449('0x27')){alert('Invalid\x20Access\x20Code');}else{myError['innerText']='';firebasePresentationKey=_0x4d7227[_0xa449('0x1c')];slideUrl=_0x4d7227[_0xa449('0x29')];sessionStorage[_0xa449('0x3')](_0xa449('0x31'),_0x4d7227[_0xa449('0x1d')]);presentationTitle=_0x4d7227['presentationtitle'];document['querySelector'](_0xa449('0x1f'))[_0xa449('0x3b')][_0xa449('0x1b')]=_0xa449('0xe');document[_0xa449('0x3e')](_0xa449('0x3d'))['style'][_0xa449('0x1b')]=_0xa449('0xe');document['querySelector'](_0xa449('0x30'))['style'][_0xa449('0x1b')]=_0xa449('0xe');imageElement=document[_0xa449('0x1a')](_0xa449('0x36'));imageElement['id']='presImg';imageElement[_0xa449('0x9')]=presentationTitle;imageElement['src']=slideUrl;imageElement['style']['width']='80vw';imageElement['style']['height']=_0xa449('0x32');imageElement2=document[_0xa449('0x1a')](_0xa449('0x36'));imageElement2['id']='presImg2';imageElement2[_0xa449('0x9')]=_0xa449('0x2');imageElement2[_0xa449('0x17')]=sessionStorage['getItem'](_0xa449('0x31'));imageElement2['style'][_0xa449('0x15')]=_0xa449('0x14');imageElement2['style'][_0xa449('0xf')]=_0xa449('0x32');imageElement2[_0xa449('0x3b')][_0xa449('0x4')]=_0xa449('0x11');imageElement2[_0xa449('0x3b')][_0xa449('0x20')]=_0xa449('0x3c');imageElement2[_0xa449('0x3b')][_0xa449('0x19')]='40vh';if(sessionStorage[_0xa449('0x21')](_0xa449('0x31'))=='undefined'||sessionStorage[_0xa449('0x21')](_0xa449('0x31'))==_0xa449('0x2c')){imageElement2[_0xa449('0x3b')][_0xa449('0x1b')]=_0xa449('0xe');}else{imageElement2[_0xa449('0x3b')][_0xa449('0x1b')]='inline';}document[_0xa449('0x3e')](_0xa449('0x2b'))['appendChild'](imageElement);document[_0xa449('0x3e')](_0xa449('0x2b'))[_0xa449('0x22')](imageElement2);}}
+document.querySelector("#submit").addEventListener("click", onClick);
+let myError = document.createElement("p");
+document.querySelector("#error").append(myError);
+let myVal;
+let imageElement;
+let imageElement2;
+let accessCode;
+let params = new URLSearchParams(document.location.search.substring(1));
+let myKey = params.get("accessKey");
+let firebasePresentationKey;
+let presentationTitle;
+let slideUrl;
+let currentSlideNum;
+let maxSlideNum;
+let currentPresSlideNum;
+document.querySelector(".buttons").style.display = "none";
+
+if (myKey) {
+    accessCode = myKey;
+    submitKey();
+}
+
+let socket = new WebSocket("wss://syncfastserver.macrotechsolutions.us:4211");
+let lockState;
+
+socket.onopen = function (e) {
+    console.log("Connection Established");
+};
+
+socket.onmessage = function (event) {
+    let socketData = event.data;
+    if (socketData == firebasePresentationKey) {
+        updatePage();
+    } else if (socketData == `lock${firebasePresentationKey}`) {
+        lockScreen();
+    } else if (socketData == `unlock${firebasePresentationKey}`) {
+        unlockScreen();
+    }
+
+};
+
+async function onClick() {
+    event.preventDefault();
+    accessCode = document.querySelector("#accessKeyInput").value;
+    let result = "";
+    await axios({
+        method: 'POST',
+        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/clientJoin',
+        headers: {
+            'Content-Type': 'application/json',
+            'accesscode': accessCode
+        }
+    })
+        .then(data => result = data.data)
+        .catch(err => console.log(err))
+    if (result.data == "Incorrect Access Code") {
+        alert("Invalid Access Code");
+    } else {
+        myError.innerText = "";
+        firebasePresentationKey = result.firebasepresentationkey;
+        slideUrl = result.slideurl;
+        if (result.lockstate == 'false') {
+            unlockScreen();
+        } else{
+            lockScreen();
+        }
+        currentPresSlideNum = result.slidenum;
+        maxSlideNum = result.slidenum;
+        currentSlideNum = result.slidenum;
+        sessionStorage.setItem('imageUrl', result.imageurl);
+        presentationTitle = result.presentationtitle;
+        document.querySelector("#accessKeyInput").style.display = "none";
+        document.querySelector("#submit").style.display = "none";
+        document.querySelector("#accessKeyText").style.display = "none";
+        imageElement = document.createElement("img");
+        imageElement.id = "presImg";
+        imageElement.title = presentationTitle;
+        imageElement.src = slideUrl;
+        imageElement.style.width = "80vw";
+        imageElement.style.height = "auto";
+        imageElement2 = document.createElement("img");
+        imageElement2.id = "presImg2";
+        imageElement2.title = 'myImg';
+        imageElement2.src = sessionStorage.getItem('imageUrl');
+        imageElement2.style.width = "30vw";
+        imageElement2.style.height = "auto";
+        imageElement2.style.position = "absolute";
+        imageElement2.style.right = "10vw";
+        imageElement2.style.top = "40vh";
+        if (sessionStorage.getItem('imageUrl') == "undefined" || sessionStorage.getItem('imageUrl') == "null") {
+            imageElement2.style.display = "none";
+        } else {
+            imageElement2.style.display = "inline";
+        }
+        document.querySelector(".img").appendChild(imageElement);
+        document.querySelector(".img").appendChild(imageElement2);
+    }
+}
+
+
+
+async function updatePage() {
+    let result = "";
+    await axios({
+        method: 'POST',
+        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/clientJoin',
+        headers: {
+            'Content-Type': 'application/json',
+            'accesscode': accessCode
+        }
+    })
+        .then(data => result = data.data)
+        .catch(err => console.log(err))
+    if (parseInt(result.slidenum) > parseInt(maxSlideNum)) {
+        maxSlideNum = result.slidenum;
+    }
+    if (result.lockstate == 'false') {
+        unlockScreen();
+        if (currentPresSlideNum == currentSlideNum) {
+            currentSlideNum = result.slidenum;
+            slideUrl = result.slideurl;
+            sessionStorage.setItem('imageUrl', result.imageurl);
+            imageElement.src = slideUrl;
+        }
+    } else {
+        lockScreen();
+        slideUrl = result.slideurl;
+        currentSlideNum = result.slidenum;
+        sessionStorage.setItem('imageUrl', result.imageurl);
+        imageElement.src = slideUrl;
+    }
+    currentPresSlideNum = result.slidenum;
+}
+
+function lockScreen() {
+    lockState = true;
+    document.querySelector(".buttons").style.display = "none";
+}
+
+function unlockScreen() {
+    lockState = false;
+    document.querySelector(".buttons").style.display = "inline";
+}
+
+async function previousSlide() {
+    if (parseInt(currentSlideNum) > 0) {
+        currentSlideNum = (parseInt(currentSlideNum) - 1).toString();
+        await axios({
+            method: 'POST',
+            url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/clientGetSlide',
+            headers: {
+                'Content-Type': 'application/json',
+                'accesscode': accessCode,
+                'slidenum': currentSlideNum
+            }
+        })
+            .then(data => result = data.data)
+            .catch(err => console.log(err))
+        slideUrl = result.slideurl;
+        imageElement.src = slideUrl;
+    } else {
+        alert("You are currently viewing the first slide.");
+    }
+}
+
+async function nextSlide() {
+    if (parseInt(currentSlideNum) < parseInt(maxSlideNum)) {
+        currentSlideNum = (parseInt(currentSlideNum) + 1).toString();
+        await axios({
+            method: 'POST',
+            url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/clientGetSlide',
+            headers: {
+                'Content-Type': 'application/json',
+                'accesscode': accessCode,
+                'slidenum': currentSlideNum
+            }
+        })
+            .then(data => result = data.data)
+            .catch(err => console.log(err))
+        slideUrl = result.slideurl;
+        imageElement.src = slideUrl;
+    } else {
+        alert("You are currently viewing the last available slide.");
+    }
+}
+
+async function submitKey() {
+    let result = "";
+    await axios({
+        method: 'POST',
+        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/clientJoin',
+        headers: {
+            'Content-Type': 'application/json',
+            'accesscode': accessCode
+        }
+    })
+        .then(data => result = data.data)
+        .catch(err => console.log(err))
+    if (result.data == "Incorrect Access Code") {
+        alert("Invalid Access Code");
+    } else {
+        myError.innerText = "";
+        firebasePresentationKey = result.firebasepresentationkey;
+        slideUrl = result.slideurl;
+        sessionStorage.setItem('imageUrl', result.imageurl);
+        presentationTitle = result.presentationtitle;
+        document.querySelector("#accessKeyInput").style.display = "none";
+        document.querySelector("#submit").style.display = "none";
+        document.querySelector("#accessKeyText").style.display = "none";
+        imageElement = document.createElement("img");
+        imageElement.id = "presImg";
+        imageElement.title = presentationTitle;
+        imageElement.src = slideUrl;
+        imageElement.style.width = "80vw";
+        imageElement.style.height = "auto";
+        imageElement2 = document.createElement("img");
+        imageElement2.id = "presImg2";
+        imageElement2.title = 'myImg';
+        imageElement2.src = sessionStorage.getItem('imageUrl');
+        imageElement2.style.width = "30vw";
+        imageElement2.style.height = "auto";
+        imageElement2.style.position = "absolute";
+        imageElement2.style.right = "10vw";
+        imageElement2.style.top = "40vh";
+        if (sessionStorage.getItem('imageUrl') == "undefined" || sessionStorage.getItem('imageUrl') == "null") {
+            imageElement2.style.display = "none";
+        } else {
+            imageElement2.style.display = "inline";
+        }
+        document.querySelector(".img").appendChild(imageElement);
+        document.querySelector(".img").appendChild(imageElement2);
+    }
+}

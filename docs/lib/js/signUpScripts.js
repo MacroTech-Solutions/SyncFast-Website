@@ -1,1 +1,97 @@
-const _0x24dd=['#passwordInput','#passwordConfirm','Please\x20enter\x20an\x20email\x20address.','landing.html','application/json','#submit_button','Invalid\x20Name','innerText','https://syncfastserver.macrotechsolutions.us:9146/http://localhost/googleSignIn','auth2','data','userKey','getEmail','signin2','click','profile\x20email\x20https://www.googleapis.com/auth/drive.file','onbeforeunload','profilePic','#emailInput','Your\x20password\x20needs\x20to\x20be\x20at\x20least\x206\x20characters.','querySelector','addEventListener','#firstName','setItem','toLowerCase','prepend','Email\x20already\x20exists.','log','catch','#lastName','getImageUrl','preventDefault','render','#wrong','getBasicProfile','light','Your\x20passwords\x20don\x27t\x20match.','location','then','value','my-signin2','imageurl','href','POST','createElement','access_token'];(function(_0x392b92,_0x24dde7){const _0x14b984=function(_0x96664e){while(--_0x96664e){_0x392b92['push'](_0x392b92['shift']());}};_0x14b984(++_0x24dde7);}(_0x24dd,0x154));const _0x14b9=function(_0x392b92,_0x24dde7){_0x392b92=_0x392b92-0x0;let _0x14b984=_0x24dd[_0x392b92];return _0x14b984;};window[_0x14b9('0x2c')]=function(_0x5199ae){gapi[_0x14b9('0x25')]['getAuthInstance']()['signOut']();};async function onSuccess(_0x3cfe75){let _0x55ff13=_0x3cfe75[_0x14b9('0x10')]();let _0x3fba19;for(key in _0x3cfe75){if(_0x3cfe75[key][_0x14b9('0x1b')]!=undefined){localStorage[_0x14b9('0x5')](_0x14b9('0x1b'),_0x3cfe75[key][_0x14b9('0x1b')]);}}await axios({'method':_0x14b9('0x19'),'url':_0x14b9('0x24'),'headers':{'Content-Type':_0x14b9('0x20'),'email':_0x55ff13[_0x14b9('0x28')](),'password':'','name':_0x55ff13['getName'](),'imageurl':_0x55ff13[_0x14b9('0xc')]()}})[_0x14b9('0x14')](_0x15025b=>_0x3fba19=_0x15025b[_0x14b9('0x26')])[_0x14b9('0xa')](_0x41f950=>console[_0x14b9('0x9')](_0x41f950));sessionStorage[_0x14b9('0x5')](_0x14b9('0x27'),_0x3fba19[_0x14b9('0x27')]);sessionStorage[_0x14b9('0x5')](_0x14b9('0x2d'),_0x55ff13[_0x14b9('0xc')]());window[_0x14b9('0x13')][_0x14b9('0x18')]=_0x14b9('0x1f');}function onFailure(_0x5b1110){console[_0x14b9('0x9')](_0x5b1110);}function renderButton(){gapi[_0x14b9('0x29')][_0x14b9('0xe')](_0x14b9('0x16'),{'scope':_0x14b9('0x2b'),'width':0xf0,'height':0x32,'longtitle':!![],'theme':_0x14b9('0x11'),'onsuccess':onSuccess,'onfailure':onFailure});}document[_0x14b9('0x2')](_0x14b9('0x21'))[_0x14b9('0x3')](_0x14b9('0x2a'),signUpEmail);let box;let notSameError=document[_0x14b9('0x1a')]('p');async function signUpEmail(_0x1b46b4){_0x1b46b4[_0x14b9('0xd')]();let _0x1910ba=document[_0x14b9('0x2')](_0x14b9('0x0'))['value'][_0x14b9('0x6')]();let _0x5f26a9=document[_0x14b9('0x2')](_0x14b9('0x4'))['value'];let _0x2f08bd=document[_0x14b9('0x2')](_0x14b9('0xb'))[_0x14b9('0x15')];let _0x3edbb6=document[_0x14b9('0x2')](_0x14b9('0x1c'))['value'];let _0xa0cc9c=document[_0x14b9('0x2')](_0x14b9('0x1d'))['value'];box=document[_0x14b9('0x2')](_0x14b9('0xf'));let _0x29f765;await axios({'method':_0x14b9('0x19'),'url':'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/signUp','headers':{'Content-Type':_0x14b9('0x20'),'email':_0x1910ba,'firstname':_0x5f26a9,'lastname':_0x2f08bd,'password':_0x3edbb6,'passwordconfirm':_0xa0cc9c}})[_0x14b9('0x14')](_0x4a7774=>_0x29f765=_0x4a7774[_0x14b9('0x26')])[_0x14b9('0xa')](_0x26c6b1=>console['log'](_0x26c6b1));if(_0x29f765[_0x14b9('0x26')]==_0x14b9('0x8')){notSame(_0x14b9('0x8'));}else if(_0x29f765[_0x14b9('0x26')]==_0x14b9('0x1e')){notSame('Please\x20enter\x20an\x20email\x20address.');}else if(_0x29f765[_0x14b9('0x26')]==_0x14b9('0x22')){notSame(_0x14b9('0x22'));}else if(_0x29f765[_0x14b9('0x26')]=='Invalid\x20email\x20address.'){notSame('Invalid\x20email\x20address.');}else if(_0x29f765[_0x14b9('0x26')]=='Your\x20password\x20needs\x20to\x20be\x20at\x20least\x206\x20characters.'){notSame(_0x14b9('0x1'));}else if(_0x29f765[_0x14b9('0x26')]==_0x14b9('0x12')){notSame('Your\x20passwords\x20don\x27t\x20match.');}else{sessionStorage[_0x14b9('0x5')]('userKey',_0x29f765['data']);sessionStorage['setItem'](_0x14b9('0x2d'),_0x29f765[_0x14b9('0x17')]);window[_0x14b9('0x13')][_0x14b9('0x18')]=_0x14b9('0x1f');}}function notSame(_0x62ac22){notSameError[_0x14b9('0x23')]=''+_0x62ac22;notSameError['class']='error';box[_0x14b9('0x7')](notSameError);}
+window.onbeforeunload = function (e) {
+    gapi.auth2.getAuthInstance().signOut();
+};
+
+async function onSuccess(googleUser) {
+    let profile = googleUser.getBasicProfile();
+    let userData;
+    for (key in googleUser) {
+        if (googleUser[key].access_token != undefined) {
+            localStorage.setItem('access_token', googleUser[key].access_token);
+        }
+    }
+    await axios({
+        method: 'POST',
+        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/googleSignIn',
+        headers: {
+            'Content-Type': 'application/json',
+            'email': profile.getEmail(),
+            'password': "",
+            'name': profile.getName(),
+            'imageurl': profile.getImageUrl()
+        }
+    })
+        .then(data => userData = data.data)
+        .catch(err => console.log(err))
+    sessionStorage.setItem('userKey', userData.userKey);
+    sessionStorage.setItem('profilePic', profile.getImageUrl());
+    window.location.href = "landing.html";
+}
+
+function onFailure(error) {
+    console.log(error);
+}
+
+function renderButton() {
+    gapi.signin2.render('my-signin2', {
+        'scope': 'profile email https://www.googleapis.com/auth/drive.file',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'light',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+    });
+}
+
+document.querySelector("#submit_button").addEventListener("click", signUpEmail);
+let box;
+let notSameError = document.createElement('p');
+
+async function signUpEmail(event) {
+    event.preventDefault();
+    let email = document.querySelector("#emailInput").value.toLowerCase();
+    let firstName = document.querySelector("#firstName").value;
+    let lastName = document.querySelector("#lastName").value;
+    let password = document.querySelector("#passwordInput").value;
+    let passwordConfirm = document.querySelector("#passwordConfirm").value;
+    box = document.querySelector('#wrong');
+    let result;
+    await axios({
+        method: 'POST',
+        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/signUp',
+        headers: {
+            'Content-Type': 'application/json',
+            'email': email,
+            'firstname': firstName,
+            'lastname': lastName,
+            'password': password,
+            'passwordconfirm': passwordConfirm
+        }
+    })
+        .then(data => result = data.data)
+        .catch(err => console.log(err))
+    if (result.data == "Email already exists.") {
+        notSame('Email already exists.');
+    } else if (result.data == "Please enter an email address.") {
+        notSame('Please enter an email address.');
+    } else if (result.data =='Invalid Name') {
+        notSame('Invalid Name');
+    } else if (result.data == 'Invalid email address.') {
+        notSame('Invalid email address.');
+    } else if (result.data == 'Your password needs to be at least 6 characters.') {
+        notSame('Your password needs to be at least 6 characters.');
+    } else if (result.data == 'Your passwords don\'t match.') {
+        notSame('Your passwords don\'t match.');
+    } else {
+        sessionStorage.setItem('userKey', result.data);
+        sessionStorage.setItem('profilePic', result.imageurl);
+        window.location.href = "landing.html";
+    }
+}
+
+function notSame(p) {
+    notSameError.innerText = `${p}`;
+    notSameError.class = "error";
+    box.prepend(notSameError);
+}

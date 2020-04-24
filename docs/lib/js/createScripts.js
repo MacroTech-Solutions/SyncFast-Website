@@ -1,1 +1,463 @@
-const _0x2d7a=['height','image/png','https://syncfastserver.macrotechsolutions.us:9146/http://localhost/createSetup','last','second','https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=','end','render','bullet','extract','https://syncfastserver.macrotechsolutions.us:9146/http://localhost/slideUrl','secondary','newSlide','appendChild','toDataURL','then','charAt','display','log','rgba(1,77,101,.1)','application/json','photos','message','floor','fontSize','img','webkitSpeechRecognition','data','https://syncfastserver.macrotechsolutions.us:9146/http://localhost/endScreen','30px','resultIndex','What\x20to\x20Know\x20About\x20','POST','<br>','Access\x20Key:\x20','removeChild','block','innerText','null','href','https://syncfastserver.macrotechsolutions.us:9146/http://localhost/imageUrl','rgb(','Info\x20About\x20','continue','includes','childNodes','left','position','slide','Voice\x20recognition\x20is\x20ON.','figure','presentation','getItem','Facts\x20About\x20','remove','login.html','slideshow','access_token','chart','url_o','getElementById','Try\x20again.','fullPage','get','onerror','toUpperCase','&callback=?','continuous','Get\x20to\x20Know\x20','images','finish','width','hasChildNodes','createElement','onspeechend','replace','substring','bar','https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=','info','70vh','halt','photo','accesskey','10px','split','none','-350px','error','keys','start','filter','src','Chart','random','currentSlide','5bdbd1129f9e6f3584db4a8e0f3b1bb2','bullets','&extras=url_o&sort=interestingness-desc&safe_search=1','length','ready','#014D65','innerHTML','top','Learn\x20About\x20','catch','Have\x20You\x20Heard\x20About\x20','heading','backgroundColor','onstart','light2','currentslide','All\x20About\x20','query','index.html','resume','marginLeft','point','&titles=','isFinal','location','accessKey','firebasePresentationKey','style','pages','setItem','image','<p></p>','results','no-speech','userKey','rgba(1,77,101,.2)','pie','absolute','en-us','Info\x20on\x20','graph','line','transcript','Learn\x20More\x20About\x20','{label}\x20{y}'];(function(_0xd7aa08,_0x2d7ab8){const _0x202f1c=function(_0x44d066){while(--_0x44d066){_0xd7aa08['push'](_0xd7aa08['shift']());}};_0x202f1c(++_0x2d7ab8);}(_0x2d7a,0x9c));const _0x202f=function(_0xd7aa08,_0x2d7ab8){_0xd7aa08=_0xd7aa08-0x0;let _0x202f1c=_0x2d7a[_0xd7aa08];return _0x202f1c;};if(sessionStorage[_0x202f('0x25')](_0x202f('0x73'))==null||sessionStorage[_0x202f('0x25')](_0x202f('0x73'))==_0x202f('0x17')){window[_0x202f('0x69')][_0x202f('0x18')]=_0x202f('0x28');}let SpeechRecognition=window[_0x202f('0xb')];let recognition=new SpeechRecognition();let textDiv=document[_0x202f('0x2d')](_0x202f('0x52'));let final_transcript='';let interim_transcript='';let lastInput;let currentSlideTitle;recognition[_0x202f('0x34')]=!![];recognition['interimResults']=!![];let bulletNum=0x0;let firstSentence=!![];let secondStop=![];let state=![];let var1;let myCanvas;let chart;recognition['lang']=_0x202f('0x77');setup();async function setup(){let _0x59f4b5;await axios({'method':_0x202f('0x11'),'url':_0x202f('0x80'),'headers':{'Content-Type':_0x202f('0x5'),'userkey':sessionStorage[_0x202f('0x25')](_0x202f('0x73')),'accesstoken':localStorage[_0x202f('0x25')](_0x202f('0x2a'))}})[_0x202f('0x0')](_0x326a8a=>_0x59f4b5=_0x326a8a[_0x202f('0xc')])[_0x202f('0x5a')](_0x121350=>console[_0x202f('0x3')](_0x121350));sessionStorage[_0x202f('0x6e')]('accessKey',_0x59f4b5[_0x202f('0x44')]);sessionStorage[_0x202f('0x6e')]('firebasePresentationKey',_0x59f4b5['firebasepresentationkey']);sessionStorage[_0x202f('0x6e')](_0x202f('0x50'),_0x59f4b5[_0x202f('0x60')]);}recognition[_0x202f('0x4b')]();let myBullet=document[_0x202f('0x3a')]('li');myBullet[_0x202f('0x16')]=interim_transcript;myBullet['id']='bullet'+bulletNum;myBullet[_0x202f('0x6c')]['display']=_0x202f('0x47');myBullet[_0x202f('0x6c')]['fontSize']=_0x202f('0xe');document[_0x202f('0x2d')](_0x202f('0x52'))[_0x202f('0x8b')](myBullet);var first_char=/\S/;function capitalize(_0x398596){return _0x398596[_0x202f('0x3c')](first_char,function(_0x397683){return _0x397683[_0x202f('0x32')]();});}var two_line=/\n\n/g;var one_line=/\n/g;function linebreak(_0x31f332){return _0x31f332[_0x202f('0x3c')](two_line,_0x202f('0x70'))[_0x202f('0x3c')](one_line,_0x202f('0x12'));}recognition[_0x202f('0x5e')]=function(){console[_0x202f('0x3')](_0x202f('0x22'));};recognition[_0x202f('0x3b')]=function(){console[_0x202f('0x3')]('No\x20activity.');};recognition[_0x202f('0x31')]=function(_0x4ca243){if(_0x4ca243[_0x202f('0x49')]==_0x202f('0x72')){console[_0x202f('0x3')](_0x202f('0x2e'));}};recognition['onresult']=async function(_0x3f046e){interim_transcript='';for(var _0x127e51=_0x3f046e[_0x202f('0xf')];_0x127e51<_0x3f046e['results'][_0x202f('0x54')];++_0x127e51){if(_0x3f046e[_0x202f('0x71')][_0x127e51][_0x202f('0x68')]){final_transcript+=_0x3f046e[_0x202f('0x71')][_0x127e51][0x0][_0x202f('0x7b')];}else{interim_transcript+=_0x3f046e[_0x202f('0x71')][_0x127e51][0x0]['transcript'];}}final_transcript=capitalize(final_transcript);console[_0x202f('0x3')](linebreak(final_transcript));console[_0x202f('0x3')](linebreak(interim_transcript));if(firstSentence&&interim_transcript!=''){lastInput=interim_transcript;firstSentence=![];secondStop=!![];document[_0x202f('0x2d')](_0x202f('0x6a'))['innerText']=_0x202f('0x13')+sessionStorage[_0x202f('0x25')](_0x202f('0x6a'));document['getElementById'](_0x202f('0x6a'))[_0x202f('0x6c')][_0x202f('0x20')]=_0x202f('0x76');document[_0x202f('0x2d')](_0x202f('0x6a'))[_0x202f('0x6c')][_0x202f('0x1f')]=_0x202f('0x45');document[_0x202f('0x2d')](_0x202f('0x6a'))[_0x202f('0x6c')][_0x202f('0x58')]='10px';}else if(secondStop&&interim_transcript!=''){lastInput=interim_transcript;}else if(secondStop&&interim_transcript==''){secondStop=![];words=lastInput[_0x202f('0x46')]('\x20');currentSlideTitle=capitalizeFirstLetter(words[words[_0x202f('0x54')]-0x1]);axios({'method':'POST','url':'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/createTitle','headers':{'Content-Type':_0x202f('0x5'),'slidetitle':currentSlideTitle,'firebasepresentationkey':sessionStorage[_0x202f('0x25')](_0x202f('0x6b'))}});document[_0x202f('0x2d')](_0x202f('0x5c'))[_0x202f('0x16')]=randomBeginning()+capitalizeFirstLetter(words[words[_0x202f('0x54')]-0x1]);document[_0x202f('0x2d')](_0x202f('0x5c'))[_0x202f('0x6c')][_0x202f('0x5d')]='rgb('+(Math[_0x202f('0x4f')]()*0x65+0x32)+','+(Math[_0x202f('0x4f')]()*0x65+0x32)+','+(Math[_0x202f('0x4f')]()*0x65+0x32)+')';}else if(!firstSentence&&!secondStop){if(interim_transcript==''){await checkInput(lastInput);if(state==![]){bulletNum++;let _0xb31271=document[_0x202f('0x3a')]('li');_0xb31271[_0x202f('0x16')]=interim_transcript;_0xb31271['id']=_0x202f('0x86')+bulletNum;_0xb31271['style'][_0x202f('0x2')]=_0x202f('0x47');_0xb31271[_0x202f('0x6c')][_0x202f('0x9')]='30px';document[_0x202f('0x2d')](_0x202f('0x52'))[_0x202f('0x8b')](_0xb31271);final_transcript='';}html2canvas(document[_0x202f('0x2d')](_0x202f('0x2f')))[_0x202f('0x0')](_0x90a477=>{myCanvas=_0x90a477;});var1=myCanvas[_0x202f('0x8c')](_0x202f('0x7f'));console['log'](var1);axios({'method':_0x202f('0x11'),'url':_0x202f('0x88'),'headers':{'Content-Type':_0x202f('0x5'),'slideurl':var1,'firebasepresentationkey':sessionStorage['getItem'](_0x202f('0x6b'))}});let _0x56d058=document[_0x202f('0x2d')](_0x202f('0x6f'))[_0x202f('0x4d')];axios({'method':_0x202f('0x11'),'url':_0x202f('0x19'),'headers':{'Content-Type':_0x202f('0x5'),'imageurl':_0x56d058,'firebasepresentationkey':sessionStorage[_0x202f('0x25')](_0x202f('0x6b'))}});}else{if(state==![]){document[_0x202f('0x2d')](_0x202f('0x86')+bulletNum)[_0x202f('0x6c')][_0x202f('0x2')]=_0x202f('0x15');document['getElementById'](_0x202f('0x86')+bulletNum)[_0x202f('0x16')]='•\x20'+interim_transcript;}let _0x3b6ea0;lastInput=interim_transcript;}}};async function checkInput(_0x360bb6){if(_0x360bb6['includes'](_0x202f('0x64'))||_0x360bb6[_0x202f('0x1d')](_0x202f('0x1c'))){state=![];}if(state==![]){if(_0x360bb6['toLowerCase']()[_0x202f('0x1d')](_0x202f('0x21'))){type=_0x202f('0x8a');console[_0x202f('0x3')](_0x202f('0x21'));let _0x289433=_0x360bb6[_0x202f('0x46')]('\x20');currentSlideTitle=_0x289433[_0x289433[_0x202f('0x54')]-0x1];document[_0x202f('0x2d')]('bullets')[_0x202f('0x57')]='';document[_0x202f('0x2d')]('images')[_0x202f('0x57')]='';document['getElementById'](_0x202f('0x5c'))['innerText']=randomBeginning()+capitalizeFirstLetter(_0x289433[_0x289433[_0x202f('0x54')]-0x1]);document[_0x202f('0x2d')](_0x202f('0x5c'))[_0x202f('0x6c')][_0x202f('0x5d')]=_0x202f('0x1a')+(Math[_0x202f('0x4f')]()*0x65+0x32)+','+(Math[_0x202f('0x4f')]()*0x65+0x32)+','+(Math[_0x202f('0x4f')]()*0x65+0x32)+')';}else if(_0x360bb6[_0x202f('0x1d')](_0x202f('0x6f'))||_0x360bb6[_0x202f('0x1d')]('picture')){console['log'](_0x202f('0x6f'));let _0x4b1abb=await document[_0x202f('0x2d')](_0x202f('0x86')+bulletNum);if(_0x4b1abb[_0x202f('0x39')]()){_0x4b1abb[_0x202f('0x14')](_0x4b1abb[_0x202f('0x1e')][0x0]);}displayImage();}else if(_0x360bb6[_0x202f('0x1d')](_0x202f('0x79'))||_0x360bb6[_0x202f('0x1d')](_0x202f('0x23'))||_0x360bb6[_0x202f('0x1d')](_0x202f('0x2b'))){console['log'](_0x202f('0x79'));let _0x47c588=await document[_0x202f('0x2d')](_0x202f('0x86')+bulletNum);if(_0x47c588[_0x202f('0x39')]()){_0x47c588[_0x202f('0x14')](_0x47c588[_0x202f('0x1e')][0x0]);}bulletNum--;displayGraph();}else if(_0x360bb6[_0x202f('0x1d')](_0x202f('0x82'))||_0x360bb6[_0x202f('0x1d')](_0x202f('0x40'))){let _0x160ba9=await document[_0x202f('0x2d')](_0x202f('0x86')+bulletNum);if(_0x160ba9['hasChildNodes']()){_0x160ba9[_0x202f('0x14')](_0x160ba9[_0x202f('0x1e')][0x0]);}getWiki(currentSlideTitle);}else if(_0x360bb6['includes']('pause')||_0x360bb6[_0x202f('0x1d')](_0x202f('0x42'))){state=!![];let _0x3e525b=await document['getElementById'](_0x202f('0x86')+bulletNum);if(_0x3e525b['hasChildNodes']()){_0x3e525b[_0x202f('0x14')](_0x3e525b['childNodes'][0x0]);}bulletNum--;}else if(_0x360bb6[_0x202f('0x1d')](_0x202f('0x27'))&&_0x360bb6[_0x202f('0x1d')](_0x202f('0x66'))||_0x360bb6[_0x202f('0x1d')](_0x202f('0x27'))&&_0x360bb6['includes'](_0x202f('0x86'))||_0x360bb6[_0x202f('0x1d')]('bullet')&&_0x360bb6[_0x202f('0x1d')](_0x202f('0x66'))||_0x360bb6[_0x202f('0x1d')](_0x202f('0x27'))&&_0x360bb6[_0x202f('0x1d')]('last')||_0x360bb6[_0x202f('0x1d')](_0x202f('0x81'))&&_0x360bb6[_0x202f('0x1d')](_0x202f('0x86'))){let _0x5c2f1b=await document['getElementById'](_0x202f('0x86')+bulletNum);if(_0x5c2f1b[_0x202f('0x39')]()){_0x5c2f1b[_0x202f('0x14')](_0x5c2f1b[_0x202f('0x1e')][0x0]);}bulletNum--;let _0x593e36=await document[_0x202f('0x2d')](_0x202f('0x86')+bulletNum);if(_0x593e36[_0x202f('0x39')]()){_0x593e36['removeChild'](_0x5c2f1b[_0x202f('0x1e')][0x0]);}bulletNum--;}else if(_0x360bb6[_0x202f('0x1d')](_0x202f('0x84'))&&_0x360bb6[_0x202f('0x1d')](_0x202f('0x29'))||_0x360bb6[_0x202f('0x1d')](_0x202f('0x84'))&&_0x360bb6['includes'](_0x202f('0x24'))||_0x360bb6[_0x202f('0x1d')](_0x202f('0x37'))&&_0x360bb6[_0x202f('0x1d')](_0x202f('0x24'))||_0x360bb6[_0x202f('0x1d')](_0x202f('0x37'))&&_0x360bb6[_0x202f('0x1d')](_0x202f('0x29'))){axios({'method':'POST','url':_0x202f('0xd'),'headers':{'Content-Type':_0x202f('0x5'),'firebasepresentationkey':sessionStorage['getItem']('firebasePresentationKey')}});window[_0x202f('0x69')][_0x202f('0x18')]=_0x202f('0x63');}}}function randomBeginning(){let _0x45d922=[_0x202f('0x61'),_0x202f('0x10'),'The\x20Facts\x20on\x20',_0x202f('0x78'),_0x202f('0x1b'),_0x202f('0x26'),_0x202f('0x59'),_0x202f('0x35'),_0x202f('0x5b'),_0x202f('0x7c')];let _0x19b1ef=parseInt(Math['random']()*_0x45d922[_0x202f('0x54')]);return _0x45d922[_0x19b1ef];}function capitalizeFirstLetter(_0x161d46){if(typeof _0x161d46==undefined)return;var _0x400117=_0x161d46[0x0]||_0x161d46[_0x202f('0x1')](0x0);return _0x400117?_0x400117[_0x202f('0x32')]()+_0x161d46['substr'](0x1):'';}function displayImage(){searchWord=currentSlideTitle;$(document)[_0x202f('0x55')](function(){var _0x503c7e=_0x202f('0x51');let _0x41fe4c=_0x202f('0x83')+_0x503c7e+'&format=json&nojsoncallback=1&text='+searchWord+_0x202f('0x53');return axios[_0x202f('0x30')](_0x41fe4c)[_0x202f('0x0')](_0x468f70=>{var _0x7dc674=_0x468f70[_0x202f('0xc')][_0x202f('0x6')][_0x202f('0x43')][_0x202f('0x4c')](function(_0x37a8cc){if(_0x37a8cc[_0x202f('0x2c')]!=undefined){return _0x37a8cc;}});randomNumber=parseInt(Math[_0x202f('0x4f')]()*0x19);var _0x1e2b9f=_0x7dc674[randomNumber][_0x202f('0x2c')];let _0x43490e=document['getElementById'](_0x202f('0x36'));_0x43490e['innerHTML']='';let _0x1eb299=document['createElement'](_0x202f('0xa'));_0x1eb299['style'][_0x202f('0x7e')]=_0x202f('0x41');_0x1eb299[_0x202f('0x6c')][_0x202f('0x38')]='auto';_0x1eb299[_0x202f('0x6c')][_0x202f('0x65')]=_0x202f('0x48');_0x1eb299['id']=_0x202f('0x6f');_0x1eb299[_0x202f('0x4d')]=_0x1e2b9f;_0x43490e[_0x202f('0x8b')](_0x1eb299);});});}async function displayGraph(){let _0x5167c1=Math[_0x202f('0x8')](Math[_0x202f('0x4f')]()*0x3);let _0x14f4f7=capitalizeFirstLetter(currentSlideTitle);if(_0x5167c1==0x1){let _0x3eebd8=Math[_0x202f('0x8')](Math[_0x202f('0x4f')]()*0x1f4);let _0x93b14d=Math[_0x202f('0x8')](Math[_0x202f('0x4f')]()*0x1f4);let _0xed7859=Math[_0x202f('0x8')](Math['random']()*0x1f4);let _0x5ce0e5=Math['floor'](Math[_0x202f('0x4f')]()*0x1f4);let _0x174aaa=_0x3eebd8+_0x93b14d+_0xed7859+_0x5ce0e5;_0x3eebd8=_0x3eebd8/_0x174aaa*0x64;_0x93b14d=_0x93b14d/_0x174aaa*0x64;_0xed7859=_0xed7859/_0x174aaa*0x64;_0x5ce0e5=_0x5ce0e5/_0x174aaa*0x64;chart=await new CanvasJS['Chart'](_0x202f('0x36'),{'animationEnabled':!![],'title':{'text':_0x14f4f7},'data':[{'type':_0x202f('0x75'),'startAngle':0xf0,'yValueFormatString':'##0.00\x22%\x22','indexLabel':_0x202f('0x7d'),'dataPoints':[{'y':_0x3eebd8,'label':''},{'y':_0x93b14d,'label':''},{'y':_0xed7859,'label':''},{'y':_0x5ce0e5,'label':''}]}]});console[_0x202f('0x3')](chart);chart[_0x202f('0x85')]();}else if(_0x5167c1==0x2){chart=await new CanvasJS[(_0x202f('0x4e'))](_0x202f('0x36'),{'animationEnabled':!![],'theme':_0x202f('0x5f'),'title':{'text':_0x14f4f7},'axisY':{'includeZero':![]},'data':[{'type':_0x202f('0x7a'),'dataPoints':[{'y':Math['floor'](Math['random']()*0x7)},{'y':Math[_0x202f('0x8')](Math[_0x202f('0x4f')]()*0x7)},{'y':Math[_0x202f('0x8')](Math['random']()*0x7)},{'y':Math[_0x202f('0x8')](Math['random']()*0x7)},{'y':Math[_0x202f('0x8')](Math[_0x202f('0x4f')]()*0x7)},{'y':Math[_0x202f('0x8')](Math['random']()*0x7)},{'y':Math[_0x202f('0x8')](Math[_0x202f('0x4f')]()*0x7)},{'y':Math[_0x202f('0x8')](Math[_0x202f('0x4f')]()*0x7)}]}]});chart[_0x202f('0x85')]();}else{chart=await new CanvasJS[(_0x202f('0x4e'))]('images',{'animationEnabled':!![],'title':{'text':_0x14f4f7},'axisX':{'interval':0x1},'axisY2':{'interlacedColor':_0x202f('0x74'),'gridColor':_0x202f('0x4')},'data':[{'type':_0x202f('0x3e'),'axisYType':_0x202f('0x89'),'color':_0x202f('0x56'),'dataPoints':[{'y':Math['floor'](Math[_0x202f('0x4f')]()*0x4),'label':''},{'y':Math[_0x202f('0x8')](Math[_0x202f('0x4f')]()*0x4)+0x4,'label':''},{'y':Math[_0x202f('0x8')](Math[_0x202f('0x4f')]()*0x4)+0x8,'label':''},{'y':Math[_0x202f('0x8')](Math['random']()*0x4)+0xc,'label':''}]}]});chart[_0x202f('0x85')]();}chart['id']=_0x202f('0x6f');}function getWiki(_0x19c1f3){var _0x507bf7=_0x202f('0x3f');_0x507bf7+=_0x202f('0x67')+_0x19c1f3;_0x507bf7+='&rvprop=content';_0x507bf7+=_0x202f('0x33');$['getJSON'](_0x507bf7,function(_0x2f8f15){var _0x3f786a=_0x2f8f15[_0x202f('0x62')][_0x202f('0x6d')];var _0x3f786a=_0x2f8f15[_0x202f('0x62')][_0x202f('0x6d')];var _0x55850a=Object[_0x202f('0x4a')](_0x3f786a)[0x0];console[_0x202f('0x3')](_0x3f786a[_0x55850a][_0x202f('0x87')]);try{console[_0x202f('0x3')](_0x3f786a[_0x55850a]['extract']);let _0x389183=_0x3f786a[_0x55850a][_0x202f('0x87')][_0x202f('0x46')]('.');console[_0x202f('0x3')](_0x3f786a[_0x55850a]['extract']);if(_0x389183[0x1]==undefined){getWiki(_0x19c1f3[_0x202f('0x3d')](0x0,_0x19c1f3[_0x202f('0x54')]-0x1));return;}bulletNum++;let _0x492aa7=document[_0x202f('0x3a')]('li');_0x492aa7[_0x202f('0x6c')][_0x202f('0x2')]=_0x202f('0x47');_0x492aa7[_0x202f('0x16')]='•\x20'+_0x389183[0x0];_0x492aa7['id']=_0x202f('0x86')+bulletNum;_0x492aa7[_0x202f('0x6c')][_0x202f('0x9')]='30px';document['getElementById'](_0x202f('0x52'))[_0x202f('0x8b')](_0x492aa7);document[_0x202f('0x2d')](_0x202f('0x86')+bulletNum)[_0x202f('0x6c')][_0x202f('0x2')]=_0x202f('0x15');bulletNum++;let _0x367970=document['createElement']('li');_0x367970[_0x202f('0x6c')][_0x202f('0x2')]=_0x202f('0x47');_0x367970[_0x202f('0x16')]='•\x20'+_0x389183[0x1];_0x367970['id']=_0x202f('0x86')+bulletNum;_0x367970['style'][_0x202f('0x9')]=_0x202f('0xe');document[_0x202f('0x2d')]('bullets')['appendChild'](_0x367970);document['getElementById']('bullet'+bulletNum)[_0x202f('0x6c')][_0x202f('0x2')]=_0x202f('0x15');}catch(_0x9bfc69){console[_0x202f('0x3')](_0x9bfc69[_0x202f('0x7')]);}});}
+if (sessionStorage.getItem('userKey') == null || sessionStorage.getItem('userKey') == "null") {
+  window.location.href = "login.html";
+}
+
+let SpeechRecognition = window.webkitSpeechRecognition;
+let recognition = new SpeechRecognition();
+let textDiv = document.getElementById('bullets');
+let final_transcript = '';
+let interim_transcript = '';
+let lastInput;
+let currentSlideTitle;
+recognition.continuous = true;
+recognition.interimResults = true;
+let bulletNum = 0;
+let firstSentence = true;
+let secondStop = false;
+let state = false;
+let var1;
+let myCanvas;
+
+let chart;
+
+recognition.lang = "en-us";
+
+setup();
+
+async function setup() {
+  let result;
+  await axios({
+    method: 'POST',
+    url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/createSetup',
+    headers: {
+      'Content-Type': 'application/json',
+      'userkey': sessionStorage.getItem('userKey'),
+      'accesstoken': localStorage.getItem('access_token')
+    }
+  })
+    .then(data => result = data.data)
+    .catch(err => console.log(err))
+  sessionStorage.setItem('accessKey', result.accesskey);
+  sessionStorage.setItem('firebasePresentationKey', result.firebasepresentationkey)
+  sessionStorage.setItem('currentSlide', result.currentslide);
+}
+
+recognition.start();
+let myBullet = document.createElement('li');
+myBullet.innerText = interim_transcript;
+myBullet.id = `bullet${bulletNum}`;
+myBullet.style.display = "none";
+myBullet.style.fontSize = "30px";
+document.getElementById('bullets').appendChild(myBullet);
+
+var first_char = /\S/;
+function capitalize(s) {
+  return s.replace(first_char, function (m) { return m.toUpperCase(); });
+}
+
+var two_line = /\n\n/g;
+var one_line = /\n/g;
+function linebreak(s) {
+  return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
+}
+
+recognition.onstart = function () {
+  console.log('Voice recognition is ON.');
+}
+
+recognition.onspeechend = function () {
+  console.log('No activity.');
+}
+
+recognition.onerror = function (event) {
+  if (event.error == 'no-speech') {
+    console.log('Try again.');
+  }
+}
+
+recognition.onresult = async function (event) {
+  interim_transcript = '';
+
+  for (var i = event.resultIndex; i < event.results.length; ++i) {
+    if (event.results[i].isFinal) {
+      final_transcript += event.results[i][0].transcript;
+    } else {
+      interim_transcript += event.results[i][0].transcript;
+    }
+  }
+  final_transcript = capitalize(final_transcript);
+  console.log(linebreak(final_transcript));
+  console.log(linebreak(interim_transcript));
+  if (firstSentence && interim_transcript != '') {
+    lastInput = interim_transcript;
+    firstSentence = false;
+    secondStop = true;
+    document.getElementById('accessKey').innerText = `Access Key: ${sessionStorage.getItem('accessKey')}`;
+    document.getElementById('accessKey').style.position = 'absolute';
+    document.getElementById('accessKey').style.left = '10px';
+    document.getElementById('accessKey').style.top = '10px';
+  } else if (secondStop && interim_transcript != '') {
+    lastInput = interim_transcript;
+  } else if (secondStop && interim_transcript == '') {
+    secondStop = false;
+    words = lastInput.split(" ");
+    currentSlideTitle = capitalizeFirstLetter(words[words.length - 1]);
+    axios({
+      method: 'POST',
+      url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/createTitle',
+      headers: {
+        'Content-Type': 'application/json',
+        'slidetitle': currentSlideTitle,
+        'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey')
+      }
+    });
+    document.getElementById('heading').innerText = randomBeginning() + capitalizeFirstLetter(words[words.length - 1]);
+    document.getElementById('heading').style.backgroundColor = `rgb(${Math.random() * 101 + 50},${Math.random() * 101 + 50},${Math.random() * 101 + 50})`;
+  } else if (!firstSentence && !secondStop) {
+    if (interim_transcript == '') {
+      await checkInput(lastInput);
+      if (state == false) {
+        bulletNum++;
+        let myBullet = document.createElement('li');
+        myBullet.innerText = interim_transcript;
+        myBullet.id = `bullet${bulletNum}`;
+        myBullet.style.display = "none";
+        myBullet.style.fontSize = "30px";
+        document.getElementById('bullets').appendChild(myBullet);
+        final_transcript = '';
+      }
+      html2canvas(document.getElementById("fullPage")).then(canvas => {
+        myCanvas = canvas;
+      });
+      var1 = myCanvas.toDataURL("image/png");
+      console.log(var1);
+      axios({
+        method: 'POST',
+        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/slideUrl',
+        headers: {
+          'Content-Type': 'application/json',
+          'slideurl': var1,
+          'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey')
+        }
+      });
+      let imageUrl = document.getElementById("image").src;
+
+      axios({
+        method: 'POST',
+        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/imageUrl',
+        headers: {
+          'Content-Type': 'application/json',
+          'imageurl': imageUrl,
+          'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey')
+        }
+      });
+    } else {
+      if (state == false) {
+        document.getElementById(`bullet${bulletNum}`).style.display = "block";
+        document.getElementById(`bullet${bulletNum}`).innerText = "• " + interim_transcript;
+      }
+      let myCanvas;
+      lastInput = interim_transcript;
+    }
+  }
+};
+
+async function checkInput(input) {
+
+  if ((input.includes("resume") || input.includes("continue"))) {
+    state = false;
+  }
+  if (state == false) {
+    if (input.toLowerCase().includes("slide")) {
+      type = "newSlide";
+      console.log("slide");
+      let words = input.split(" ");
+      currentSlideTitle = words[words.length - 1];
+      document.getElementById('bullets').innerHTML = "";
+      document.getElementById('images').innerHTML = "";
+      document.getElementById('heading').innerText = randomBeginning() + capitalizeFirstLetter(words[words.length - 1]);
+      document.getElementById('heading').style.backgroundColor = `rgb(${Math.random() * 101 + 50},${Math.random() * 101 + 50},${Math.random() * 101 + 50})`;
+    }
+    else if (input.includes("image") || input.includes("picture")) {
+      console.log("image");
+      let list = await document.getElementById(`bullet${bulletNum}`);
+      if (list.hasChildNodes()) {
+        list.removeChild(list.childNodes[0]);
+      }
+      displayImage();
+
+      //search bing for image and put it on right side
+    }
+    else if (input.includes("graph") || input.includes("figure") || input.includes("chart")) {
+      console.log("graph")
+      let list = await document.getElementById(`bullet${bulletNum}`);
+      if (list.hasChildNodes()) {
+        list.removeChild(list.childNodes[0]);
+      }
+      bulletNum--;
+      displayGraph();
+      //generate random graph
+    }
+    else if (input.includes("second") || input.includes("info")) {
+      let list = await document.getElementById(`bullet${bulletNum}`);
+      if (list.hasChildNodes()) {
+        list.removeChild(list.childNodes[0]);
+      }
+      getWiki(currentSlideTitle);
+    }
+    else if (input.includes("pause") || input.includes("halt")) {
+      state = true;
+      let list = await document.getElementById(`bullet${bulletNum}`);
+      if (list.hasChildNodes()) {
+        list.removeChild(list.childNodes[0]);
+      }
+      bulletNum--;
+    }
+
+    else if (input.includes("remove") && input.includes("point")
+      || input.includes("remove") && input.includes("bullet")
+      || input.includes("bullet") && input.includes("point")
+      || input.includes("remove") && input.includes("last")
+      || input.includes("last") && input.includes("bullet")
+    ) {
+      let list = await document.getElementById(`bullet${bulletNum}`);
+      if (list.hasChildNodes()) {
+        list.removeChild(list.childNodes[0]);
+      }
+      bulletNum--;
+      let list2 = await document.getElementById(`bullet${bulletNum}`);
+      if (list2.hasChildNodes()) {
+        list2.removeChild(list.childNodes[0]);
+      }
+      bulletNum--;
+    }
+    else if (input.includes("end") && input.includes("slideshow") || input.includes("end") && input.includes("presentation") || input.includes("finish") && input.includes("presentation") || input.includes("finish") && input.includes("slideshow")) {
+      axios({
+        method: 'POST',
+        url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/endScreen',
+        headers: {
+          'Content-Type': 'application/json',
+          'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey')
+        }
+      });
+      //send endscreen.png to all viewers
+      window.location.href = "index.html";
+    }
+  }
+}
+function randomBeginning() {
+  let possibilities = [
+    "All About ",
+    "What to Know About ",
+    "The Facts on ",
+    "Info on ",
+    "Info About ",
+    "Facts About ",
+    "Learn About ",
+    "Get to Know ",
+    "Have You Heard About ",
+    "Learn More About "
+  ];
+
+  let i = parseInt(Math.random() * (possibilities.length));
+  return possibilities[i];
+}
+
+function capitalizeFirstLetter(string) {
+  if (typeof string == undefined) return;
+  var firstLetter = string[0] || string.charAt(0);
+  return firstLetter ? firstLetter.toUpperCase() + string.substr(1) : '';
+}
+
+function displayImage() {
+  searchWord = currentSlideTitle;
+
+  $(document).ready(function () {
+    var API_KEY = '5bdbd1129f9e6f3584db4a8e0f3b1bb2';
+    let url = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${API_KEY}&format=json&nojsoncallback=1&text=${searchWord}&extras=url_o&sort=interestingness-desc&safe_search=1`
+    return axios.get(url).then(res => {
+      var validPhotos = res.data.photos.photo.filter(function (photo) {
+        if (photo.url_o != undefined) {
+          return photo;
+        }
+      });
+      randomNumber = parseInt(Math.random() * 25);
+      var displayPic = validPhotos[randomNumber].url_o;
+      let imageDiv = document.getElementById('images');
+      imageDiv.innerHTML = "";
+      let imageElement = document.createElement('img');
+      imageElement.style.height = "70vh";
+      imageElement.style.width = "auto";
+      imageElement.style.marginLeft = "-350px";
+      imageElement.id = "image";
+      imageElement.src = displayPic;
+      imageDiv.appendChild(imageElement);
+    });
+    // $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
+    //   {
+    //     tags: searchWord,
+    //     tagmode: "any",
+    //     format: "json"
+    //   },
+    //   function (data) {
+    //     var rnd = Math.floor(Math.random() * data.items.length);
+
+    //     var image_src = data.items[rnd]['media']['m'].replace("_m", "_b");
+
+    //     let imageDiv = document.getElementById('images');
+    //     imageDiv.innerHTML = "";
+    //     let imageElement = document.createElement('img');
+    //     imageElement.style.height = "70vh";
+    //     imageElement.style.width = "auto";
+    //     imageElement.style.marginLeft = "-350px";
+    //     imageElement.src = image_src;
+    //     imageDiv.appendChild(imageElement);
+
+    //   });
+
+  });
+}
+
+async function displayGraph() {
+
+  let choice = Math.floor(Math.random() * 3);
+  let name = capitalizeFirstLetter(currentSlideTitle);
+  if (choice == 1) {
+    let one = Math.floor(Math.random() * 500);
+    let two = Math.floor(Math.random() * 500);
+    let three = Math.floor(Math.random() * 500);
+    let four = Math.floor(Math.random() * 500);
+    let total = one + two + three + four;
+    one = one / total * 100;
+    two = two / total * 100;
+    three = three / total * 100;
+    four = four / total * 100;
+
+    chart = await new CanvasJS.Chart("images", {
+      animationEnabled: true,
+      title: {
+        text: name
+      },
+      data: [{
+        type: "pie",
+        startAngle: 240,
+        yValueFormatString: "##0.00\"%\"",
+        indexLabel: "{label} {y}",
+        dataPoints: [
+          { y: one, label: "" },
+          { y: two, label: "" },
+          { y: three, label: "" },
+          { y: four, label: "" },
+        ]
+      }]
+    });
+    console.log(chart);
+    chart.render();
+  } else if (choice == 2) {
+    chart = await new CanvasJS.Chart("images", {
+      animationEnabled: true,
+      theme: "light2",
+      title: {
+        text: name
+      },
+      axisY: {
+        includeZero: false
+      },
+      data: [{
+        type: "line",
+        dataPoints: [
+          { y: Math.floor(Math.random() * 7) },
+          { y: Math.floor(Math.random() * 7) },
+          { y: Math.floor(Math.random() * 7) },
+          { y: Math.floor(Math.random() * 7) },
+          { y: Math.floor(Math.random() * 7) },
+          { y: Math.floor(Math.random() * 7) },
+          { y: Math.floor(Math.random() * 7) },
+          { y: Math.floor(Math.random() * 7) }
+        ]
+      }]
+    });
+    chart.render();
+  } else {
+
+    chart = await new CanvasJS.Chart("images", {
+      animationEnabled: true,
+
+      title: {
+        text: name
+      },
+      axisX: {
+        interval: 1
+      },
+      axisY2: {
+        interlacedColor: "rgba(1,77,101,.2)",
+        gridColor: "rgba(1,77,101,.1)",
+      },
+      data: [{
+        type: "bar",
+        axisYType: "secondary",
+        color: "#014D65",
+        dataPoints: [
+          { y: Math.floor(Math.random() * 4), label: "" },
+          { y: Math.floor(Math.random() * 4) + 4, label: "" },
+          { y: Math.floor(Math.random() * 4) + 8, label: "" },
+          { y: Math.floor(Math.random() * 4) + 12, label: "" }
+        ]
+      }]
+    });
+    chart.render();
+  }
+  chart.id = "image";
+
+}
+/*let imageDiv = document.getElementById('images');
+imageDiv.innerHTML = "";
+let imageElement = document.createElement('img');
+imageElement.style.height = "70vh";
+imageElement.style.width = "auto";
+imageElement.style.marginLeft = "-350px";
+imageElement.src = displayPic;
+imageDiv.appendChild(imageElement);*/
+
+function getWiki(place) {
+  var URL = 'https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=';
+
+  URL += "&titles=" + place;
+  URL += "&rvprop=content";
+  URL += "&callback=?";
+  $.getJSON(URL, function (data) {
+    var obj = data.query.pages;
+    var obj = data.query.pages;
+    var ob = Object.keys(obj)[0];
+    console.log(obj[ob]["extract"]);
+    try {
+      console.log(obj[ob]["extract"]);
+      let sentences = obj[ob]["extract"].split(".");
+      console.log(obj[ob]["extract"]);
+      if (sentences[1] == undefined) {
+        getWiki(place.substring(0, place.length - 1));
+        return;
+      }
+      bulletNum++;
+      let myBullet = document.createElement('li');
+      myBullet.style.display = "none";
+      myBullet.innerText = "• " + sentences[0];
+      myBullet.id = `bullet${bulletNum}`;
+      myBullet.style.fontSize = "30px";
+      document.getElementById('bullets').appendChild(myBullet);
+      document.getElementById(`bullet${bulletNum}`).style.display = "block";
+      bulletNum++;
+      let myBullet2 = document.createElement('li');
+      myBullet2.style.display = "none";
+      myBullet2.innerText = "• " + sentences[1];
+      myBullet2.id = `bullet${bulletNum}`;
+      myBullet2.style.fontSize = "30px";
+      document.getElementById('bullets').appendChild(myBullet2);
+      document.getElementById(`bullet${bulletNum}`).style.display = "block";
+    }
+    catch (err) {
+      console.log(err.message);
+    }
+
+  });
+}

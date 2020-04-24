@@ -1,1 +1,92 @@
-const _0x4234=['setVisible','AIzaSyDhkJ2yT06tRwXIMEUp9xaj2-LxOnKyvGY','action','href','ViewId','510632149212','addView','PickerBuilder','getElementById','location','picker','currentSlide','getItem','authorize','data','userKey','application/json','popup','auth','setItem','null','none','setDeveloperKey','presentationID','login.html','MULTISELECT_ENABLED','catch','510632149212-b3nju2fd9omib1l67qal0ot1214rr75s.apps.googleusercontent.com','docs','enableFeature','slidesPresent.html','then','access_token','NAV_HIDDEN','load','setAppId','https://syncfastserver.macrotechsolutions.us:9146/http://localhost/host','Feature','gapi'];(function(_0x244db1,_0x4234a2){const _0x4b85c7=function(_0x4b348c){while(--_0x4b348c){_0x244db1['push'](_0x244db1['shift']());}};_0x4b85c7(++_0x4234a2);}(_0x4234,0xfc));const _0x4b85=function(_0x244db1,_0x4234a2){_0x244db1=_0x244db1-0x0;let _0x4b85c7=_0x4234[_0x244db1];return _0x4b85c7;};if(sessionStorage[_0x4b85('0x21')]('userKey')==null||sessionStorage[_0x4b85('0x21')](_0x4b85('0x24'))==_0x4b85('0x2')){window[_0x4b85('0x1e')][_0x4b85('0x18')]=_0x4b85('0x6');}let developerKey=_0x4b85('0x16');let clientId=_0x4b85('0x9');let appId=_0x4b85('0x1a');let scopes=['https://www.googleapis.com/auth/drive.file'];let pickerApiLoaded=![];let oauthToken;function loadPicker(){gapi[_0x4b85('0x10')](_0x4b85('0x0'),{'callback':onAuthApiLoad});gapi['load'](_0x4b85('0x1f'),{'callback':onPickerApiLoad});}function onAuthApiLoad(){window[_0x4b85('0x14')]['auth'][_0x4b85('0x22')]({'client_id':clientId,'scope':scopes,'immediate':![]},handleAuthResult);}function onPickerApiLoad(){pickerApiLoaded=!![];createPicker();}function handleAuthResult(_0xc9efd7){if(_0xc9efd7&&!_0xc9efd7['error']){oauthToken=_0xc9efd7[_0x4b85('0xe')];createPicker();}}function createPicker(){if(pickerApiLoaded&&oauthToken){let _0x1f8aa3=new google[(_0x4b85('0x1f'))]['View'](google['picker'][_0x4b85('0x19')]['PRESENTATIONS']);let _0x40b5d0=new google[(_0x4b85('0x1f'))][(_0x4b85('0x1c'))]()[_0x4b85('0xb')](google[_0x4b85('0x1f')][_0x4b85('0x13')][_0x4b85('0xf')])[_0x4b85('0xb')](google['picker'][_0x4b85('0x13')][_0x4b85('0x7')])[_0x4b85('0x11')](appId)['setOAuthToken'](oauthToken)[_0x4b85('0x1b')](_0x1f8aa3)['addView'](new google[(_0x4b85('0x1f'))]['DocsUploadView']())[_0x4b85('0x4')](developerKey)['setCallback'](pickerCallback)['build']();_0x40b5d0[_0x4b85('0x15')](!![]);}}async function pickerCallback(_0x32197f){document[_0x4b85('0x1d')](_0x4b85('0x26'))['style']['display']=_0x4b85('0x3');if(_0x32197f[_0x4b85('0x17')]==google[_0x4b85('0x1f')]['Action']['PICKED']){let _0x575f97=_0x32197f[_0x4b85('0xa')][0x0]['id'];let _0x48af4c=sessionStorage[_0x4b85('0x21')](_0x4b85('0x24'));let _0x14583d=localStorage[_0x4b85('0x21')](_0x4b85('0xe'));let _0x4a61d5;await axios({'method':'POST','url':_0x4b85('0x12'),'headers':{'Content-Type':_0x4b85('0x25'),'fileid':_0x575f97,'userkey':_0x48af4c,'accesstoken':_0x14583d}})[_0x4b85('0xd')](_0x5efacf=>_0x4a61d5=_0x5efacf[_0x4b85('0x23')])[_0x4b85('0x8')](_0x336328=>console['log'](_0x336328));sessionStorage[_0x4b85('0x1')](_0x4b85('0x5'),_0x575f97);sessionStorage['setItem']('accessKey',_0x4a61d5['accesskey']);sessionStorage['setItem'](_0x4b85('0x20'),'0');window[_0x4b85('0x1e')][_0x4b85('0x18')]=_0x4b85('0xc');}}
+if (sessionStorage.getItem('userKey') == null || sessionStorage.getItem('userKey') == "null") {
+    window.location.href = "login.html";
+}
+
+// The Browser API key obtained from the Google API Console.
+// Replace with your own Browser API key, or your own key.
+let developerKey = 'AIzaSyDhkJ2yT06tRwXIMEUp9xaj2-LxOnKyvGY';
+
+// The Client ID obtained from the Google API Console. Replace with your own Client ID.
+let clientId = "510632149212-b3nju2fd9omib1l67qal0ot1214rr75s.apps.googleusercontent.com"
+
+// Replace with your own project number from console.developers.google.com.
+// See "Project number" under "IAM & Admin" > "Settings"
+let appId = "510632149212";
+
+// Scope to use to access user's Drive items.
+let scopes = ['https://www.googleapis.com/auth/drive.file'];
+
+let pickerApiLoaded = false;
+let oauthToken;
+
+// Use the Google API Loader script to load the google.picker script.
+function loadPicker() {
+    gapi.load('auth', { 'callback': onAuthApiLoad });
+    gapi.load('picker', { 'callback': onPickerApiLoad });
+}
+
+function onAuthApiLoad() {
+    window.gapi.auth.authorize({
+        'client_id': clientId,
+        'scope': scopes,
+        'immediate': false
+    },
+        handleAuthResult);
+}
+
+function onPickerApiLoad() {
+    pickerApiLoaded = true;
+    createPicker();
+}
+
+function handleAuthResult(authResult) {
+    if (authResult && !authResult.error) {
+        oauthToken = authResult.access_token;
+        createPicker();
+    }
+}
+
+// Create and render a Picker object for searching images.
+function createPicker() {
+    if (pickerApiLoaded && oauthToken) {
+        let view = new google.picker.View(google.picker.ViewId.PRESENTATIONS);
+        let picker = new google.picker.PickerBuilder()
+            .enableFeature(google.picker.Feature.NAV_HIDDEN)
+            .enableFeature(google.picker.Feature.MULTISELECT_ENABLED)
+            .setAppId(appId)
+            .setOAuthToken(oauthToken)
+            .addView(view)
+            .addView(new google.picker.DocsUploadView())
+            .setDeveloperKey(developerKey)
+            .setCallback(pickerCallback)
+            .build();
+        picker.setVisible(true);
+    }
+}
+
+// A simple callback implementation.
+async function pickerCallback(data) {
+    document.getElementById("popup").style.display = "none";
+    if (data.action == google.picker.Action.PICKED) {
+        let fileId = data.docs[0].id;
+        let userID = sessionStorage.getItem('userKey');
+        let accessToken = localStorage.getItem('access_token');
+        let result;
+        await axios({
+            method: 'POST',
+            url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/host',
+            headers: {
+                'Content-Type': 'application/json',
+                'fileid': fileId,
+                'userkey': userID,
+                'accesstoken' : accessToken
+            }
+        })
+            .then(data => result = data.data)
+            .catch(err => console.log(err))
+        sessionStorage.setItem('presentationID', fileId)
+        sessionStorage.setItem('accessKey', result.accesskey);
+        sessionStorage.setItem('currentSlide', "0")
+        window.location.href = "slidesPresent.html"
+    }
+}
