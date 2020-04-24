@@ -21,8 +21,14 @@ String accessCode;
 String username;
 String password;
 var clientJson;
+var tempJson;
 var hostJson;
 var lockIcon = Icons.lock_outline;
+bool clientLock = true;
+var currentSlideNum = "";
+var currentPresSlideNum = "";
+var maxSlideNum = "";
+var slideUrl = "";
 
 class HexColor extends Color {
   static int _getColorFromHex(String hexColor) {
@@ -93,8 +99,7 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage>{
-
+class _MyHomePageState extends State<MyHomePage> {
   @override
   initState() {
     super.initState();
@@ -102,24 +107,22 @@ class _MyHomePageState extends State<MyHomePage>{
     controller.addListener(() {
       url = controller.text;
     });
-    if(initial){
+    if (initial) {
       initPlatformState();
       initial = !initial;
     }
-
   }
 
   initPlatformState() async {
     var initialLink;
     try {
       initialLink = await getInitialLink();
-      print('initial link: $initialLink');
       if (initialLink != null) {
         if (initialLink.contains("syncfast") &&
             initialLink.contains("?accessKey=")) {
           accessCode = initialLink.substring(initialLink.indexOf('=') + 1);
           Navigator.pushReplacementNamed(context, "/join");
-        } else{
+        } else {
           Navigator.push(
               context,
               new MaterialPageRoute(
@@ -154,8 +157,6 @@ class _MyHomePageState extends State<MyHomePage>{
 
   final webView = FlutterWebviewPlugin();
   TextEditingController controller = TextEditingController(text: url);
-
-
 
   @override
   void dispose() {
@@ -453,7 +454,7 @@ class _ClientJoinPageState extends State<ClientJoinPage> {
                             "accesscode": accessCode
                           };
                           Response response = await post(
-                              'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/clientJoin',
+                              'https://syncfast.macrotechsolutions.us:9146/http://localhost/clientJoin',
                               headers: headers);
                           //createAlertDialog(context);
                           clientJson = jsonDecode(response.body);
@@ -461,6 +462,19 @@ class _ClientJoinPageState extends State<ClientJoinPage> {
                             createAlertDialog(context, "Incorrect Access Code",
                                 "Access code $accessCode is invalid. Please try again.");
                           } else {
+                            maxSlideNum = clientJson["slidenum"];
+                            currentPresSlideNum = clientJson["slidenum"];
+                            currentSlideNum = clientJson["slidenum"];
+                            slideUrl = clientJson["slideurl"];
+                            if (clientJson["lockstate"] == 'false') {
+                              setState(() {
+                                clientLock = false;
+                              });
+                            } else {
+                              setState(() {
+                                clientLock = true;
+                              });
+                            }
                             dispose() {
                               SystemChrome.setPreferredOrientations([
                                 DeviceOrientation.landscapeRight,
@@ -503,7 +517,7 @@ class _ClientJoinPageState extends State<ClientJoinPage> {
                           "accesscode": accessCode
                         };
                         Response response = await post(
-                            'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/clientJoin',
+                            'https://syncfast.macrotechsolutions.us:9146/http://localhost/clientJoin',
                             headers: headers);
                         //createAlertDialog(context);
                         clientJson = jsonDecode(response.body);
@@ -511,6 +525,19 @@ class _ClientJoinPageState extends State<ClientJoinPage> {
                           createAlertDialog(context, "Incorrect Access Code",
                               "Access code $accessCode is invalid. Please try again.");
                         } else {
+                          maxSlideNum = clientJson["slidenum"];
+                          currentPresSlideNum = clientJson["slidenum"];
+                          currentSlideNum = clientJson["slidenum"];
+                          slideUrl = clientJson["slideurl"];
+                          if (clientJson["lockstate"] == 'false') {
+                            setState(() {
+                              clientLock = false;
+                            });
+                          } else {
+                            setState(() {
+                              clientLock = true;
+                            });
+                          }
                           dispose() {
                             SystemChrome.setPreferredOrientations([
                               DeviceOrientation.landscapeRight,
@@ -624,10 +651,9 @@ class _ViewPresPageState extends State<ViewPresPage> {
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
     ]);
-    var channel = IOWebSocketChannel.connect(
-        "wss://syncfastserver.macrotechsolutions.us:4211");
+    var channel =
+        IOWebSocketChannel.connect("wss://syncfast.macrotechsolutions.us:4211");
     channel.stream.listen((message) async {
-      print(message);
       if (message == clientJson["firebasepresentationkey"]) {
         Map<String, String> headers = {
           "Content-type": "application/json",
@@ -635,12 +661,42 @@ class _ViewPresPageState extends State<ViewPresPage> {
           "accesscode": accessCode
         };
         Response response = await post(
-            'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/clientJoin',
+            'https://syncfast.macrotechsolutions.us:9146/http://localhost/clientJoin',
             headers: headers);
         //createAlertDialog(context);
         setState(() {
           clientJson = jsonDecode(response.body);
         });
+        if (int.parse(clientJson["slidenum"]) > int.parse(maxSlideNum)) {
+          maxSlideNum = clientJson["slidenum"];
+        }
+        print(clientJson);
+        if (clientJson["lockstate"] == 'false') {
+          setState(() {
+            clientLock = false;
+          });
+          print(currentPresSlideNum);
+          print(currentSlideNum);
+          if (currentPresSlideNum != clientJson["slidenum"]) {
+            if (currentPresSlideNum == currentSlideNum) {
+              setState(() {
+                slideUrl = clientJson["slideurl"];
+                currentSlideNum = clientJson["slidenum"];
+              });
+            }
+          }
+        } else {
+          setState(() {
+            clientLock = true;
+          });
+          if (currentPresSlideNum != clientJson["slidenum"]) {
+            currentSlideNum = clientJson["slidenum"];
+            setState(() {
+              slideUrl = clientJson["slideurl"];
+            });
+          }
+        }
+        currentPresSlideNum = clientJson["slidenum"];
       }
     });
     return WillPopScope(
@@ -662,28 +718,85 @@ class _ViewPresPageState extends State<ViewPresPage> {
           body: Center(
             // Center is a layout widget. It takes a single child and positions it
             // in the middle of the parent.
-            child: Column(
-              // Column is also a layout widget. It takes a list of children and
-              // arranges them vertically. By default, it sizes itself to fit its
-              // children horizontally, and tries to be as tall as its parent.
-              //
-              // Invoke "debug painting" (press "p" in the console, choose the
-              // "Toggle Debug Paint" action from the Flutter Inspector in Android
-              // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-              // to see the wireframe for each widget.
-              //
-              // Column has various properties to control how it sizes itself and
-              // how it positions its children. Here we use mainAxisAlignment to
-              // center the children vertically; the main axis here is the vertical
-              // axis because Columns are vertical (the cross axis would be
-              // horizontal).
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                Opacity(
+                  opacity: clientLock ? 0.0 : 1.0,
+                  child: RaisedButton(
+                      onPressed: () async {
+                        if (!clientLock) {
+                          if (currentSlideNum != "0") {
+                            Map<String, String> headers = {
+                              "Content-type": "application/json",
+                              "Origin": "*",
+                              "accesscode": accessCode,
+                              "slidenum":
+                                  (int.parse(currentSlideNum) - 1).toString()
+                            };
+                            Response response = await post(
+                                'https://syncfast.macrotechsolutions.us:9146/http://localhost/clientGetSlide',
+                                headers: headers);
+                            currentSlideNum =
+                                (int.parse(currentSlideNum) - 1).toString();
+                            setState(() {
+                              tempJson = jsonDecode(response.body);
+                            });
+                            setState(() {
+                              slideUrl = tempJson["slideurl"];
+                            });
+                          } else {
+                            createAlertDialog(context, "Previous Slide",
+                                "You are currently on the first slide.");
+                          }
+                        }
+                      },
+                      child: Image(
+                        image: AssetImage('assets/previousSlide.png'),
+                        width: 75,
+                      )),
+                ),
                 Expanded(
                     child: Container(
                         child: Image(
-                  image: NetworkImage(clientJson["slideurl"]),
-                )))
+                  image: NetworkImage(slideUrl),
+                ))),
+                Opacity(
+                  opacity: clientLock ? 0.0 : 1.0,
+                  child: RaisedButton(
+                      onPressed: () async {
+                        if (!clientLock) {
+                          if (int.parse(currentSlideNum) <
+                              int.parse(maxSlideNum)) {
+                            Map<String, String> headers = {
+                              "Content-type": "application/json",
+                              "Origin": "*",
+                              "accesscode": accessCode,
+                              "slidenum":
+                                  (int.parse(currentSlideNum) + 1).toString()
+                            };
+                            Response response = await post(
+                                'https://syncfast.macrotechsolutions.us:9146/http://localhost/clientGetSlide',
+                                headers: headers);
+                            currentSlideNum =
+                                (int.parse(currentSlideNum) + 1).toString();
+                            setState(() {
+                              tempJson = jsonDecode(response.body);
+                            });
+                            setState(() {
+                              slideUrl = tempJson["slideurl"];
+                            });
+                          } else {
+                            createAlertDialog(context, "Next Slide",
+                                "You are currently on the last available slide.");
+                          }
+                        }
+                      },
+                      child: Image(
+                        image: AssetImage('assets/nextSlide.png'),
+                        width: 75,
+                      )),
+                ),
               ],
             ),
           ),
@@ -830,7 +943,6 @@ class _HostSignInState extends State<HostSignIn> {
                 onChanged: (String str) {
                   setState(() {
                     password = str;
-                    print(password);
                   });
                 },
               ),
@@ -845,11 +957,10 @@ class _HostSignInState extends State<HostSignIn> {
                         "password": password
                       };
                       Response response = await post(
-                          'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/remoteEmail',
+                          'https://syncfast.macrotechsolutions.us:9146/http://localhost/remoteEmail',
                           headers: headers);
                       //createAlertDialog(context);
                       hostJson = jsonDecode(response.body);
-                      print(response);
                       if (hostJson["data"] == "Valid User") {
                         Map<String, String> headers = {
                           "Content-type": "application/json",
@@ -858,7 +969,7 @@ class _HostSignInState extends State<HostSignIn> {
                               hostJson["firebasepresentationkey"]
                         };
                         Response response = await post(
-                            'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/remoteAuth',
+                            'https://syncfast.macrotechsolutions.us:9146/http://localhost/remoteAuth',
                             headers: headers);
                         hostJson = jsonDecode(response.body);
                         dispose() {
@@ -900,7 +1011,7 @@ class _HostSignInState extends State<HostSignIn> {
                   "email": googleSignInAccount.email
                 };
                 Response response = await post(
-                    'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/hostRemote',
+                    'https://syncfast.macrotechsolutions.us:9146/http://localhost/hostRemote',
                     headers: headers);
                 //createAlertDialog(context);
                 hostJson = jsonDecode(response.body);
@@ -912,7 +1023,7 @@ class _HostSignInState extends State<HostSignIn> {
                         hostJson["firebasepresentationkey"]
                   };
                   Response response = await post(
-                      'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/remoteAuth',
+                      'https://syncfast.macrotechsolutions.us:9146/http://localhost/remoteAuth',
                       headers: headers);
                   hostJson = jsonDecode(response.body);
                   dispose() {
@@ -1019,10 +1130,9 @@ class _HostRemotePageState extends State<HostRemotePage> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    var channel = IOWebSocketChannel.connect(
-        "wss://syncfastserver.macrotechsolutions.us:4211");
+    var channel =
+        IOWebSocketChannel.connect("wss://syncfast.macrotechsolutions.us:4211");
     channel.stream.listen((message) async {
-      print(message);
       if (message == hostJson["firebasepresentationkey"]) {
         Map<String, String> headers = {
           "Content-type": "application/json",
@@ -1030,9 +1140,8 @@ class _HostRemotePageState extends State<HostRemotePage> {
           "firebasepresentationkey": hostJson["firebasepresentationkey"]
         };
         Response response = await post(
-            'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/remoteAuth',
+            'https://syncfast.macrotechsolutions.us:9146/http://localhost/remoteAuth',
             headers: headers);
-        //createAlertDialog(context);
         setState(() {
           hostJson = jsonDecode(response.body);
           if (hostJson["lockstate"] == "false") {
@@ -1047,7 +1156,6 @@ class _HostRemotePageState extends State<HostRemotePage> {
         });
       }
     });
-    print(hostJson);
     googleSignIn.signOut();
     return Scaffold(
       appBar: AppBar(
@@ -1062,7 +1170,7 @@ class _HostRemotePageState extends State<HostRemotePage> {
                 "firebasepresentationkey": hostJson["firebasepresentationkey"]
               };
               Response response = await post(
-                  'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/hostLock',
+                  'https://syncfast.macrotechsolutions.us:9146/http://localhost/hostLock',
                   headers: headers);
             },
             color: Colors.white,
@@ -1157,7 +1265,7 @@ class _HostRemotePageState extends State<HostRemotePage> {
                                 hostJson["firebasepresentationkey"]
                           };
                           Response response = await post(
-                              'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/previousSlide',
+                              'https://syncfast.macrotechsolutions.us:9146/http://localhost/previousSlide',
                               headers: headers);
                         } else {
                           createAlertDialog(context, "Previous Slide",
@@ -1181,7 +1289,7 @@ class _HostRemotePageState extends State<HostRemotePage> {
                                 hostJson["firebasepresentationkey"]
                           };
                           Response response = await post(
-                              'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/nextSlide',
+                              'https://syncfast.macrotechsolutions.us:9146/http://localhost/nextSlide',
                               headers: headers);
                         } else {
                           createAlertDialog(context, "Next Slide",
@@ -1231,7 +1339,6 @@ class _ViewLinkPageState extends State<ViewLinkPage> {
                 MaterialButton(
                   elevation: 5.0,
                   onPressed: () {
-                    print("here");
                     Navigator.of(context).pop();
                     Navigator.pushReplacementNamed(context, "/");
                   },
@@ -1355,7 +1462,7 @@ class _ViewLinkPageState extends State<ViewLinkPage> {
                         "accesscode": accessCode
                       };
                       Response response = await post(
-                          'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/clientJoin',
+                          'https://syncfast.macrotechsolutions.us:9146/http://localhost/clientJoin',
                           headers: headers);
                       //createAlertDialog(context);
                       clientJson = jsonDecode(response.body);
@@ -1363,6 +1470,19 @@ class _ViewLinkPageState extends State<ViewLinkPage> {
                         createAlertDialog(context, "Incorrect Access Code",
                             "Access code $accessCode is invalid.");
                       } else {
+                        maxSlideNum = clientJson["slidenum"];
+                        currentPresSlideNum = clientJson["slidenum"];
+                        currentSlideNum = clientJson["slidenum"];
+                        slideUrl = clientJson["slideurl"];
+                        if (clientJson["lockstate"] == 'false') {
+                          setState(() {
+                            clientLock = false;
+                          });
+                        } else {
+                          setState(() {
+                            clientLock = true;
+                          });
+                        }
                         dispose() {
                           SystemChrome.setPreferredOrientations([
                             DeviceOrientation.landscapeRight,

@@ -32,7 +32,7 @@ class SignUp extends React.Component {
             }
         }
         console.log(profile.getName());
-        let response = await fetch('https://syncfastserver.macrotechsolutions.us:9146/http://localhost/googleSignIn', {
+        let response = await fetch('https://syncfast.macrotechsolutions.us:9146/http://localhost/googleSignIn', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ class SignUp extends React.Component {
     async signInEmail(e) {
         e.preventDefault();
         let email = this.state.email.toLowerCase();
-        let response = await fetch('https://syncfastserver.macrotechsolutions.us:9146/http://localhost/signUp', {
+        let response = await fetch('https://syncfast.macrotechsolutions.us:9146/http://localhost/signUp', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

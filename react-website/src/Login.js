@@ -29,7 +29,7 @@ class Login extends React.Component {
             }
         }
         console.log(profile.getName());
-        let response = await fetch('https://syncfastserver.macrotechsolutions.us:9146/http://localhost/googleSignIn', {
+        let response = await fetch('https://syncfast.macrotechsolutions.us:9146/http://localhost/googleSignIn', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ class Login extends React.Component {
         e.preventDefault();
         let email = this.state.email
         let inputPassword = this.state.password;
-        let response = await fetch('https://syncfastserver.macrotechsolutions.us:9146/http://localhost/signIn', {
+        let response = await fetch('https://syncfast.macrotechsolutions.us:9146/http://localhost/signIn', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

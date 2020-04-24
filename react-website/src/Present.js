@@ -91,7 +91,7 @@ class Present extends React.Component {
             }).then(async function (response) {
                 const res = JSON.parse(response.body);
                 this.setState({slideUrl: res.contentUrl});
-                await fetch('https://syncfastserver.macrotechsolutions.us:9146/http://localhost/slideUrl', {
+                await fetch('https://syncfast.macrotechsolutions.us:9146/http://localhost/slideUrl', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ class Present extends React.Component {
                         'notes': this.state.notes
                     }
                 });
-                await fetch('https://syncfastserver.macrotechsolutions.us:9146/http://localhost/presentationTitle', {
+                await fetch('https://syncfast.macrotechsolutions.us:9146/http://localhost/presentationTitle', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -109,7 +109,7 @@ class Present extends React.Component {
                         'presentationtitle': this.state.presentation.title
                     }
                 });
-                await fetch('https://syncfastserver.macrotechsolutions.us:9146/http://localhost/presentationLength', {
+                await fetch('https://syncfast.macrotechsolutions.us:9146/http://localhost/presentationLength', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -144,7 +144,7 @@ class Present extends React.Component {
     }
 
     async firebaseCommands() {
-        let response = await fetch('https://syncfastserver.macrotechsolutions.us:9146/http://localhost/hostCommands', {
+        let response = await fetch('https://syncfast.macrotechsolutions.us:9146/http://localhost/hostCommands', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -182,7 +182,7 @@ class Present extends React.Component {
     }
 
     async establishConnection() {
-        await fetch('https://syncfastserver.macrotechsolutions.us:9146/http://localhost/createListener', {
+        await fetch('https://syncfast.macrotechsolutions.us:9146/http://localhost/createListener', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -216,7 +216,7 @@ class Present extends React.Component {
             this.findQR(this.slideUrl);
             // this.imageElement.src = this.slideUrl;
             // this.imageElement2.src = this.slideUrl;
-            await fetch('https://syncfastserver.macrotechsolutions.us:9146/http://localhost/updatePage', {
+            await fetch('https://syncfast.macrotechsolutions.us:9146/http://localhost/updatePage', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -303,7 +303,7 @@ class Present extends React.Component {
     async lockAccess() {
         this.setState({lockState: !this.state.lockState});
         if (this.state.lockState) {
-            await fetch('https://syncfastserver.macrotechsolutions.us:9146/http://localhost/lockPresentation', {
+            await fetch('https://syncfast.macrotechsolutions.us:9146/http://localhost/lockPresentation', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -313,7 +313,7 @@ class Present extends React.Component {
             })
             this.state.lock.innerText = "Unlock Presentation";
         } else {
-            await fetch('https://syncfastserver.macrotechsolutions.us:9146/http://localhost/lockPresentation', {
+            await fetch('https://syncfast.macrotechsolutions.us:9146/http://localhost/lockPresentation', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -342,7 +342,7 @@ class Present extends React.Component {
         let result = "";
         let response = await fetch({
             method: 'POST',
-            url: 'https://syncfastserver.macrotechsolutions.us:9146/http://localhost/changeAccessKey',
+            url: 'https://syncfast.macrotechsolutions.us:9146/http://localhost/changeAccessKey',
             headers: {
                 'Content-Type': 'application/json',
                 'firebasepresentationkey': sessionStorage.getItem('firebasePresentationKey'),

@@ -32,7 +32,7 @@ class Host extends React.Component {
         let fileId = data.docs[0].id;
         let userID = sessionStorage.getItem('userKey');
         let accessToken = localStorage.getItem('access_token');
-        let response = await fetch('https://syncfastserver.macrotechsolutions.us:9146/http://localhost/host', {
+        let response = await fetch('https://syncfast.macrotechsolutions.us:9146/http://localhost/host', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ class Host extends React.Component {
         sessionStorage.setItem('presentationID', fileId)
         sessionStorage.setItem('accessKey', json.accesskey);
         sessionStorage.setItem('currentSlide', "0")
-        window.location.href = 'https://syncfastserver.macrotechsolutions.us/present'
+        window.location.href = 'https://syncfast.macrotechsolutions.us/present'
     }
 
     render() {

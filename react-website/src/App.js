@@ -12,6 +12,9 @@ import Client from "./Client";
 
 
 function App() {
+  if(!(window.location.href).includes('syncfast.macrotechsolutions.us')){
+    window.location.href = `https://syncfast.macrotechsolutions.us${window.location.pathname + window.location.search}`;
+  }
   return (
     <div className="App">
       <Switch>

@@ -12,18 +12,34 @@ class Error extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            accessKey: "",
-            errorText: "",
-            firebasePresentationKey: "",
-            slideUrl: "",
+        let params = new URLSearchParams(document.location.search.substring(1));
+        let myKey = params.get("accessKey");
+        if(myKey){
+            this.state = {
+                accessKey: myKey,
+                errorText: "",
+                firebasePresentationKey: "",
+                slideUrl: "",
+            }
+            this.submitKey();
+        } else{
+            this.state = {
+                accessKey: "",
+                errorText: "",
+                firebasePresentationKey: "",
+                slideUrl: "",
+            }
         }
     }
 
     async submitKey(e) {
-        e.preventDefault();
+        try {
+            e.preventDefault();
+        } catch (e) {
+
+        }
         let accessCode = this.state.accessKey;
-        let response = await fetch('https://syncfastserver.macrotechsolutions.us:9146/http://localhost/clientJoin', {
+        let response = await fetch('https://syncfast.macrotechsolutions.us:9146/http://localhost/clientJoin', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -58,7 +74,7 @@ class Error extends React.Component {
 
     async previousSlide() {
         if (parseInt(this.state.currentSlideNum) > 0) {
-            let response = await fetch('https://syncfastserver.macrotechsolutions.us:9146/http://localhost/clientGetSlide', {
+            let response = await fetch('https://syncfast.macrotechsolutions.us:9146/http://localhost/clientGetSlide', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -77,7 +93,7 @@ class Error extends React.Component {
 
     async nextSlide() {
         if (parseInt(this.state.currentSlideNum) < parseInt(this.state.maxSlideNum)) {
-            let response = await fetch('https://syncfastserver.macrotechsolutions.us:9146/http://localhost/clientGetSlide', {
+            let response = await fetch('https://syncfast.macrotechsolutions.us:9146/http://localhost/clientGetSlide', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -95,7 +111,7 @@ class Error extends React.Component {
     }
 
     async updatePage() {
-        let response = await fetch('https://syncfastserver.macrotechsolutions.us:9146/http://localhost/clientJoin', {
+        let response = await fetch('https://syncfast.macrotechsolutions.us:9146/http://localhost/clientJoin', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -150,7 +166,7 @@ class Error extends React.Component {
     render() {
         return (
             <div>
-                <Websocket url='wss://syncfastserver.macrotechsolutions.us:4211'
+                <Websocket url='wss://syncfast.macrotechsolutions.us:4211'
                     onMessage={this.handleData.bind(this)} />
                 <Header />
                 <div className="content">
