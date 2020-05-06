@@ -1,6 +1,8 @@
+
 if (sessionStorage.getItem('presentationID') == null || sessionStorage.getItem('presentationID') == "null") {
     window.location.href = "index.html";
 }
+
 
 document.getElementById("linkBtn").addEventListener("click", openLink);
 //document.getElementById("qrBtn").addEventListener("click", openQRCode);
@@ -56,7 +58,7 @@ changeKey.appendChild(submit);
 submit.style.display = "none";
 submit.addEventListener('click', accessKeySubmitted);
 let openURL = "";
-let openQR = ""
+let openQR = "";
 let connected = false;
 
 // Client ID and API key from the Developer Console
@@ -202,6 +204,14 @@ async function listSlides() {
 
 function openQRCodePres() {
     window.open('https://api.qrserver.com/v1/create-qr-code/?data=https://syncfast.macrotechsolutions.us/client.html?accessKey=' + sessionStorage.getItem('accessKey') + '&size=600x600', 'QR Code', "height=600,width=600");
+}
+
+function copyLink() {
+    var newClip = 'https://syncfast.macrotechsolutions.us/client.html?accessKey=' + sessionStorage.getItem('accessKey');
+    navigator.clipboard.writeText(newClip).then(function() {
+      }, function() {
+        /* clipboard write failed */
+      });
 }
 
 async function firebaseCommands() {
